@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="./bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="./bootswatch.css" media="screen">
     <link rel="stylesheet" href="./style.css" media="screen">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -69,8 +70,6 @@
             <div class="row">
                 <div class="col-md-9 col-centered">
                     <div class="text-center">
-                        <br/>
-                        <br/>
                         <img src="http://www.gravatar.com/avatar/c40c74b23b32fadea4d1f9f2efabc777?s=150" class="img-circle" />
                         <h3 class="title">
                             <a href="/">Jaiden Gerig</a>
@@ -90,22 +89,56 @@
                     </div>
                 </div>
             </div>
-            <div class = "row" id="resume">
-              <div class = "col-md-12">
-              <h2>Resume</h2>
-                <iframe src="https://docs.google.com/viewer?srcid=0Bz8zxihkODz-Q0lxbHBJSTdwd2c&pid=explorer&efh=false&a=v&chrome=false&embedded=true" id="docviewer"></iframe>
-              </div>
+        </div>
+    <div class = "bs-docs-section" id = "projects">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Projects</h2>
             </div>
         </div>
+        <div class="row project well well-sm">
+            <div class="col-md-12">
+                    <h3>Title</h3>
+            </div>
+            <div class="col-md-6">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tempus est quis luctus faucibus. Suspendisse maximus hendrerit lectus, eleifend interdum risus porttitor sit amet. Suspendisse aliquet dui eget tristique egestas. Aenean non ipsum a arcu euismod interdum ut in mi. Maecenas sed est ligula. Etiam eget ullamcorper massa, sit amet sollicitudin turpis. Donec eu mauris in neque commodo pharetra. Quisque elementum, orci eleifend vulputate volutpat, libero arcu laoreet nisi, eget tristique enim nisl a sapien. Pellentesque a leo in ligula mollis scelerisque. Nullam aliquam felis quis velit tempus consectetur. Integer sagittis justo id lacus varius feugiat sagittis eu nunc. Curabitur commodo velit sit amet accumsan luctus. Nunc tempus facilisis erat, sit amet consectetur ante dignissim nec. Suspendisse potenti. Proin mollis dolor mi, vel rhoncus lacus consequat bibendum. Curabitur ac interdum augue. Morbi ac nulla in lacus dignissim consequat eget at lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus id molestie nisl, ut dictum lacus. Suspendisse auctor ultrices pulvinar. Aenean eu varius arcu. Vivamus vel cursus nisi, eu tincidunt neque. In ut placerat velit. Suspendisse quis luctus urna, vel gravida libero.
+            </div>
+             <div class="col-md-6">
+                <div id="slides">
+                    <img src="http://placehold.it/940x528">
+                    <img src="http://placehold.it/940x528">
+                    <img src="http://placehold.it/940x528">
+                    <img src="http://placehold.it/940x528">
+                    <img src="http://placehold.it/940x528">
+                    <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="fa fa-chevron-left fa-large"></i></a>
+                    <a href="#" class="slidesjs-next slidesjs-navigation"><i class="fa fa-chevron-right fa-large"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="row" id="resume">
+    <div class="col-md-12">
+        <h2>Resume</h2>
+        <iframe src="https://docs.google.com/viewer?srcid=0Bz8zxihkODz-Q0lxbHBJSTdwd2c&pid=explorer&efh=false&a=v&chrome=false&embedded=true" id="docviewer"></iframe>
+    </div>
+</div>
         <footer>
         </footer>
     </div>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="bootstrap.min.js"></script>
     <script src="bootswatch.js"></script>
+    <script src="jquery.slides.min.js"></script>
     <script type="text/javascript">
     var cw = $('#docviewer').width();
     $('#docviewer').css({'height':cw+'px'});
+    $(function() {
+      $('#slides').slidesjs({
+        width: 940,
+        height: 528,
+        navigation: false
+      });
+    });
     /* <![CDATA[ */
     (function() {
         try {
