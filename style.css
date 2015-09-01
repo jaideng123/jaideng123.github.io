@@ -27,20 +27,21 @@
     width: 800px;
 }
 
-#slides {
+#slides,
+#slides2 {
     display: none;
 }
 
-#slides .slidesjs-navigation {
+.slidesjs-navigation {
     margin-top: 3px;
 }
 
-#slides .slidesjs-previous {
+.slidesjs-previous {
     margin-right: 5px;
     float: left;
 }
 
-#slides .slidesjs-next {
+.slidesjs-next {
     margin-right: 5px;
     float: left;
 }
@@ -76,13 +77,13 @@
     background-position: 0 -26px;
 }
 
-#slides a:link,
-#slides a:visited {
+a:link .nav,
+a:visited .nav {
     color: #FFF;
 }
 
-#slides a:hover,
-#slides a:active {
+a:hover .nav,
+a:active .nav {
     color: #9e2020;
 }
 

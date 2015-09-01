@@ -21,11 +21,16 @@ var _gaq = _gaq || [];
         height: 528,
         navigation: false
       });
+      $('#slides2').slidesjs({
+        width: 940,
+        height: 528,
+        navigation: false
+      });
     });
     $("img.project-img").on("click", function() {
-        $('#imageView').attr('src', $(this).attr('src')); // here asign the image to the modal when the user click the enlarge link
+        var x = $(this).parent().parent().parent().parent().parent();        $('#imageView').attr('src', $(this).attr('src')); // here asign the image to the modal when the user click the enlarge link
         $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
-        console.log("Clicked");
+        $('#myModalLabel').html(x.children("div.col-md-12").children().html());
     });
     /* <![CDATA[ */
     (function() {
