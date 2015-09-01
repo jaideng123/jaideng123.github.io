@@ -1,9 +1,16 @@
 #bio {
     font-size: 19px;
 }
-.slide-container{
-
+.modal-dialog{
+    width: 90%;
 }
+#imageView{
+    max-width: 100%;
+    width: auto;
+    height:auto;
+    max-height: 700px;
+}
+
 
 .col-centered {
     float: none;
