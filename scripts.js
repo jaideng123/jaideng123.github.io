@@ -26,6 +26,11 @@ var _gaq = _gaq || [];
         height: 528,
         navigation: false
       });
+      $('#slides3').slidesjs({
+        width: 940,
+        height: 528,
+        navigation: false
+      });
     });
     $("img.project-img").on("click", function() {
         var x = $(this).parent().parent().parent().parent().parent();        $('#imageView').attr('src', $(this).attr('src')); // here asign the image to the modal when the user click the enlarge link
