@@ -5,7 +5,8 @@
     width: 90%;
 }
 .on-screen{
-    background-color: green;
+    background-color: #5E5E5E;
+    transition: background-color 250ms linear;
 }
 #imageView{
     max-width: 100%;
