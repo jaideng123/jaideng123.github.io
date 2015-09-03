@@ -4,6 +4,9 @@
 .modal-dialog{
     width: 90%;
 }
+.on-screen{
+    background-color: green;
+}
 #imageView{
     max-width: 100%;
     width: auto;

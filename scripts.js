@@ -1,4 +1,9 @@
 $( document ).ready(function() {
+    var waypoint = $('.project').waypoint(function(direction) {
+        $('.project').removeClass('on-screen');
+        $(this.element).addClass('on-screen');
+        console.log("added");
+    },{offset:'25%'});
 var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-23019901-1']);
     _gaq.push(['_setDomainName', "bootswatch.com"]);
