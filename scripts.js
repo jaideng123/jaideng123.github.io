@@ -3,7 +3,7 @@ $( document ).ready(function() {
         $('.project').removeClass('on-screen');
         $(this.element).addClass('on-screen');
         console.log("added");
-    },{offset:'15%'});
+    },{offset:'20%'});
 var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-23019901-1']);
     _gaq.push(['_setDomainName', "bootswatch.com"]);
