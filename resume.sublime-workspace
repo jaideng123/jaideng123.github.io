@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"marg",
+				"margin-top"
+			],
+			[
 				"back",
 				"background-color"
 			],
@@ -510,10 +514,6 @@
 			[
 				"long",
 				"long_title_url"
-			],
-			[
-				"jaiden",
-				"jaideng123"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 10207,
+				"buffer_size": 10384,
 				"line_ending": "Windows"
 			}
 		},
@@ -531,15 +531,7 @@
 			"file": "scripts.js",
 			"settings":
 			{
-				"buffer_size": 3076,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/jaideng123/.bashrc",
-			"settings":
-			{
-				"buffer_size": 4102,
+				"buffer_size": 3077,
 				"line_ending": "Unix"
 			}
 		},
@@ -547,7 +539,7 @@
 			"file": "style.css",
 			"settings":
 			{
-				"buffer_size": 1801,
+				"buffer_size": 1889,
 				"line_ending": "Windows"
 			}
 		}
@@ -584,6 +576,14 @@
 	},
 	"file_history":
 	[
+		"/home/jaideng123/.bashrc",
+		"/home/jaideng123/Desktop/bootswatch/darkly/bootstrap.css",
+		"/home/jaideng123/Desktop/bootswatch/darkly/variables.less",
+		"/home/jaideng123/Desktop/resume/bootswatch.js",
+		"/home/jaideng123/Desktop/resume/bootswatch.css",
+		"/home/jaideng123/Desktop/resume/bootstrap.css",
+		"/home/jaideng123/Downloads/variables.less",
+		"/home/jaideng123/Desktop/resume/bootswatch.less",
 		"/home/jaideng123/.cache/.fr-Ad4S5v/imakewebthings-waypoints-0944e15/src/waypoint.js",
 		"/home/jaideng123/Desktop/resume/carousel.css",
 		"/home/jaideng123/Desktop/FP/key.pem",
@@ -703,15 +703,7 @@
 		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/313_hw/MP1/linked_list.c",
 		"/home/jaideng123/.cache/.fr-4F1oYQ/MP2_Source/dataserver.C",
 		"/home/jaideng123/.cache/.fr-APcjUn/MP2_Source/dataserver.C",
-		"/home/jaideng123/.cache/.fr-kgPmcl/MP2_Source/dataserver.C",
-		"/home/jaideng123/Desktop/DBMS/Engine/Test Table.db",
-		"/home/jaideng123/Desktop/DBMS/Engine/Untitled Document",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/Engine/Record.h",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/Engine/Database.h",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/Engine/Table.h",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/Engine/Table.cpp",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/Engine/Attribute.h",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/Engine/test.cpp"
+		"/home/jaideng123/.cache/.fr-kgPmcl/MP2_Source/dataserver.C"
 	],
 	"find":
 	{
@@ -730,6 +722,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"component-active-bg",
+			"brand-prime",
+			"color",
 			"false,false",
 			"mod",
 			"thread",
@@ -863,15 +858,15 @@
 					"file": "index.html",
 					"settings":
 					{
-						"buffer_size": 10207,
+						"buffer_size": 10384,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1113,
-								1113
+								278,
+								278
 							]
 						],
 						"settings":
@@ -891,15 +886,15 @@
 					"file": "scripts.js",
 					"settings":
 					{
-						"buffer_size": 3076,
+						"buffer_size": 3077,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								144,
-								144
+								0,
+								0
 							]
 						],
 						"settings":
@@ -916,46 +911,18 @@
 				},
 				{
 					"buffer": 2,
-					"file": "/home/jaideng123/.bashrc",
-					"settings":
-					{
-						"buffer_size": 4102,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4065,
-								4065
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1785.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "style.css",
 					"settings":
 					{
-						"buffer_size": 1801,
+						"buffer_size": 1889,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								73,
-								73
+								191,
+								191
 							]
 						],
 						"settings":

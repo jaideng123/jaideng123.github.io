@@ -8,6 +8,9 @@
     background-color: #4b4b4b;
     transition: background-color 250ms linear;
 }
+a {
+    color: #1a9d61;
+}
 .page-header {
     margin-top: 80px;
 }
