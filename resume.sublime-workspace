@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"back",
+				"background-color"
+			],
+			[
 				"max-",
 				"max-height"
 			],
@@ -516,14 +520,35 @@
 	"buffers":
 	[
 		{
-			"contents": "-----BEGIN RSA PRIVATE KEY-----\nMCwCAQACBQDvw+/DAgMBAAECBB1JAAECAwEAAQIDAO/DAgEBAgMA0nkCAwDPLg==\n-----END RSA PRIVATE KEY-----\n",
-			"file": "/home/jaideng123/Desktop/FP/key.pem",
-			"file_size": 127,
-			"file_write_time": 1430163035000000,
+			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 127,
+				"buffer_size": 10207,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scripts.js",
+			"settings":
+			{
+				"buffer_size": 3076,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/jaideng123/.bashrc",
+			"settings":
+			{
+				"buffer_size": 4102,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "style.css",
+			"settings":
+			{
+				"buffer_size": 1801,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -559,10 +584,12 @@
 	},
 	"file_history":
 	[
+		"/home/jaideng123/.cache/.fr-Ad4S5v/imakewebthings-waypoints-0944e15/src/waypoint.js",
+		"/home/jaideng123/Desktop/resume/carousel.css",
+		"/home/jaideng123/Desktop/FP/key.pem",
 		"/home/jaideng123/Desktop/resume/style.css",
 		"/home/jaideng123/Desktop/resume/scripts.js",
 		"/home/jaideng123/Desktop/resume/index.html",
-		"/home/jaideng123/Desktop/FP/key.pem",
 		"/home/jaideng123/Desktop/peg/peg.py",
 		"/etc/ssl/certs/AddTrust_External_Root.pem",
 		"/home/jaideng123/file",
@@ -684,9 +711,7 @@
 		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/Engine/Table.h",
 		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/Engine/Table.cpp",
 		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/Engine/Attribute.h",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/Engine/test.cpp",
-		"/home/jaideng123/Desktop/research_statement.txt",
-		"/home/jaideng123/Desktop/project1/point.h"
+		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/Engine/test.cpp"
 	],
 	"find":
 	{
@@ -830,28 +855,114 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/home/jaideng123/Desktop/FP/key.pem",
+					"file": "index.html",
 					"settings":
 					{
-						"buffer_size": 127,
+						"buffer_size": 10207,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								127,
-								127
+								1113,
+								1113
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "scripts.js",
+					"settings":
+					{
+						"buffer_size": 3076,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								144,
+								144
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/jaideng123/.bashrc",
+					"settings":
+					{
+						"buffer_size": 4102,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4065,
+								4065
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1785.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "style.css",
+					"settings":
+					{
+						"buffer_size": 1801,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								73,
+								73
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
