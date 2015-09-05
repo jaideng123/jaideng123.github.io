@@ -9,7 +9,7 @@
 }
 .on-screen{
     background-color: #4b4b4b;
-    transition: background-color 250ms linear;
+    transition: background-color 250ms ease;
 }
 .skill-cat{
     border-color: #222;
@@ -19,6 +19,10 @@ a {
 }
 a:hover {
     text-decoration: none;
+}
+div.on-screen > div > h3 > a{
+    color: #AC6060;
+    transition: color 250ms ease;
 }
 .page-header {
     margin-top: 80px;
