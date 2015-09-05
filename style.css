@@ -4,12 +4,21 @@
 .modal-dialog{
     width: 90%;
 }
+.logo{
+    width: 100%;
+}
 .on-screen{
     background-color: #4b4b4b;
     transition: background-color 250ms linear;
 }
+.skill-cat{
+    border-color: #222;
+}
 a {
     color: #A94040;
+}
+a:hover {
+    text-decoration: none;
 }
 .page-header {
     margin-top: 80px;
