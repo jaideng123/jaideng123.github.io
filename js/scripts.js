@@ -10,6 +10,10 @@ var _gaq = _gaq || [];
     _gaq.push(['_setAllowLinker', true]);
     _gaq.push(['_trackPageview']);
 
+    $('.navbar-nav > li').on("click", function(event) {
+        $('.navbar-toggle').trigger("click")
+    });
+
     (function() {
         var ga = document.createElement('script');
         ga.type = 'text/javascript';

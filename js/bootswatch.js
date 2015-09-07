@@ -30,7 +30,6 @@
   }, function(){
     $button.hide();
   });
-
   function cleanSource(html) {
     var lines = html.split(/\n/);
 
