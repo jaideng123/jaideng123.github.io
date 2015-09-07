@@ -11,7 +11,8 @@ var _gaq = _gaq || [];
     _gaq.push(['_trackPageview']);
 
     $('.navbar-nav > li').on("click", function(event) {
-        $('.navbar-toggle').trigger("click")
+        if($('.navbar-toggle').is(":visible"))
+            $('.navbar-toggle').trigger("click")
     });
 
     (function() {
