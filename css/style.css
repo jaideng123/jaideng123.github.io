@@ -1,6 +1,7 @@
 #bio {
     font-size: 19px;
 }
+
 .modal-dialog{
     width: 90%;
 }
@@ -25,7 +26,7 @@ div.on-screen > div > h3 > a{
     transition: color 250ms ease;
 }
 .page-header {
-    margin-top: 80px;
+    margin-top: 60px;
 }
 #imageView{
     max-width: 100%;
