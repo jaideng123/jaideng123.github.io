@@ -6,7 +6,20 @@
     width: 90%;
 }
 .logo{
-    max-height:150px;
+        max-height:150px;
+        max-width: 100%;
+        width:auto;
+}
+@media (max-width: 600px) {
+    .logo{
+         max-height:150px;
+        width: 100%;
+    }
+}
+@media (min-width: 600px) {
+    .pull-right-sm {
+        float: right;
+    }
 }
 .on-screen{
     background-color: #4b4b4b;
