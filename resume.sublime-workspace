@@ -4,6 +4,66 @@
 		"selected_items":
 		[
 			[
+				"leaf",
+				"leafs"
+			],
+			[
+				"te",
+				"testAlphaBeta"
+			],
+			[
+				"a",
+				"alpha"
+			],
+			[
+				"d",
+				"doStuff2"
+			],
+			[
+				"do",
+				"doStuff2"
+			],
+			[
+				"print",
+				"print_tree"
+			],
+			[
+				"pr",
+				"print_tree"
+			],
+			[
+				"curren",
+				"current_node"
+			],
+			[
+				"curr",
+				"current_node"
+			],
+			[
+				"cur",
+				"current_node"
+			],
+			[
+				"pri",
+				"print"
+			],
+			[
+				"grah",
+				"graph_index"
+			],
+			[
+				"ga",
+				"graph_index"
+			],
+			[
+				"graph",
+				"graph_index"
+			],
+			[
+				"min",
+				"minimax"
+			],
+			[
 				"marg",
 				"margin-top"
 			],
@@ -22,10 +82,6 @@
 			[
 				"l",
 				"lastName"
-			],
-			[
-				"pr",
-				"println!	println! …"
 			],
 			[
 				"_",
@@ -104,10 +160,6 @@
 				"numWorkers"
 			],
 			[
-				"pri",
-				"printHistogram"
-			],
-			[
 				"chan",
 				"channel"
 			],
@@ -156,10 +208,6 @@
 				"temp_author"
 			],
 			[
-				"print",
-				"printf	printf …"
-			],
-			[
 				"fr",
 				"free"
 			],
@@ -200,10 +248,6 @@
 				"attr_indices"
 			],
 			[
-				"a",
-				"attr_indices"
-			],
-			[
 				"to",
 				"to_replace"
 			],
@@ -230,18 +274,6 @@
 			[
 				"table",
 				"table_name"
-			],
-			[
-				"curr",
-				"current_token"
-			],
-			[
-				"te",
-				"test2"
-			],
-			[
-				"curren",
-				"current_loc"
 			],
 			[
 				"L",
@@ -482,64 +514,64 @@
 			[
 				"Int",
 				"IntLit"
-			],
-			[
-				"cure",
-				"currentPage"
-			],
-			[
-				"max",
-				"maxElementOfAList"
-			],
-			[
-				"inse",
-				"insertionSort"
-			],
-			[
-				"fu",
-				"function"
-			],
-			[
-				"dri",
-				"driver_seat_belt_fastened"
-			],
-			[
-				"og",
-				"ogsite_title"
-			],
-			[
-				"oglong",
-				"oglongurl"
-			],
-			[
-				"long",
-				"long_title_url"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "index.html",
+			"file": "/home/jaideng123/Desktop/kernel/README.TXT",
 			"settings":
 			{
-				"buffer_size": 10384,
+				"buffer_size": 3489,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "scripts.js",
+			"file": "/home/jaideng123/Desktop/kernel/bochsrc.bxrc",
 			"settings":
 			{
-				"buffer_size": 3077,
+				"buffer_size": 1597,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/home/jaideng123/Desktop/kernel/kernel.C",
+			"settings":
+			{
+				"buffer_size": 4456,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/home/jaideng123/Desktop/kernel/page_table.C",
+			"settings":
+			{
+				"buffer_size": 1202,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "style.css",
+			"file": "/home/jaideng123/Desktop/kernel/page_table.H",
 			"settings":
 			{
-				"buffer_size": 1889,
+				"buffer_size": 3074,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/home/jaideng123/Desktop/kernel/frame_pool.C",
+			"settings":
+			{
+				"buffer_size": 1866,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/jaideng123/Desktop/kernel/frame_pool.H",
+			"settings":
+			{
+				"buffer_size": 2991,
 				"line_ending": "Windows"
 			}
 		}
@@ -576,9 +608,31 @@
 	},
 	"file_history":
 	[
+		"/home/jaideng123/Desktop/kernel/copykernel.sh",
+		"//bahs.rc",
+		"/home/jaideng123/Desktop/kernel/interrupts.C",
+		"/home/jaideng123/Desktop/kernel/interrupts.H",
+		"/home/jaideng123/Desktop/sticks/output/19sticks.gv",
+		"/home/jaideng123/Desktop/sticks/sticks.py",
+		"/home/jaideng123/Desktop/sticks/output/15sticks.gv",
+		"/home/jaideng123/Desktop/sticks/output/7sticks.gv",
+		"/home/jaideng123/Desktop/sticks/output/3sticks.gv",
+		"/home/jaideng123/Desktop/sticks/new_sticks.py",
+		"/home/jaideng123/Dropbox/frogslayer/layout.cpp",
+		"/home/jaideng123/Desktop/C++ Exercise/layout.cpp",
+		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/221_hw/221-14a-h2.lyx",
+		"/home/jaideng123/Desktop/sticks/test-output/round-table.gv",
+		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/314_hw/A2/Gerig-Jaiden-A2.hs",
+		"/home/jaideng123/Desktop/bootswatch/darkly/variables.less",
+		"/home/jaideng123/Downloads/C_Exercise.zip",
+		"/home/jaideng123/Desktop/peg/peg.py",
+		"/home/jaideng123/Desktop/resume/style.css",
+		"/home/jaideng123/Desktop/resume/scripts.js",
+		"/home/jaideng123/Desktop/resume/index.html",
+		"/tmp/dbxlX3dHs1.html",
+		"/home/jaideng123/Desktop/bootswatch/darkly/bootswatch.less",
 		"/home/jaideng123/.bashrc",
 		"/home/jaideng123/Desktop/bootswatch/darkly/bootstrap.css",
-		"/home/jaideng123/Desktop/bootswatch/darkly/variables.less",
 		"/home/jaideng123/Desktop/resume/bootswatch.js",
 		"/home/jaideng123/Desktop/resume/bootswatch.css",
 		"/home/jaideng123/Desktop/resume/bootstrap.css",
@@ -587,10 +641,6 @@
 		"/home/jaideng123/.cache/.fr-Ad4S5v/imakewebthings-waypoints-0944e15/src/waypoint.js",
 		"/home/jaideng123/Desktop/resume/carousel.css",
 		"/home/jaideng123/Desktop/FP/key.pem",
-		"/home/jaideng123/Desktop/resume/style.css",
-		"/home/jaideng123/Desktop/resume/scripts.js",
-		"/home/jaideng123/Desktop/resume/index.html",
-		"/home/jaideng123/Desktop/peg/peg.py",
 		"/etc/ssl/certs/AddTrust_External_Root.pem",
 		"/home/jaideng123/file",
 		"/home/jaideng123/Desktop/names.csv",
@@ -685,25 +735,7 @@
 		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/test.cpp",
 		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/DBMS/.gitignore",
 		"/home/jaideng123/Desktop/DBMS/Parser/Token.h",
-		"/home/jaideng123/Desktop/DBMS/Parser/test.cpp",
-		"/home/jaideng123/Desktop/devlog.md",
-		"/home/jaideng123/313_MP2/simpleclient.C",
-		"/home/jaideng123/313_MP2/reqchannel.C",
-		"/home/jaideng123/313_MP2/dataserver.C",
-		"/home/jaideng123/.cache/.fr-uIn8bD/MP2_Source/reqchannel.C",
-		"/home/jaideng123/.cache/.fr-1gEF41/MP2_Source/dataserver.C",
-		"/home/jaideng123/Desktop/DBMS/Engine/Table.cpp",
-		"/home/jaideng123/Desktop/DBMS/Engine/Databases/Test Table.db",
-		"/home/jaideng123/Desktop/DBMS/Engine/test.cpp",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/313_hw/MP1/Part2/linked_list2.h",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/313_hw/MP1/Part2/main2.c",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/313_hw/MP1/Part2/linked_list2.c",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/313_hw/MP1/main.c",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/313_hw/MP1/linked_list.h",
-		"/run/user/1000/gvfs/sftp:host=linux2.cse.tamu.edu/home/ugrads/j/jaideng/313_hw/MP1/linked_list.c",
-		"/home/jaideng123/.cache/.fr-4F1oYQ/MP2_Source/dataserver.C",
-		"/home/jaideng123/.cache/.fr-APcjUn/MP2_Source/dataserver.C",
-		"/home/jaideng123/.cache/.fr-kgPmcl/MP2_Source/dataserver.C"
+		"/home/jaideng123/Desktop/DBMS/Parser/test.cpp"
 	],
 	"find":
 	{
@@ -722,6 +754,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"framepo",
+			"leaf",
+			"middle",
+			":\n",
+			"136d71",
+			"#0CE3AC",
 			"component-active-bg",
 			"brand-prime",
 			"color",
@@ -850,43 +888,15 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "index.html",
+					"file": "/home/jaideng123/Desktop/kernel/README.TXT",
 					"settings":
 					{
-						"buffer_size": 10384,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								278,
-								278
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "scripts.js",
-					"settings":
-					{
-						"buffer_size": 3077,
+						"buffer_size": 3489,
 						"regions":
 						{
 						},
@@ -899,8 +909,94 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1275.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/jaideng123/Desktop/kernel/bochsrc.bxrc",
+					"settings":
+					{
+						"buffer_size": 1597,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1597,
+								1597
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 408.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/jaideng123/Desktop/kernel/kernel.C",
+					"settings":
+					{
+						"buffer_size": 4456,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2280,
+								2280
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1744.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/jaideng123/Desktop/kernel/page_table.C",
+					"settings":
+					{
+						"buffer_size": 1202,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								884,
+								884
+							],
+							[
+								1129,
+								1129
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -910,29 +1006,85 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "style.css",
+					"buffer": 4,
+					"file": "/home/jaideng123/Desktop/kernel/page_table.H",
 					"settings":
 					{
-						"buffer_size": 1889,
+						"buffer_size": 3074,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								191,
-								191
+								1086,
+								1086
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 646.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/home/jaideng123/Desktop/kernel/frame_pool.C",
+					"settings":
+					{
+						"buffer_size": 1866,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1418,
+								1418
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 102.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/jaideng123/Desktop/kernel/frame_pool.H",
+					"settings":
+					{
+						"buffer_size": 2991,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2980,
+								2980
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 802.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

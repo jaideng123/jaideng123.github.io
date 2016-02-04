@@ -1,4 +1,18 @@
 $( document ).ready(function() {
+    $('.navbar-nav > li').on("click", function(event) {
+        if($('.navbar-toggle').is(":visible"))
+            $('.navbar-toggle').trigger("click")
+    });
+    function goToByScroll(id){
+        $('html,body').animate({scrollTop: $(id).offset().top -50},'slow');
+        return false;
+    }
+    $(".nav-link").click(function(e) { 
+        // Prevent a page reload when a link is pressed
+        e.preventDefault(); 
+        // Call the scroll function
+        goToByScroll($(this).attr("href"));           
+    });
     var waypoint = $('.project').waypoint(function(direction) {
         $('.project').removeClass('on-screen');
         $(this.element).addClass('on-screen');
@@ -9,12 +23,6 @@ var _gaq = _gaq || [];
     _gaq.push(['_setDomainName', "bootswatch.com"]);
     _gaq.push(['_setAllowLinker', true]);
     _gaq.push(['_trackPageview']);
-
-    $('.navbar-nav > li').on("click", function(event) {
-        if($('.navbar-toggle').is(":visible"))
-            $('.navbar-toggle').trigger("click")
-    });
-
     (function() {
         var ga = document.createElement('script');
         ga.type = 'text/javascript';

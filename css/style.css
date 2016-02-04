@@ -156,3 +156,27 @@ a:active .nav {
         width: 1170px;
     }
 }
+.parallax-window {
+    min-height: 500px;
+    background: transparent;
+}
+@media (min-width: 600px) {
+    .headline{
+        padding-top:100px; 
+        font-size:60px;
+        font-family:lobster;
+        width:100%;
+    }
+}
+.headline{
+        padding-top:80px; 
+        font-size:60px;
+        font-family:lobster;
+        width:100%;
+}
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lobster'), local('Lobster-Regular'), url(../fonts/cycBf3mfbGkh66G5NhszPQ.woff2) format('woff2');
+}
