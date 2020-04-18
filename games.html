@@ -13,13 +13,18 @@ permalink: /games/
         <a href="{{game.url}}" class="project__container" title="{{game.title}}" style="background: 
         /* top, transparent red */ 
         linear-gradient(
-          rgba(105, 105, 105, 0.45), 
-          rgba(105, 105, 105, 0.45)
+          rgba(105, 105, 105, 0.3), 
+          rgba(105, 105, 105, 0.3)
         ),
         /* bottom, image */
         url({{game.mainImage}})
         top;
         background-size: cover;">
+            {% if game.imageNeedsText %}
+            <h2 class="hover-text">
+                {{game.title}}
+            </h2>
+            {% endif %}
         </a>
         {% endfor %}
 
