@@ -10,7 +10,7 @@ permalink: /games/
     </header>
     <section class="projects">
         {% for game in site.categories.games %}
-        <a href="{{game.url}}" class="project__container" style="background: 
+        <a href="{{game.url}}" class="project__container" title="{{game.title}}" style="background: 
         /* top, transparent red */ 
         linear-gradient(
           rgba(105, 105, 105, 0.45), 
@@ -18,10 +18,8 @@ permalink: /games/
         ),
         /* bottom, image */
         url({{game.mainImage}})
-        center;">
-            <h1 class="project__title">
-                {{ game.title }}
-            </h1>
+        top;
+        background-size: cover;">
         </a>
         {% endfor %}
 
