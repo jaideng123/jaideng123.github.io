@@ -1,0 +1,49 @@
+
+.games-page{
+    max-width: 70rem;
+    margin: 0 auto;
+}
+
+.games-header{
+    text-align: center;
+    &__title{
+        font-size: 2rem;
+    }
+}
+.projects{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.project{
+    &__container{
+        width:18rem;
+        height: 10rem;
+        margin: 2rem;
+        text-align:  center;
+        background-size: cover;
+        border-radius: 0.5rem;
+        transition: transform .2s; /* Animation */
+        &:hover{
+            transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+        &:focus{
+            transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+        &:visited{
+            color:black
+        }
+        text-decoration: none;
+    }
+
+    &__title{
+        height: 100%;
+        display: flex;
+        justify-content: end;
+        margin: 0;
+        flex-direction: column-reverse;
+        text-decoration: none;
+    }
+}

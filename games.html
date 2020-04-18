@@ -1,0 +1,29 @@
+---
+layout: default
+permalink: /games/
+---
+<section class="games-page">
+    <header class="games-header">
+        <h1 class="games-header__title">
+            Games I've Made
+        </h1>
+    </header>
+    <section class="projects">
+        {% for game in site.categories.games %}
+        <a href="{{game.url}}" class="project__container" style="background: 
+        /* top, transparent red */ 
+        linear-gradient(
+          rgba(105, 105, 105, 0.45), 
+          rgba(105, 105, 105, 0.45)
+        ),
+        /* bottom, image */
+        url({{game.mainImage}})
+        center;">
+            <h1 class="project__title">
+                {{ game.title }}
+            </h1>
+        </a>
+        {% endfor %}
+
+    </section>
+</section>
