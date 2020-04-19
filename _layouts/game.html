@@ -1,4 +1,12 @@
+---
+layout: default
+---
 <section class="game-page">
+    <header class="game-header">
+        <h1 class="game-header__title game-header__title--{{page.title | downcase}}">
+            {{page.title}}
+        </h1>
+    </header>
     <section>
         {{content}}
     </section>

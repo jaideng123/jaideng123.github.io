@@ -4,7 +4,7 @@ title: "MowMowMow"
 role: "Solo Developer"
 categories: [games]
 permalink: /games/MowMowMow/
-mainImage: "/assets/images/MowMowMow.PNG"
+previewImage: "/assets/images/MowMowMow/MowMowMow-Preview.png"
 imageNeedsText: true
 ---
-# MowMowMow
+Content Goes Here

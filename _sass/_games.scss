@@ -17,6 +17,19 @@
     flex-wrap: wrap;
 }
 
+@mixin project-preview($preview-url) {
+    background: 
+    // /* top, transparent red */ 
+    // linear-gradient(
+    // rgba(105, 105, 105, 0.3), 
+    // rgba(105, 105, 105, 0.3)
+    // ),
+    /* bottom, image */
+    url($preview-url)
+    top;
+    background-size: cover;
+}
+
 .project{
     &__container{
         width:18rem;
@@ -27,13 +40,48 @@
         border-radius: 0.5rem;
         transition: transform .2s; /* Animation */
         &:hover{
-            transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+            transform: scale(1.1);
             .hover-text{
                 opacity: 1;
             }
+            .project__overlay{
+                opacity: 0;
+            }
         }
         &:focus{
-            transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+            transform: scale(1.1);
+            .hover-text{
+                opacity: 1;
+            }
+            .project__overlay{
+                opacity: 0;
+            }
+        }
+        .project__overlay{
+            z-index: 9;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            background: linear-gradient(rgba(105, 105, 105, 1), rgba(105, 105, 105, 1));
+            transition: opacity .2s;
+            border-radius: 0.5rem;
+        }
+
+        &--tritix{
+            @include project-preview("/assets/images/Tritix/Tritix-Preview.png");
+        }
+
+        &--arrowball{
+            @include project-preview("/assets/images/ArrowBall/ArrowBall-Preview.png");
+        }
+
+        &--mowmowmow{
+            @include project-preview("/assets/images/MowMowMow/MowMowMow-Preview.png");
+        }
+
+        &--speedbutton{
+            @include project-preview("/assets/images/SpeedButton/SpeedButton-Preview.png");
         }
         &:visited{
             color:black
@@ -57,4 +105,7 @@
     color: whitesmoke;
     background-color: #0000007d;
     font-size: 2rem;
+    position: absolute;
+    right: 0;
+    left: 0;
 }

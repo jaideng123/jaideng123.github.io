@@ -1,9 +1,7 @@
 ---
 ---
+@import "fonts";
+@import "global";
 @import "homepage";
 @import "games";
-
-html *
-{
-    font-family: 'Roboto', sans-serif;
-}
+@import "game";

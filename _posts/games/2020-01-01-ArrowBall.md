@@ -4,6 +4,6 @@ title: "ArrowBall"
 role: "Solo Developer"
 categories: [games]
 permalink: /games/ArrowBall/
-mainImage: "/assets/images/ArrowBall.PNG"
+previewImage: "/assets/images/ArrowBall/ArrowBall-Preview.png"
 ---
-# ArrowBall
+Content Goes Here

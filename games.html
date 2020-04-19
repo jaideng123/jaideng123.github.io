@@ -3,6 +3,8 @@ layout: default
 permalink: /games/
 ---
 <section class="games-page">
+    <!-- TODO: Who am I ? -->
+    <!-- TODO: What Am I Good At? -->
     <header class="games-header">
         <h1 class="games-header__title">
             Games I've Made
@@ -10,21 +12,14 @@ permalink: /games/
     </header>
     <section class="projects">
         {% for game in site.categories.games %}
-        <a href="{{game.url}}" class="project__container" title="{{game.title}}" style="background: 
-        /* top, transparent red */ 
-        linear-gradient(
-          rgba(105, 105, 105, 0.3), 
-          rgba(105, 105, 105, 0.3)
-        ),
-        /* bottom, image */
-        url({{game.mainImage}})
-        top;
-        background-size: cover;">
+        <a href="{{game.url}}" class="project__container project__container--{{game.title | downcase}}"
+            title="{{game.title}}">
             {% if game.imageNeedsText %}
             <h2 class="hover-text">
                 {{game.title}}
             </h2>
             {% endif %}
+            <div class="project__overlay"></div>
         </a>
         {% endfor %}
 

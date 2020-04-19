@@ -4,7 +4,7 @@ title: "SpeedButton"
 role: "Programmer"
 categories: [games]
 permalink: /games/SpeedButton/
-mainImage: "/assets/images/SpeedButton.png"
+previewImage: "/assets/images/SpeedButton/SpeedButton-Preview.png "
 imageNeedsText: true
 ---
-# SpeedButton
+Content Goes Here

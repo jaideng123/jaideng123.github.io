@@ -1,0 +1,22 @@
+.game-page{
+    max-width: 70rem;
+    margin: 0 auto;
+}
+
+.game-header{
+    &__title{
+        font-size: 4rem;
+        text-align: center;
+        &--arrowball{
+            font-family: 'Kanit', sans-serif;
+            font-weight: bold;
+            font-style: italic;
+        }
+        &--tritix{
+            font-family: 'Tritix', sans-serif;
+            font-weight: bold;
+            font-size:  5rem;
+        }
+    }
+}
+
