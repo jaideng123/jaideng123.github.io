@@ -29,10 +29,10 @@
     top;
     background-size: cover;
 }
-
+$project-container-width: 18rem;
 .project{
     &__container{
-        width:18rem;
+        width:$project-container-width;
         height: 10rem;
         margin: 2rem;
         text-align:  center;
@@ -43,6 +43,7 @@
             transform: scale(1.1);
             .hover-text{
                 opacity: 1;
+                height: auto;
             }
             .project__overlay{
                 opacity: 0;
@@ -106,6 +107,6 @@
     background-color: #0000007d;
     font-size: 2rem;
     position: absolute;
-    right: 0;
-    left: 0;
+    // TODO: figure outa better way to do this
+    width: $project-container-width;
 }

@@ -7,7 +7,19 @@ layout: default
             {{page.title}}
         </h1>
     </header>
-    <section>
+    {% if page.screenshots and page.screenshots.size > 0 %}
+    <section class="game-screenshots">
+        {% for screenshot in page.screenshots %}
+        <section class="game-screenshot__container">
+            <a href="{{screenshot}}">
+                <img class="game-screenshot__image" src="{{screenshot}}" alt="{{screenshot}}" />
+            </a>
+        </section>
+        {% endfor %}
+    </section>
+    {% endif %}
+    <!-- TODO: video? -->
+    <section class="game-page__content">
         {{content}}
     </section>
 </section>

@@ -1,6 +1,7 @@
 .game-page{
     max-width: 70rem;
     margin: 0 auto;
+    margin-bottom: 5rem;
 }
 
 .game-header{
@@ -15,8 +16,54 @@
         &--tritix{
             font-family: 'Tritix', sans-serif;
             font-weight: bold;
-            font-size:  5rem;
+            font-size:  6rem;
+            color: gold;
+            background-color: black;
+            margin:0;
+            margin-bottom: 1rem;
+            padding:2rem;
         }
     }
 }
 
+.game-screenshots{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.game-screenshot{
+    &__container{
+        height: 11rem;
+        width: 11rem;
+        text-align: center;
+        overflow: hidden;
+        margin:1rem;
+        border: 1px solid #ccc;
+        &:hover{
+            border: 1px solid #777;
+        }
+    }
+
+    &__image{
+        width:100%;
+    }
+}
+
+.game-page__content{
+    h1{
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    h2{
+        font-size: 1.5rem;
+    }
+}
+
+.google-play-badge{
+    height: 5rem;
+    &__container{
+        text-align: center;
+    }
+}
