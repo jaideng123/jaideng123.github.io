@@ -12,6 +12,8 @@
             font-family: 'Kanit', sans-serif;
             font-weight: bold;
             font-style: italic;
+            font-size: 5rem;
+            margin: 1rem;
         }
         &--tritix{
             font-family: 'Tritix', sans-serif;
@@ -47,7 +49,10 @@
     }
 
     &__image{
-        width:100%;
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
     }
 }
 
