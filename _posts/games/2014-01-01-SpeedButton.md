@@ -23,6 +23,7 @@ SpeedButton is a game about tapping a moving button on your phone in a variety o
 
 Each mode has separately tracked high scores
 
+---
 # About the Project:
 **Made with:** Android SDK
 

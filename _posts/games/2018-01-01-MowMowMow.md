@@ -15,7 +15,7 @@ screenshots: [
 <div class="itch-container">
 <iframe src="https://itch.io/embed/621495" width="552" height="167" frameborder="0"><a href="https://jaideng123.itch.io/mowmowmow">MowMowMow by jaideng123</a></iframe>
 </div>
----
+
 # Description
 MowMowMow is a 4-player local multiplayer game where players race to mow the most amount of grass within a certain amount of time.
 
@@ -23,6 +23,7 @@ The Demo features a single level and 3 power-ups that players can collect.
 
 The game is not currently under active development (I might restart it if there's enough interest)
 
+---
 # About the Project
 **Made with:** Unity, Asset Forge for sprites
 

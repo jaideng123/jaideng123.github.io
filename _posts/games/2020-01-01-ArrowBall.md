@@ -22,6 +22,7 @@ ArrowBall is a 2-4 Player local multiplayer sports game about using a variety of
 * 6 Stages to test your skills
 * 1 Smiley Ball
 
+---
 # About the Project:
 **Made with:** Unity
 
