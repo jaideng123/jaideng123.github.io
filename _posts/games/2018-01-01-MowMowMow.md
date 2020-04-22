@@ -12,6 +12,10 @@ screenshots: [
     "/assets/images/MowMowMow/mmm-3.png",
 ]
 ---
+<div class="itch-container">
+<iframe src="https://itch.io/embed/621495" width="552" height="167" frameborder="0"><a href="https://jaideng123.itch.io/mowmowmow">MowMowMow by jaideng123</a></iframe>
+</div>
+---
 # Description
 MowMowMow is a 4-player local multiplayer game where players race to mow the most amount of grass within a certain amount of time.
 
