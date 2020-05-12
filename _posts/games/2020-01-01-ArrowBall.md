@@ -14,8 +14,10 @@ screenshots: [
     "/assets/images/ArrowBall/ab4.jpg",
 ]
 ---
-<div class="google-play-badge__container">
-<iframe src="https://store.steampowered.com/widget/1307310/" frameborder="0" width="646" height="190"></iframe>
+<div class="steam-badge__container">
+<div class="steam-badge">
+<iframe src="https://store.steampowered.com/widget/1307310/" frameborder="0" width="100%" height="190"></iframe>
+</div>
 </div>
 ---
 # Description
