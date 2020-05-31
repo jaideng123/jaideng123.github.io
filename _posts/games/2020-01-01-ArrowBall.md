@@ -7,11 +7,6 @@ permalink: /games/ArrowBall/
 previewImage: "/assets/images/ArrowBall/ArrowBall-Preview.png"
 videoID: idWF5CEPjPg
 screenshots: [
-    "/assets/images/ArrowBall/ab5.jpg",
-    "/assets/images/ArrowBall/ab1.png",
-    "/assets/images/ArrowBall/ab2.jpg",
-    "/assets/images/ArrowBall/ab3.png",
-    "/assets/images/ArrowBall/ab4.jpg",
 ]
 ---
 <div class="steam-badge__container">
@@ -20,21 +15,31 @@ screenshots: [
 </div>
 </div>
 ---
-# Description
-ArrowBall is an Indie Sports game where you use explosive arrows and acrobatics to outmaneuver your opponents and control THE BALL on a variety of unique Stages.
+# About The Game
+Challenge your friends in 1v1 or 2v2 competitions where both teams try to get THE BALL into the opposing team's goal to score points. Run, jump, fire explosive arrows, activate Clutch Mode to set up the perfect shot, or launch a devastating Super Arrow. Charge your Super Bar by defending your goal and spend it to activate Clutch Mode or your Super Arrow.
 
-## Features:
-*  Engage in thrilling local multiplayer matches with 2-4 Friends/Enemies
-* Master 8 different Super Arrows with devastating and tricky effects, Like the Slicer which cuts the ball in half!
-*  Play Across 6 Stages with unique layouts and mechanics
-*  Send THE BALL on the trip of a lifetime into your opponent's goal
+## Stages:
+Each match takes place on one of 6 different stages with unique layouts and features
+* HighRise - A no-frills stage in the ritzy part of town
+* Arena - A simple, fast-paced stage with a large crowd to cheer you on
+* Laser Dome - A stage that takes place in a swanky night-club, features disappearing blocks and a randomized layout
+* HyperLoop - Play on top of a speeding train as hazards shift the play field around you
+* Factory - Give the workers some entertainment on their lunch break in this stage with conveyor belts and a shrinking goal zone
+* ClockTower - Play on the inside of a clock-tower as the stage rotates around you
 
-## How It works:
-Each Match of ArrowBall centers around 2 teams (Red and Blue) each with their own goal, and THE BALL.The objective of each team is to get THE BALL into their opponent's goal using a quiver of regenerating arrows to send THE BALL flying across the stage.
+## Super Arrows:
+There are 8 Super Arrows all with unique effects and characteristics. Super Arrows consume a large chunk of your Super Bar so make sure to use them wisely.
+* Warhead - Send THE BALL flying at max speed with a huge explosion
+* Slicer - Cut THE BALL into 2 THE BALLs
+* Repulsor - Create a protective force-field to repel THE BALL
+* Grapple - Hook THE BALL and yank it towards you
+* Smash - Become an arrow and send your body hurling towards THE BALL
+* Volley - Shoot 9 small explosive arrows in an arc
+* Rocket - Control a small rocket-powered arrow
+* Laser - Shoot an arrow that bounces off of walls
 
-Over the course of the match you will start to build up your Super Bar, which you can spend to slow down time when things get too hectic or you want to set up the perfect shot on your opponent's goal. You can also spend the Super Bar to unleash a Super Arrow (which each player selects before the match) with a unique effect.
-
-The Matches are first-to-8 Points, with an 8 minute timer to keep games fast and thrilling. 
+## Clutch Mode:
+You can activate Clutch Mode at any moment to slow down time and line up the perfect shot or make a last-minute save. Clutch Mode consumes your Super Bar as you use it so it won't last forever.
 
 ---
 # About the Project:

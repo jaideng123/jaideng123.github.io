@@ -1,9 +1,6 @@
 ---
 layout: default
 ---
-<header class="home-link__container">
-    <a href="/games/" class="home-link">Back To Games</a>
-</header>
 <section class="game-page">
     <header class="game-header">
         <h1 class="game-header__title game-header__title--{{page.title | downcase}}">
@@ -13,7 +10,7 @@ layout: default
 
     {% if page.videoID %}
     <section class="video-container">
-        <iframe width="800" height="315" src="https://www.youtube.com/embed/{{page.videoID}}" frameborder="0"
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{page.videoID}}?autoplay=1" frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </section>
     {% endif %}
@@ -33,3 +30,6 @@ layout: default
         {{content}}
     </section>
 </section>
+<header class="home-link__container">
+    <a href="/games/" class="home-link">Other Games By Jaiden</a>
+</header>
