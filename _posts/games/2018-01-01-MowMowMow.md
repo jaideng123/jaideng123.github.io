@@ -27,6 +27,8 @@ The game is not currently under active development (I might restart it if there'
 # About the Project
 **Made with:** Unity, Asset Forge for sprites
 
+**Project Length:** 3 Months
+
 I was the sole developer for this game and handled the programming, art assets(Made with Kenneynl's Asset Forge), and design.
 
 Originally, I envisioned MowMowMow as a sokoban-style single-player puzzle game about mowing all the grass in a yard with a limited supply of gas. After some early play-testing it became clear to me that the concept just wasn't very fun and I didn't really have any good ideas about how to make it better.

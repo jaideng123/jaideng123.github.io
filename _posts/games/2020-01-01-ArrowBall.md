@@ -45,6 +45,8 @@ You can activate Clutch Mode at any moment to slow down time and line up the per
 # About the Project:
 **Made with:** Unity
 
+**Project Length:** 1 Year
+
 I am currently working on this project as the sole developer.
 
 Will add more here once the game is done

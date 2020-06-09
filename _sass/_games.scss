@@ -114,6 +114,10 @@ $project-container-width: 18rem;
             @include project-preview("/assets/images/MowMowMow/MowMowMow-Preview.png");
         }
 
+        &--distanced{
+            @include project-preview("/assets/images/Distanced/itch-header-image.png");
+        }
+
         &--speedbutton{
             @include project-preview("/assets/images/SpeedButton/SpeedButton-Preview.png");
         }
