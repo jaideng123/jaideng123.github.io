@@ -1,4 +1,3 @@
-
 .games-page{
     max-width: 70rem;
     margin: 0 auto;
@@ -102,29 +101,6 @@ $project-container-width: 18rem;
             border-radius: 0.5rem;
         }
 
-        &--tritix{
-            @include project-preview("/assets/images/Tritix/Tritix-Preview.png");
-        }
-
-        &--arrowball{
-            @include project-preview("/assets/images/ArrowBall/ArrowBall-Preview.png");
-        }
-
-        &--mowmowmow{
-            @include project-preview("/assets/images/MowMowMow/MowMowMow-Preview.png");
-        }
-
-        &--distanced{
-            @include project-preview("/assets/images/Distanced/itch-header-image.png");
-        }
-
-        &--speedbutton{
-            @include project-preview("/assets/images/SpeedButton/SpeedButton-Preview.png");
-        }
-
-        &--polterheist{
-            @include project-preview("/assets/images/PolterHeist/cover.gif");
-        }
         &:visited{
             color:black
         }
