@@ -121,6 +121,10 @@ $project-container-width: 18rem;
         &--speedbutton{
             @include project-preview("/assets/images/SpeedButton/SpeedButton-Preview.png");
         }
+
+        &--polterheist{
+            @include project-preview("/assets/images/PolterHeist/cover.gif");
+        }
         &:visited{
             color:black
         }
