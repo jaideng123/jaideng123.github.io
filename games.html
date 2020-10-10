@@ -29,8 +29,14 @@ title: Games
             I make games like these
         </h1>
     </header>
+    <header class="games-header">
+        <h1 class="games-header__title--smaller">
+            Long-Term Projects
+        </h1>
+    </header>
     <section class="projects">
-        {% for game in site.categories.games %}
+        {% assign fullReleaseGames = site.categories.games | where:"fullRelease", true %}
+        {% for game in fullReleaseGames%}
         <a href="{{game.url}}" class="project__container project__container--{{game.title | downcase}}"
             title="{{game.title}}">
             {% if game.imageNeedsText %}
@@ -41,6 +47,24 @@ title: Games
             <div class="project__overlay"></div>
         </a>
         {% endfor %}
-
+    </section>
+    <header class="games-header">
+        <h1 class="games-header__title--smaller">
+            Game Jams & Experiments
+        </h1>
+    </header>
+    <section class="projects">
+        {% assign otherGames = site.categories.games | where_exp:"game","game.fullRelease != true" %}
+        {% for game in otherGames %}
+        <a href="{{game.url}}" class="project__container project__container--{{game.title | downcase}}"
+            title="{{game.title}}">
+            {% if game.imageNeedsText %}
+            <h2 class="hover-text">
+                {{game.title}}
+            </h2>
+            {% endif %}
+            <div class="project__overlay"></div>
+        </a>
+        {% endfor %}
     </section>
 </section>
