@@ -11,6 +11,10 @@
     max-width: 70rem;
     margin: 0 auto;
     margin-bottom: 5rem;
+    & img{
+        max-height: 500px;
+        max-width: 100%;
+    }
 }
 
 .game-header{
