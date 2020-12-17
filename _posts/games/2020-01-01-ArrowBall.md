@@ -64,11 +64,15 @@ I was able to borrow a lot of the code from MowMowMow (which I thought this woul
 
 With this being my first wholely original long-term project, I didn't want to work on it much longer that a year so I had set a deadline for completion sometime around June 2020. I decided early on that I wanted to focus on only local multiplayer in order to reduce scope and that I wanted to sell the game for a premium (not because I needed the money but mostly for the satisfaction of knowing someone thought it was worth speding money on) so I decided to go with Steam as it provided good discoverability and Steam Remote Play Together provided online play with very little effort required on my part. Before making my Steam page I researched a bit about how to structure them and came across this [wonderful GDC talk by Chris Zukowski](https://www.youtube.com/watch?v=UJiv14uPOac) (Seriously, he's great, go read all his stuff [https://howtomarketagame.com/blog/](https://howtomarketagame.com/blog/)) which helped a lot in creating my page. I also cut together a simple trailer with some clips I had from previous play sessions. I launched my Steam page and started getting a veeeerrrrryyyy slow trickle of wish-lists, but I was just happy that there were people out there who liked what they saw enough to wish-list at all.
 
+By June, I reached my internal deadline and had the game content-complete with 8 Super Arrows and 6 Stages. From here I thought about releasing early(My public launch window was late 2020), but instead I decided to submit the game to some festivals hoping that could help get a bit more buzz or at the very least, some useful feedback to make the game better. In the end I entered ArrowBall into both Indiecade and Seattle Indie Expo. My experience with Indiecade was less than stellar. It was pretty expensive, the submission process required a lot of documentation, and in the end none of the keys I provided were ever redeemed and I have yet to receive any written feedback (which I had to pay extra for) 6 months after submission. Luckily, my experience with Seattle Indie Expo was the complete opposite.Tthe submission form was short, the fee was dirt cheap, and even though I didn't get a nomination, I got a lot of invaluable feedback that really helped improve the game.
+
+Even though I had a few months before my planned launch there was still a lot of work that needed to be done.
+
 (TO BE CONTINUED)
 
 ## Lessons Learned
 
-- Play-Test with more than just your friends
+- Play-Test with more than just your friends, get as much feedback as possible (even if you don't use all of it)
 - Leverage your local game-dev community
 - Don't launch your Steam page cold and without a trailer (This will hurt you with THE ALGORITHM)
 - Invest in good capsule images for your Steam Page (Still trying to figure out how to find an artist for this)
@@ -80,6 +84,6 @@ With this being my first wholely original long-term project, I didn't want to wo
     - Shaders, Particles, Effects, and Asset Stores are all accessible tools for programmers to make things look better w/o much artistic flair
 - Avoid festivals that cost money and don't guarantee prompt, useful feedback if they don't pick your game *(Cough IndieCade Cough)*
     - Local festivals (Shout-out to [Seattle Indie Expo](https://six.seattleindies.org/)) are usually your best bet
-    - This likely changes if your game has more buzz, a larger audience, or appeals more to organizers
+    - This of course changes if your game has more buzz, a larger audience, or appeals more to organizers
 
 But most of all if you are making a game on your own **Be compassionate with yourself** the things you are doing are often handled by multiple teams of people at larger studios, you will not get everything right, you will not know everything, you will likely not succeed like you hoped you would, you are still learning, most people are still learning.
