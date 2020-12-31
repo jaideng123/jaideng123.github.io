@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<section class="blog-page">
+    <header class="blog-header">
+        <h1 class="blog-header__title">
+            {{page.title}}
+        </h1>
+        <h2 class="blog-header__me">
+            <a href="/games/">
+                <img class="headshot__img" src="/assets/images/headshot.jpg" alt="">
+                <span class="my-name"> Jaiden Gerig </span>
+            </a>
+        </h2>
+        <h2 class="blog-header__date">
+            {% assign d = page.date | date: "%-d"  %}
+            {{ page.date | date: "%B" }}
+            {% case d %}
+            {% when '1' or '21' or '31' %}{{ d }}st
+            {% when '2' or '22' %}{{ d }}nd
+            {% when '3' or '23' %}{{ d }}rd
+            {% else %}{{ d }}th
+            {% endcase %},
+            {{ page.date | date: "%Y" }} </h2>
+    </header>
+    <hr>
+    <section class="blog-page__content">
+        {{content}}
+    </section>
+</section>
+<header class="home-link__container">
+    <a href="/games/" class="home-link">Other Games By Jaiden</a>
+</header>

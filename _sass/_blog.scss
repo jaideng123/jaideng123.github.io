@@ -1,0 +1,54 @@
+.home-link{
+    &__container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 1rem;
+    }
+    font-size: 1.2rem;
+}
+.blog-page{
+    max-width: 70rem;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+    & img{
+        max-height: 500px;
+        max-width: 100%;
+    }
+}
+
+.blog-header{
+    &__title{
+        font-size: 4rem;
+        margin: .2rem;
+    }
+    &__date{
+        font-size: 1.5rem;
+        margin: .2rem;
+        
+    }
+    &__me{
+        font-size: 1.5rem;
+        margin: .2rem;
+        & a {
+            text-decoration: none;
+        }
+        & .my-name{
+            font-size: 2rem;
+        }
+        & img{
+            height: 2rem;
+            width: 2rem;
+        }
+    }
+}
+
+.blog-page__content{
+    h1{
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    h2{
+        font-size: 1.5rem;
+    }
+}
