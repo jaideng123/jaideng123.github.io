@@ -41,7 +41,11 @@ title: Games
             title="{{game.title}}">
             {% if game.imageNeedsText %}
             <h2 class="hover-text">
+                {% if game.displayTitle %}
+                {{game.displayTitle}}
+                {% else %}
                 {{game.title}}
+                {% endif %}
             </h2>
             {% endif %}
             <div class="project__overlay"></div>
@@ -60,7 +64,11 @@ title: Games
             title="{{game.title}}">
             {% if game.imageNeedsText %}
             <h2 class="hover-text">
+                {% if game.displayTitle %}
+                {{game.displayTitle}}
+                {% else %}
                 {{game.title}}
+                {% endif %}
             </h2>
             {% endif %}
             <div class="project__overlay"></div>

@@ -4,7 +4,11 @@ layout: default
 <section class="game-page">
     <header class="game-header">
         <h1 class="game-header__title game-header__title--{{page.title | downcase}}">
+            {% if page.displayTitle %}
+            {{page.displayTitle}}
+            {% else %}
             {{page.title}}
+            {% endif %}
         </h1>
     </header>
 
