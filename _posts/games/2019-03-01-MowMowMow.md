@@ -27,6 +27,8 @@ The game is not currently under active development (I might restart it if there'
 # About the Project
 **Made with:** Unity, Asset Forge for sprites
 
+**Role:** Sole Developer
+
 **Project Length:** 3 Months
 
 I was the sole developer for this game and handled the programming, art assets(Made with Kenneynl's Asset Forge), and design.

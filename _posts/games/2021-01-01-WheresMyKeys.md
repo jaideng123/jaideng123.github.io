@@ -37,6 +37,8 @@ Created over 48 hours for the 2021 Global Game Jam with the theme Lost & Found.
 # About the Project
 **Made with:** Unity
 
+**Role:** Programmer / Gameplay Designer
+
 **Project Length:** 2 days
 
 I teamed up with 5 other developers(1 Programmer, 2 Artists, 1 Sound Designer, 1 Project Manager) in the Seattle Indies community to make Where's My Keys over 48 hours.
