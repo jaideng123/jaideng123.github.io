@@ -6,6 +6,7 @@ role: "Programmer"
 categories: [games]
 permalink: /games/DeepDigPizza/
 previewImage: /assets/images/DeepDigPizza/DeepDigPizza-title.gif
+category: game-jam
 screenshots: [
     "/assets/images/DeepDigPizza/DeepDigPizza-1.png",
     "/assets/images/DeepDigPizza/DeepDigPizza-2.png",

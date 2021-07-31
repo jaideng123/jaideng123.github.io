@@ -6,6 +6,7 @@ categories: [games]
 permalink: /games/PolterHeist/
 previewImage: "/assets/images/PolterHeist/cover.gif"
 imageNeedsText: false
+category: game-jam
 screenshots: [
     "/assets/images/PolterHeist/polter1.png",
     "/assets/images/PolterHeist/polter2.png",

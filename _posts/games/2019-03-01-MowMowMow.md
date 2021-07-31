@@ -6,6 +6,7 @@ categories: [games]
 permalink: /games/MowMowMow/
 previewImage: "/assets/images/MowMowMow/MowMowMow-Preview.png"
 imageNeedsText: true
+category: game-jam
 screenshots: [
     "/assets/images/MowMowMow/mmm-1.png",
     "/assets/images/MowMowMow/mmm-2.png",

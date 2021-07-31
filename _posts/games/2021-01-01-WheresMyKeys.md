@@ -7,6 +7,7 @@ categories: [games]
 permalink: /games/WheresMyKeys/
 previewImage: /assets/images/WheresMyKeys/wmk-screenshot-1.png
 imageNeedsText: true
+category: game-jam
 screenshots: [
     "/assets/images/WheresMyKeys/wmk-screenshot-1.png",
     "/assets/images/WheresMyKeys/wmk-screenshot-2.png",

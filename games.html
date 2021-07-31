@@ -31,11 +31,11 @@ title: Games
     </header>
     <header class="games-header">
         <h1 class="games-header__title--smaller">
-            Long-Term Projects
+            Commercial Releases
         </h1>
     </header>
     <section class="projects">
-        {% assign fullReleaseGames = site.categories.games | where:"fullRelease", true %}
+        {% assign fullReleaseGames = site.categories.games | where:"category", "full-release" %}
         {% for game in fullReleaseGames%}
         <a href="{{game.url}}" class="project__container project__container--{{game.title | downcase}}"
             title="{{game.title}}">
@@ -58,7 +58,7 @@ title: Games
         </h1>
     </header>
     <section class="projects">
-        {% assign otherGames = site.categories.games | where_exp:"game","game.fullRelease != true" %}
+        {% assign otherGames = site.categories.games | where:"category","game-jam" %}
         {% for game in otherGames %}
         <a href="{{game.url}}" class="project__container project__container--{{game.title | downcase}}"
             title="{{game.title}}">

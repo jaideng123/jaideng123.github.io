@@ -6,6 +6,7 @@ categories: [games]
 permalink: /games/Distanced/
 previewImage: /assets/images/Distanced/itch-header-image.png
 imageNeedsText: true
+category: game-jam
 screenshots: [
     "/assets/images/Distanced/d1.png",
     "/assets/images/Distanced/d7.png",

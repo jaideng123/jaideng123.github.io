@@ -6,6 +6,7 @@ categories: [games]
 permalink: /games/SpeedButton/
 previewImage: "/assets/images/SpeedButton/SpeedButton-Preview.png "
 imageNeedsText: true
+category: game-jam
 screenshots: [
     "/assets/images/SpeedButton/sb1.png",
     "/assets/images/SpeedButton/sb2.png",

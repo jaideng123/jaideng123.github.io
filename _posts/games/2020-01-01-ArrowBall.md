@@ -6,7 +6,7 @@ categories: [games]
 permalink: /games/ArrowBall/
 previewImage: "/assets/images/ArrowBall/ArrowBall-Preview.png"
 videoID: YQWc6Xp-m8g
-fullRelease: true
+category: full-release
 screenshots: [
 ]
 ---
