@@ -26,7 +26,7 @@ Originally created for the 2020 GMTK Game Jam.
 # About the Project
 **Made with:** Unity
 
-**Role:** Programmer / Gameplay Designer
+**Role:** Programmer & Gameplay Designer
 
 **Project Length:** 48 Hours
 

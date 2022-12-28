@@ -31,7 +31,7 @@ Lovingly assembled over 72 hours for Ludum Dare 48
 # About the Project
 **Made with:** Unity
 
-**Role:** Programmer / Gameplay Designer
+**Role:** Programmer & Gameplay Designer
 
 **Project Length:** 3 days
 

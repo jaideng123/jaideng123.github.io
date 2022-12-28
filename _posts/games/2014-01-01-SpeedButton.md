@@ -28,7 +28,7 @@ Each mode has separately tracked high scores
 # About the Project:
 **Made with:** Android SDK
 
-**Role:** Programmer / Gameplay Designer
+**Role:** Programmer & Gameplay Designer
 
 **Project Length:** 2 Days
 

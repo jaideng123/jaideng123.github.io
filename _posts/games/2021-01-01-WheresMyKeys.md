@@ -38,7 +38,7 @@ Created over 48 hours for the 2021 Global Game Jam with the theme Lost & Found.
 # About the Project
 **Made with:** Unity
 
-**Role:** Programmer / Gameplay Designer
+**Role:** Programmer & Gameplay Designer
 
 **Project Length:** 2 days
 
