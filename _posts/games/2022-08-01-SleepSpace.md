@@ -38,4 +38,29 @@ Sleepily assembled over 2 weeks for the [August 2022 PIG-Squad Summer Slow Jam](
 
 **TLDR Twitter Progress Thread:** [https://twitter.com/JaidenG123/status/1562240821885378560](https://twitter.com/JaidenG123/status/1562240821885378560)
 
-**Full post mortem coming soon**
+<!-- This is commented out.
+
+In August of 2022 we as Team Bouldy decided to get the band back together for a new project, so we registered for a slow jam with PigSquad.
+The jam itself provides both a technical and a creative theme, the technical for this jam being a Boss Fight, and the creative being Nightmares & Dreams. After some initial ideation we settled on the core theme of a plucky hero fighting an evil nightmare in a dream world to get to sleep and for the gameplay we decided we wanted to do something card-based on a hexagonal grid, with lots of inspiration from games we loved like Slay the Spire (Deck-Building) and Megaman Battle Network (Territory Control). We knew this would be a lot but we wanted to push ourselves after having done a lot of projects together to see what we could do.
+
+**Gameplay Design:**
+
+With the themes and inspiration laid out, I began working on a rough concept for the gameplay. In order to limit scope, I decided that we weren't going to implement traditional RPG mechanics like damage, stats, etc. and instead focus solely on territory control as the primary mechanic for the game. This meant that the primary goal of each round in the game would be to achieve a certain level of control, and any interaction with the boss, enemies, or cards would be through this lens. I wanted the territory mechanic to work similar to Go and Othello where there were 2 "colors" vying for control by flipping tiles to their side. For the card system, I took a lot of inspiration from Slay The Spire and other deck builders by having the player draw a new hand each turn and limit them with energy costs for the cards. I envisioned the enemies as smaller annoyances that would gum up the player's plans if they weren't dealt with. The boss I envisioned as being an untouchable force of nature and your primary antagonist with semi-random impactful effects. It was important that since the effects were so impactful, they would be telegraphed to allow the player to plan around them in clever ways. The overall flow of the game would mimic a "final boss" encounter with 3 distinct phases, with power-ups between phases to allow the player to ramp up in power along with the enemies & boss.
+
+![Concept](/assets/images/SleepSpace/SleepSpace-concept.png)
+
+[Card Design]
+
+[Enemies]
+
+[Boss]
+
+**Engineering:**
+
+[Card System]
+
+[Turn Order]
+
+[Atoms]
+
+-->
