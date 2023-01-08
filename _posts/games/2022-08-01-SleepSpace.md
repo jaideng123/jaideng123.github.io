@@ -14,6 +14,16 @@ screenshots: [
     "/assets/images/SleepSpace/SleepSpace-4.png",
 ]
 ---
+**What I did:** 
+
+**Project Length:** 2 weeks
+
+**Team Size:** 6
+
+**Platforms:** WebGL, Windows, Android
+<!--more-->
+
+
 <div class="itch-container">
 <iframe src="https://itch.io/embed/1659676?border_width=0&amp;bg_color=910a83&amp;fg_color=fbf2f2&amp;border_color=ab0082" width="550" height="165" frameborder="0"><a href="https://jaideng123.itch.io/sleepspace">Sleepspace by Jaiden Gerig, lzklein, Brandon Garcia, zruby, Brad Mader, bordenary</a></iframe>
 </div>
@@ -37,7 +47,6 @@ Sleepily assembled over 2 weeks for the [August 2022 PIG-Squad Summer Slow Jam](
 **Project Length:** 2 weeks
 
 **TLDR Twitter Progress Thread:** [https://twitter.com/JaidenG123/status/1562240821885378560](https://twitter.com/JaidenG123/status/1562240821885378560)
-
 
 In August of 2022 we as Team Bouldy decided to get the band back together for a new project, so we registered for a slow jam with PigSquad.
 The jam itself provides both a technical and a creative theme, the technical for this jam being a Boss Fight, and the creative being Nightmares & Dreams. After some initial ideation we settled on the core theme of a plucky hero fighting an evil nightmare in a dream world to get to sleep and for the gameplay we decided we wanted to do something card-based on a hexagonal grid, with lots of inspiration from games we loved like Slay the Spire (Deck-Building) and Megaman Battle Network (Territory Control). We knew this would be a lot but we wanted to push ourselves after having done a lot of projects together to see what we could do (which we definitely did).

@@ -1,51 +1,55 @@
-.games-page{
+.games-page {
     max-width: 70rem;
     margin: 0 auto;
 }
 
-.headshot{
-    &__container{
-        text-align:center
+.headshot {
+    &__container {
+        text-align: center
     }
 
-    &__img{
+    &__img {
         border-radius: 50%;
-        width:10rem;
+        width: 10rem;
     }
 }
 
-.about-me{
+.about-me {
     display: flex;
     flex-direction: column;
 
-    &__name{
+    &__name {
         font-size: 2rem;
         text-align: center;
         margin-bottom: 0;
     }
 
-    &__social-links{
+    &__social-links {
         text-align: center;
         font-size: 2rem;
         text-decoration: none;
-        a{
+
+        a {
             text-decoration: none;
-            margin-left:.5rem;
-            margin-right:.5rem;
+            margin-left: .5rem;
+            margin-right: .5rem;
         }
     }
 }
 
-.games-header{
+.games-header {
     text-align: center;
-    &__title{
+
+    &__title {
         font-size: 2rem;
-        &--smaller{
+
+        &--smaller {
             font-size: 1.5rem;
         }
     }
 }
-.projects{
+
+.projects {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -53,74 +57,51 @@
 }
 
 @mixin project-preview($preview-url) {
-    background: 
-    // /* top, transparent red */ 
-    // linear-gradient(
-    // rgba(105, 105, 105, 0.3), 
-    // rgba(105, 105, 105, 0.3)
-    // ),
-    /* bottom, image */
-    url($preview-url)
-    top;
+    background:
+        // /* top, transparent red */ 
+        // linear-gradient(
+        // rgba(105, 105, 105, 0.3), 
+        // rgba(105, 105, 105, 0.3)
+        // ),
+        /* bottom, image */
+        url($preview-url) top;
     background-size: cover;
 }
-$project-container-width: 18rem;
-.project{
-    &__container{
-        width:$project-container-width;
-        height: 10rem;
+
+$project-container-width: 30rem;
+
+.project {
+    &__container {
+        width: 30rem;
         margin: 2rem;
-        text-align:  center;
+        text-align: center;
         background-size: cover;
         border-radius: 0.5rem;
-        transition: transform .2s; /* Animation */
-        &:hover{
-            transform: scale(1.1);
-            .hover-text{
-                opacity: 1;
-                height: auto;
-            }
-            .project__overlay{
-                opacity: 0;
-            }
-        }
-        &:focus{
-            transform: scale(1.1);
-            .hover-text{
-                opacity: 1;
-            }
-            .project__overlay{
-                opacity: 0;
-            }
-        }
-        .project__overlay{
-            z-index: 9;
-            position: relative;
-            width: 100%;
-            height: 100%;
-            opacity: 0.3;
-            background: linear-gradient(rgba(105, 105, 105, 1), rgba(105, 105, 105, 1));
-            transition: opacity .2s;
-            border-radius: 0.5rem;
-        }
-
-        &:visited{
-            color:black
-        }
-        text-decoration: none;
+        transition: transform .2s;
     }
 
-    &__title{
-        height: 100%;
-        display: flex;
-        justify-content: end;
-        margin: 0;
-        flex-direction: column-reverse;
-        text-decoration: none;
+    &__title {
+        text-align: left;
+        font-size: 2rem;
+    }
+
+    &__preview-image {
+        width: 100%;
+        height: 18rem;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    &__preview-text {
+        text-align: left;
+
+        p {
+            margin: 0.5rem;
+        }
     }
 }
 
-.hover-text{
+.hover-text {
     opacity: 0;
     transition: opacity .2s;
     color: whitesmoke;

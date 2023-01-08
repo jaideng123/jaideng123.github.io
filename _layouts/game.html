@@ -31,7 +31,9 @@ layout: default
     </section>
     {% endif %}
     <section class="game-page__content">
-        {{content}}
+        <!-- We hide the excerpt here because we use it for other things -->
+        {% assign contentArray = content | markdownify | split: site.excerpt_separator %}
+        {{contentArray.last}}
     </section>
 </section>
 <header class="home-link__container">

@@ -1,18 +1,8 @@
----
----
+--- 
+--- 
 @import "fonts";
 @import "global";
 @import "homepage";
 @import "games";
 @import "game";
 @import "blog";
-// Liquid only works in main.scss
-.project{
-    &__container{
-{% for game in site.categories.games %}
-&--{{game.title | downcase}}{
-    @include project-preview("{{game.previewImage}}");
-}
-{% endfor %}
-    }
-}

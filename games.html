@@ -32,50 +32,25 @@ title: Games
             I make games like these
         </h1>
     </header>
-    <header class="games-header">
-        <h1 class="games-header__title--smaller">
-            Commercial Releases
-        </h1>
-    </header>
     <section class="projects">
-        {% assign fullReleaseGames = site.categories.games | where:"category", "full-release" %}
-        {% for game in fullReleaseGames%}
-        <a href="{{game.url}}" class="project__container project__container--{{game.title | downcase}}"
-            title="{{game.title}}">
-            {% if game.imageNeedsText %}
-            <h2 class="hover-text">
+        {% for game in site.categories.games %}
+        <div class="project__container project__container--{{game.title | downcase}}" title="{{game.title}}">
+            <h2 class="project__title">
                 {% if game.displayTitle %}
                 {{game.displayTitle}}
                 {% else %}
                 {{game.title}}
                 {% endif %}
             </h2>
-            {% endif %}
-            <div class="project__overlay"></div>
-        </a>
-        {% endfor %}
-    </section>
-    <header class="games-header">
-        <h1 class="games-header__title--smaller">
-            Game Jams & Experiments
-        </h1>
-    </header>
-    <section class="projects">
-        {% assign otherGames = site.categories.games | where:"category","game-jam" %}
-        {% for game in otherGames %}
-        <a href="{{game.url}}" class="project__container project__container--{{game.title | downcase}}"
-            title="{{game.title}}">
-            {% if game.imageNeedsText %}
-            <h2 class="hover-text">
-                {% if game.displayTitle %}
-                {{game.displayTitle}}
-                {% else %}
-                {{game.title}}
-                {% endif %}
-            </h2>
-            {% endif %}
-            <div class="project__overlay"></div>
-        </a>
+            <div>
+                <a href="{{game.url}}">
+                    <img class="project__preview-image" src="{{game.previewImage}}" alt="{{game.title}} Title Image" />
+                </a>
+            </div>
+            <div class="project__preview-text">
+                {{game.excerpt}}
+            </div>
+        </div>
         {% endfor %}
     </section>
 </section>
