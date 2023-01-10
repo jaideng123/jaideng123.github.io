@@ -15,6 +15,16 @@ screenshots: [
     "/assets/images/Distanced/d5.png"
 ]
 ---
+**What I did:** 
+
+**Project Length:** 2 days
+
+**Team Size:** Solo Project
+
+**Platforms:** WebGL, Windows
+
+**Engine & Tools:** Unity
+<!--more-->
 <div class="itch-container">
 <iframe src="https://itch.io/embed/664461" width="552" height="167" frameborder="0"><a href="https://jaideng123.itch.io/distanced">Distanced by jaideng123</a></iframe>
 </div>

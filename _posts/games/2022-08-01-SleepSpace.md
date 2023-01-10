@@ -21,6 +21,8 @@ screenshots: [
 **Team Size:** 6
 
 **Platforms:** WebGL, Windows, Android
+
+**Engine & Tools:** Unity
 <!--more-->
 
 

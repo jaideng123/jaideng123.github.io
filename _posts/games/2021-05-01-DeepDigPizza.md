@@ -14,6 +14,16 @@ screenshots: [
     "/assets/images/DeepDigPizza/DeepDigPizza-4.png"
 ]
 ---
+**What I did:** 
+
+**Project Length:** 3 days
+
+**Team Size:** 6
+
+**Platforms:** WebGL, Windows
+
+**Engine & Tools:** Unity
+<!--more-->
 <div class="itch-container">
 <iframe src="https://itch.io/embed/1010860?border_width=2" width="554" height="169" frameborder="0"><a href="https://jaideng123.itch.io/deep-dig-pizza">Deep Dig Pizza by Jaiden Gerig, zruby, lzklein, bordenary, Brad Mader, Brandon Garcia</a></iframe>
 </div>

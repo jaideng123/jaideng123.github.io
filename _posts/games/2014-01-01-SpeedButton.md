@@ -13,6 +13,16 @@ screenshots: [
     "/assets/images/SpeedButton/sb3.png"
 ]
 ---
+**What I did:** 
+
+**Project Length:** 2 Days
+
+**Team Size:** 4
+
+**Platforms:** Android
+
+**Engine & Tools:** Android SDK
+<!--more-->
 # Description
 SpeedButton is a game about tapping a moving button on your phone in a variety of modes
 

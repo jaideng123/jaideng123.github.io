@@ -41,6 +41,7 @@ title: Games
                 {% else %}
                 {{game.title}}
                 {% endif %}
+                ({{game.date | date: "%Y"}})
             </h2>
             <div>
                 <a href="{{game.url}}">

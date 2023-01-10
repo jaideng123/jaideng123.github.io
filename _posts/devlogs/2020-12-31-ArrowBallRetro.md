@@ -5,26 +5,15 @@ role: "Solo Developer"
 categories: [devlogs]
 permalink: /games/ArrowBall/PostMortem/
 ---
-
-## About The Game:
-[ArrowBall](/games/ArrowBall) is a game where you can challenge your friends in 1v1 or 2v2 competitions where both teams try to get THE BALL into the opposing team's goal to score points. Run, jump, fire explosive arrows, use Clutch Mode to set up the perfect shot, or launch a devastating Super Arrow.
-
-![Super Arrow Gif](/assets/images/ArrowBall/super.gif)
-
-**Made with:** Unity
-
-**Project Length:** 18 Months
-
-**Role:** Sole Developer
-
-## Retrospective
-
+## Ideation
 After shipping [TRITIX](/games/TRITIX), I felt a strong desire to make a game that was wholely my own and didn't re-implement an existing game. One of the highlights of my time in college was getting together with a group of friends and spending hours playing games together like Super Smash Bros, Rocket League, and Duck Game. There was something about needing to make time to physically be with people and engage in some good-natured competition that I thought was really special so I set out to make a game that re-captured some of that magic.
 
 The idea for the core mechanic came to me one night when I was having trouble sleeping and was thinking about the mechanic in Breath of the Wild where time would slow when you jumped in the air and aimed your bow. I imagined a moment where that arrow exploded and sent a ball flying into a goal as a crowd roared. I was excited by the idea and figured it would straightforward to build a prototype so I spent the next few days whipping one up in Unity.
 
+## The Prototype
 I was able to borrow a lot of the code from [MowMowMow](/games/MowMowMow/) (which I thought this would just be a quick detour from), and fashioned a 2D character controller based on [Sebastian Lague's Tutorial Series](https://www.youtube.com/playlist?list=PLFt_AvWsXl0f0hqURlhyIoAabKPgRsqjz). I worked first on nailing down the core mechanic of just shooting a ball around with explosive arrows, making sure the interaction and behavior felt good before adding a second player. After getting the feel of the core mechanic just right, I whipped up a quick build with 2 players, unlimited arrows, and unlimited slow-mo time (which would later be clutch mode) and enlisted a friend of mine to help play-test. During the play-test my friend and I felt genuine tension and excitement and I knew I was on the right track, so I continued to iterate on the game in my free time over the next few months. During this time, I worked on making the game more interesting by adding complementary mechanics such as new movement options, Super Arrows, and multiple Stages to play on and play-testing with any friends that were interested. After my first 4-player play-test, I uploaded some footage on twitter and got [a surprisingly positive reaction](https://twitter.com/JaidenG123/status/1226030016124743685) (relative to the sparse number of followers I have) so I started thinking about how I wanted to release it.
 
+## Production
 With this being my first wholly original long-term project, I didn't want to over-invest my time, so I set a deadline for completion sometime around June 2020. I decided early on that I wanted to focus on local multiplayer in order to minimize technical complexity and that I wanted to sell the game for a premium (not because I needed the money but mostly for the satisfaction of knowing someone thought it was worth spending money on). For these reasons I went with Steam as it provided good discoverability and Steam Remote Play Together provided online play with very little effort required on my part. Before making my Steam page I researched about how to structure them and came across this [wonderful GDC talk by Chris Zukowski](https://www.youtube.com/watch?v=UJiv14uPOac) (Seriously, he's great, go read all his stuff [https://howtomarketagame.com/blog/](https://howtomarketagame.com/blog/)) which helped me think about how to structure my page and write my descriptions to make it easy to scan. I also cut together a simple trailer with some clips of gameplay set to some background music. I launched my Steam page and started getting a veeeerrrrryyyy slow trickle of wish-lists, but I was happy to see that people were even mildly interested in what I was working on.
 
 By June, I reached my internal deadline and had the game content complete with 8 Super Arrows and 6 Stages all implemented. From here I thought about releasing early(My public launch window was late 2020), but instead I decided to submit the game to some festivals hoping that they could help me get some more buzz or at the very least, some useful feedback to make the game better. In the end I entered ArrowBall into Indiecade and Seattle Indie Expo(SIX). My experience with Indiecade was less than stellar. It was expensive, the submission process required a lot of documentation, and in the end none of the keys I provided were ever redeemed and I have yet to receive any written feedback (which I had to pay extra for) 6 months after submission. Luckily, my experience with SIX was the complete opposite, the submission form was short, the submission fee was dirt cheap, and even though I didn't get a nomination, I got a lot of invaluable feedback that really helped improve the game.
@@ -33,6 +22,7 @@ Even though I had a few months before my planned launch there was still a lot of
 
 By late September, the game was in a complete and stable state, but I decided to move the internal release deadline to November so that I could participate in the Autumn Steam Games Festival. I spent time whipping up a quick demo with a few arrows and stages, made the some posts on Steam, and by October the demo was out and the festival was on. I won't provide my analysis of the festival here since it's been done to death but suffice it to say it resulted in a good uptick in wish-lists (though not many plays for the actual demo) and I think it was mostly worth the effort of putting together the demo, though much more worth it if your game is big enough to get a feature (which mine was not).
 
+## Launch
 Finally, it was November and time to release the game for real. As expected from a first release on Steam, there wasn't much buzz and the only review I got was from my brother-in-law, but I do see people playing occasionally via metrics so I assume they're enjoying it ¯\\_(ツ)_/¯. Numbers-wise, I had accrued ~200 wish-lists before launch and sold 25 units over the first month which was enough to recoup the cost of Steam submission and most of the assets I purchased so financially it ended being a wash, which I totally expected (don't quit your day job people).
 
 In the end, I'm very proud of the game ArrowBall turned out to be, even if it didn't find an audience. Throughout the process of taking an idea all the way to shipping I learned a lot of lessons(more about that in the next section), found a great community in the Seattle Indie scene, and pushed myself as both a designer and a developer. It's also not lost on me that I somehow managed to ship my first major game on Steam during a global pandemic and I would commend any other developer that was able to ship something during this hellish year. So now I find myself in a similar position as before ArrowBall where I have no idea what my next project will be, but once I figure it out, I have much more knowledge and experience to draw from.

@@ -13,6 +13,17 @@ screenshots: [
     "/assets/images/PolterHeist/polter3.png",
 ]
 ---
+**What I did:** 
+
+**Project Length:** 2 days
+
+**Team Size:** 4
+
+**Platforms:** WebGL
+
+**Engine & Tools:** Unity
+<!--more-->
+
 <div class="itch-container">
 <iframe src="https://itch.io/embed/696575?border_width=2&amp;bg_color=9a6595&amp;fg_color=ffffff&amp;border_color=000000" width="554" height="169" frameborder="0"><a href="https://jaideng123.itch.io/polterheist">PolterHeist by Jaiden Gerig, Jeroen Kornips, Jess Buscema, Michael Kirby</a></iframe>
 </div>

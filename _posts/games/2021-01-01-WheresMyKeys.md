@@ -15,6 +15,17 @@ screenshots: [
     "/assets/images/WheresMyKeys/wmk-screenshot-4.png"
 ]
 ---
+**What I did:** 
+
+**Project Length:** 2 days
+
+**Team Size:** 6
+
+**Platforms:** WebGL, Windows
+
+**Engine & Tools:** Unity
+<!--more-->
+
 <div class="itch-container">
 <iframe src="https://itch.io/embed/901281?border_width=2" width="554" height="169" frameborder="0"><a href="https://jaideng123.itch.io/wheresmykeys">WHERE'S MY KEYS?!?! by Jaiden Gerig, Hypnoquat, zruby, bordenary, lzklein, Brandon Garcia</a></iframe>
 </div>

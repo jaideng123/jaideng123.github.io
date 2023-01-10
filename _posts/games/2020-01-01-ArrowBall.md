@@ -10,12 +10,23 @@ category: full-release
 screenshots: [
 ]
 ---
+**What I did:** 
+
+**Project Length:** 18 months
+
+**Team Size:** 1 (Solo Project)
+
+**Platforms:** Windows (Steam)
+
+**Engine & Tools:** Unity
+<!--more-->
+
 <div class="steam-badge__container">
 <div class="steam-badge">
 <iframe src="https://store.steampowered.com/widget/1307310/" frameborder="0" width="100%" height="190"></iframe>
 </div>
 </div>
----
+
 # About The Game
 Challenge your friends in 1v1 or 2v2 competitions where both teams try to get THE BALL into the opposing team's goal to score points. Run, jump, fire explosive arrows, activate Clutch Mode to set up the perfect shot, or launch a devastating Super Arrow. Charge your Super Bar by defending your goal and spend it to activate Clutch Mode or your Super Arrow.
 

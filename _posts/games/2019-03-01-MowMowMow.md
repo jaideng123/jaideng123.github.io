@@ -13,6 +13,17 @@ screenshots: [
     "/assets/images/MowMowMow/mmm-3.png",
 ]
 ---
+**What I did:** 
+
+**Project Length:** 3 months
+
+**Team Size:** 1 (Solo Project)
+
+**Platforms:** Windows
+
+**Engine & Tools:** Unity, Asset Forge
+<!--more-->
+
 <div class="itch-container">
 <iframe src="https://itch.io/embed/621495" width="552" height="167" frameborder="0"><a href="https://jaideng123.itch.io/mowmowmow">MowMowMow by jaideng123</a></iframe>
 </div>
