@@ -13,6 +13,7 @@ screenshots: [
     "/assets/images/DeepDigPizza/DeepDigPizza-3.png",
     "/assets/images/DeepDigPizza/DeepDigPizza-4.png"
 ]
+priority: 8 
 ---
 **What I did:** 
 
