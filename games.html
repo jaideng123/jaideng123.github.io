@@ -2,6 +2,12 @@
 layout: default
 permalink: /games/
 title: Games
+gameOrder:
+- Pokémon Go
+- ArrowBall
+- Rebound
+- FCGames
+- TRITIX
 ---
 <section class="games-page">
     <!-- TODO: What Am I Good At? -->
@@ -33,7 +39,8 @@ title: Games
         </h1>
     </header>
     <section class="projects">
-        {% for game in site.categories.games %}
+        {% for gameName in page.gameOrder %}
+        {% assign game = site.categories.games | where: "title",gameName | first %}
         <div class="project__container project__container--{{game.title | downcase}}" title="{{game.title}}">
             <h2 class="project__title">
                 {% if game.displayTitle %}
@@ -52,6 +59,29 @@ title: Games
                 {{game.excerpt}}
             </div>
         </div>
+        {% endfor %}
+
+        {% for game in site.categories.games %}
+        {% unless page.gameOrder contains game.title %}
+        <div class="project__container project__container--{{game.title | downcase}}" title="{{game.title}}">
+            <h2 class="project__title">
+                {% if game.displayTitle %}
+                {{game.displayTitle}}
+                {% else %}
+                {{game.title}}
+                {% endif %}
+                ({{game.date | date: "%Y"}})
+            </h2>
+            <div>
+                <a href="{{game.url}}">
+                    <img class="project__preview-image" src="{{game.previewImage}}" alt="{{game.title}} Title Image" />
+                </a>
+            </div>
+            <div class="project__preview-text">
+                {{game.excerpt}}
+            </div>
+        </div>
+        {% endunless %}
         {% endfor %}
     </section>
 </section>
