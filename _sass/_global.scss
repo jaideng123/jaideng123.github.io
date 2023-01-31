@@ -1,8 +1,21 @@
-html *
-{
+html * {
     font-family: 'Roboto', sans-serif;
     background-color: #F2F0EB;
     color: #262521;
+}
+
+.page-header {
+    text-align: center;
+
+    &__title {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+
+    &__links {
+        margin-top: .4rem;
+        font-size: 1.2rem;
+    }
 }
 
 // h1{
