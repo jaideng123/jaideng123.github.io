@@ -6,21 +6,36 @@ layout: default
         <h1 class="blog-header__title">
             {{page.title}}
         </h1>
-        <h2 class="blog-header__date">
-            {% assign d = page.date | date: "%-d" %}
-            {{ page.date | date: "%B" }}
-            {% case d %}
-            {% when '1' or '21' or '31' %}{{ d }}st
-            {% when '2' or '22' %}{{ d }}nd
-            {% when '3' or '23' %}{{ d }}rd
-            {% else %}{{ d }}th
-            {% endcase %},
-            {{ page.date | date: "%Y" }} </h2>
+        <p class="post-meta">
+            {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
+            Posted on {{ page.date | date: date_format }}
+        </p>
     </header>
     <hr>
     <section class="blog-page__content">
         {{content}}
     </section>
+    {% if page.tags.size > 0 %}
+    <div class="blog-tags">
+        <span>Tags:</span>
+        {% for tag in page.tags %}
+        <a href="{{ '/tags' | relative_url }}#{{- tag -}}">{{- tag -}}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.after-content %}
+    <div class="after-content">
+        {% for file in page.after-content %}
+        {% include {{ file }} %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.social-share %}
+    {% include social-share.html %}
+    {% endif %}
+
 </section>
 <header class="home-link__container">
     <a href="/blog/" class="home-link">More Posts By Jaiden</a>

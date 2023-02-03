@@ -60,4 +60,4 @@ There are 8 Super Arrows all with unique effects and characteristics. Super Arro
 You can activate Clutch Mode at any moment to slow down time and line up the perfect shot or make a last-minute save. Clutch Mode consumes your Super Bar as you use it so it won't last forever.
 
 ---
-# [Read The Developer Post-Mortem Here](/games/ArrowBall/PostMortem)
+# [Read The Full Post-Mortem Here](/blog/2020/12/31/ArrowBallRetro)

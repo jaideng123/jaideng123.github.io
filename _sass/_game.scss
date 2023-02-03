@@ -1,72 +1,80 @@
-.home-link{
-    &__container{
+.home-link {
+    &__container {
         display: flex;
         flex-direction: row;
         justify-content: center;
         margin: 1rem;
     }
+
     font-size: 1.2rem;
 }
-.game-page{
-    max-width: 70rem;
+
+.game-page {
+    max-width: 60rem;
     margin: 0 auto;
     margin-bottom: 5rem;
-    & img{
+
+    & img {
         max-height: 500px;
         max-width: 100%;
     }
 }
 
-.game-header{
-    &__title{
+.game-header {
+    &__title {
         font-size: 4rem;
         text-align: center;
-        &--arrowball{
+
+        &--arrowball {
             font-family: 'Kanit', sans-serif;
             font-weight: bold;
             font-style: italic;
             font-size: 5rem;
             margin: 1rem;
         }
-        &--tritix{
+
+        &--tritix {
             font-family: 'Tritix', sans-serif;
             font-weight: bold;
-            font-size:  6rem;
+            font-size: 6rem;
             color: gold;
             background-color: black;
-            margin:0;
+            margin: 0;
             margin-bottom: 1rem;
-            padding:2rem;
+            padding: 2rem;
         }
+
         margin: 1rem;
     }
 }
 
-.game-screenshots{
+.game-screenshots {
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.game-screenshot{
-    &__container{
+.game-screenshot {
+    &__container {
         flex: 15%;
         height: 11rem;
         width: 11rem;
         text-align: center;
         overflow: hidden;
-        margin:1rem;
+        margin: 1rem;
         border: 1px solid #ccc;
-        &:hover{
+
+        &:hover {
             border: 1px solid #777;
         }
-        @media only screen and (max-width: 800px){
+
+        @media only screen and (max-width: 800px) {
             flex: 30%;
         }
     }
 
-    &__image{
+    &__image {
         display: block;
         object-fit: cover;
         width: 100%;
@@ -74,40 +82,43 @@
     }
 }
 
-.video-container{
+.video-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding-bottom: 1rem;
 }
 
-.game-page__content{
-    h1{
+.game-page__content {
+    h1 {
         font-size: 2rem;
         margin-bottom: 1rem;
     }
-    h2{
+
+    h2 {
         font-size: 1.5rem;
     }
 }
 
-.google-play-badge{
+.google-play-badge {
     height: 5rem;
-    &__container{
+
+    &__container {
         text-align: center;
     }
 }
 
-.itch-container{
+.itch-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.steam-badge{
+.steam-badge {
     width: 100%;
     max-width: 40rem;
-    &__container{
+
+    &__container {
         display: flex;
         justify-content: center;
     }
