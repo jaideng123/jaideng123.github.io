@@ -2,9 +2,9 @@
 layout: blog
 title: "ArrowBall Post-Mortem"
 role: "Solo Developer"
-categories: [blog]
-thumbnail-img: "/assets/images/ArrowBall/ArrowBall-Preview.png"
+category: blog
 ---
+![Arrowball Header Image Showing Logo](/assets/images/ArrowBall/header.jpg)
 ## Ideation
 After shipping [TRITIX](/games/TRITIX), I felt a strong desire to make a game that was wholely my own and didn't re-implement an existing game. One of the highlights of my time in college was getting together with a group of friends and spending hours playing games together like Super Smash Bros, Rocket League, and Duck Game. There was something about needing to make time to physically be with people and engage in some good-natured competition that I thought was really special so I set out to make a game that re-captured some of that magic.
 

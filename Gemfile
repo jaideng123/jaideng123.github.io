@@ -12,6 +12,8 @@ source "https://rubygems.org"
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
 # TODO: https://www.moncefbelyamani.com/making-github-pages-work-with-latest-jekyll/
 gem "github-pages", group: :jekyll_plugins
+gem 'jekyll-feed'
+
 # If you have any plugins, put them here!
 group :jekyll_plugins do
 end

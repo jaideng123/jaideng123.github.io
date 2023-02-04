@@ -2,9 +2,16 @@ sass:
   sass_dir: _sass
   style: compressed
 
+plugins:
+  - jekyll-feed
+
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 excerpt_separator: "<!--more-->"
+
+feed:
+  categories:
+    - blog
 
 # Exclude from processing.
 # The following items will not be processed, by default.

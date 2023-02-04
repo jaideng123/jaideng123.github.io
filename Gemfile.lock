@@ -286,6 +286,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll-browsersync
+  jekyll-feed
 
 BUNDLED WITH
    2.1.4
