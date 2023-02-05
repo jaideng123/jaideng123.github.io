@@ -26,6 +26,12 @@ As a Gameplay Engineer on the Pokémon Go team, I've collaborated with designers
 **Engine & Tools:** Unity
 <!--more-->
 
+<div class="google-play-badge__container">
+    <a href='https://play.google.com/store/apps/details?id=com.nianticlabs.pokemongo&hl=en_US&gl=US&pli=1'>
+        <img alt='Get it on Google Play' class="google-play-badge" src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
+    </a>
+</div>
+
 # Animation Tuning Work
 
 In collaboration with our design and tech art team I architected and built internal tools to tune all our animations and transitions in the game.

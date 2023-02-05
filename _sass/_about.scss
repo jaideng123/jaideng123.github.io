@@ -1,0 +1,17 @@
+.about-me-page {
+    display: flex;
+    max-width: 50rem;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.about-me {
+    min-width: 13rem;
+}
+
+.about-me__description {
+    margin: 1rem;
+    max-width: 35rem;
+    font-size: 1.1rem;
+}
