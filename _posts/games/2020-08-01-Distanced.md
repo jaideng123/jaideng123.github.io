@@ -15,7 +15,9 @@ screenshots: [
     "/assets/images/Distanced/d5.png"
 ]
 ---
-**What I did:** 
+**What I did:**
+
+Built a game over 72 hours for a Weekly Game Jam as a solo project. I designed & implemented the gameplay, created the visuals, and crafted the overall sound (using existing assets).
 
 **Project Length:** 2 days
 

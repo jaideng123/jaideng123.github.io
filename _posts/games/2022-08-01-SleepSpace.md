@@ -17,6 +17,10 @@ priority: 8
 ---
 **What I did:** 
 
+Reunited again with the Where's My Keys team to create a card-based tactics game about overcoming your nightmares and trying to get a good night's sleep for the 2022 PIG-Squad Summer Slow Jam.
+
+I designed the overall gameplay concept, implemented a flexible card system & turn order system, designed the cards, enemies and boss moves, and partnered with our lead artist to define and implement the camera setup & UI.
+
 **Project Length:** 2 weeks
 
 **Team Size:** 6

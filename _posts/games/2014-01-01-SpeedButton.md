@@ -13,7 +13,9 @@ screenshots: [
     "/assets/images/SpeedButton/sb3.png"
 ]
 ---
-**What I did:** 
+**What I did:**
+
+Designed & Built a small game on Android with some friends for a college hackathon over 48 hours. I contributed by designing all of the game modes and doing the engineering for half of them.
 
 **Project Length:** 2 Days
 
@@ -21,7 +23,7 @@ screenshots: [
 
 **Platforms:** Android
 
-**Engine & Tools:** Android SDK
+**Engine & Tools:** Android SDK, Java
 <!--more-->
 # Description
 SpeedButton is a game about tapping a moving button on your phone in a variety of modes

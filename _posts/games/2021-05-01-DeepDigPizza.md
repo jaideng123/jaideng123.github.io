@@ -15,7 +15,11 @@ screenshots: [
 ]
 priority: 8 
 ---
-**What I did:** 
+**What I did:**
+
+Reunited with the Where's My Keys team to create a humorous fusion of mining & cooking games.
+
+I designed the overall gameplay concept and implemented the character controller, level design tools, pizza decorating UI, and game flow.
 
 **Project Length:** 3 days
 

@@ -13,7 +13,9 @@ screenshots: [
     "/assets/images/MowMowMow/mmm-3.png",
 ]
 ---
-**What I did:** 
+**What I did:**
+
+Designed & implemented gameplay for a local 4 player multiplayer prototype. Created the visual assets and look for the game.
 
 **Project Length:** 3 months
 

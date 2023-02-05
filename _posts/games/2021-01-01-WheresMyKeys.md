@@ -15,7 +15,12 @@ screenshots: [
     "/assets/images/WheresMyKeys/wmk-screenshot-4.png"
 ]
 ---
-**What I did:** 
+**What I did:**
+
+Teamed up with 5 other developers(1 Programmer, 2 Artists, 1 Sound Designer, 1 Project Manager) in the Seattle Indies community to make a chaotic, physics-based game over 48 hours for Global Game Jam 2021.
+
+I designed the overall gameplay concept and implemented the character controller, a randomized spawning system, and the post-game screen. I also assisted in the importing of our many models for physics objects that we placed in the level.
+
 
 **Project Length:** 2 days
 

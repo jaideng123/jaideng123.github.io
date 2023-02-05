@@ -10,9 +10,15 @@ category: full-release
 screenshots: [
 ]
 ---
-**What I did:** 
+**What I did:**
 
-**Project Length:** 18 months
+Built & shipped a local multiplayer game on Steam as a solo developer.
+
+I designed the concept from scratch, play-tested and iterated on the design over time, and implemented all the core mechanics for the game along with the various stages & special arrows.
+
+I also handled the marketing for the game by creating assets for the steam page, cutting together trailers for the game, and posting on social media platforms.
+
+**Project Length:** ~1.5 years
 
 **Team Size:** 1 (Solo Project)
 
