@@ -1,54 +1,11 @@
 ---
-layout: game
-title: "DeepDigPizza"
-displayTitle: "Deep Dig Pizza"
-role: "Programmer"
-categories: [games]
-permalink: /games/DeepDigPizza/
-previewImage: /assets/images/DeepDigPizza/DeepDigPizza-title-smaller.gif
-category: game-jam
-screenshots: [
-    "/assets/images/DeepDigPizza/DeepDigPizza-1.png",
-    "/assets/images/DeepDigPizza/DeepDigPizza-2.png",
-    "/assets/images/DeepDigPizza/DeepDigPizza-3.png",
-    "/assets/images/DeepDigPizza/DeepDigPizza-4.png"
-]
-priority: 8 
+layout: blog
+title: "Deep Dig Pizza Post-Mortem"
+subtitle: "Ludum Dare 48 Recap"
+category: blog
 ---
-**What I did:** 
-
-**Project Length:** 3 days
-
-**Team Size:** 6
-
-**Platforms:** WebGL, Windows
-
-**Engine & Tools:** Unity
-<!--more-->
-<div class="itch-container">
-<iframe src="https://itch.io/embed/1010860?border_width=2" width="554" height="169" frameborder="0"><a href="https://jaideng123.itch.io/deep-dig-pizza">Deep Dig Pizza by Jaiden Gerig, zruby, lzklein, bordenary, Brad Mader, Brandon Garcia</a></iframe>
-</div>
-
-# Description
-Your pop-pop has passed away and you've inherited Deep Dig Pizza, a pizza restaurant on the surface of the goo-ey Pizza Planet.
-
-As the owner of Deep Dig Pizza you have to dig into the depths to mine ingredients and assemble them into pizzas to feed your hungry customers!
-
-![Gif of Gameplay](/assets/images/DeepDigPizza/DeepDigPizza-comp.gif)
-
-Lovingly assembled over 72 hours for Ludum Dare 48
-
-[Scored in the top 10% of games overall (219th out of ~2600 games)](https://ldjam.com/events/ludum-dare/48/deep-dig-pizza)
-
----
-# About the Project
-**Made with:** Unity
-
-**Role:** Programmer & Gameplay Designer
-
-**Project Length:** 3 days
-
-**TLDR Twitter Thread: [https://twitter.com/JaidenG123/status/1386049113448321025](https://twitter.com/JaidenG123/status/1386049113448321025)**
+<!-- TODO: More Images -->
+![Gif of the gameplay of deep dig pizza](/assets/images/DeepDigPizza/DeepDigPizza-comp.gif)
 
 After finishing Where's My Keys, the team I was on had such a blast working together that we decided to reunite for Ludum Dare 48!
 
@@ -66,4 +23,4 @@ For the final day I wanted to make the cooking aspect of the game more substanti
 
 * Get to the end-to-end playable build as fast as possible and play-test it as a team
 * Avoid last-minute features and make sure you test them thoroughly
-* Don't leave level design till the very end of the project (iterate via whiteboard when waiting on tech)
+* Don't leave level design till the very end of the project (iterate via whiteboard/paper when waiting on tech)

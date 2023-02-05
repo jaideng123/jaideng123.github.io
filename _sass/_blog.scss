@@ -11,6 +11,15 @@
     & img {
         max-height: 500px;
         max-width: 100%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    & img.header-img {
+        width: 100%;
+        object-fit: cover;
+        object-position: top;
+        height: 300px;
     }
 }
 
@@ -63,7 +72,7 @@
 
 .post-preview {
     padding: 1.25rem 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #bdbdbd;
     overflow: hidden;
 }
 
@@ -109,7 +118,6 @@
     font-size: 1.125rem;
     font-style: italic;
     margin: 0 0 0.625rem;
-    font-family: 'Lora', 'Times New Roman', serif;
 }
 
 .post-heading .post-meta {

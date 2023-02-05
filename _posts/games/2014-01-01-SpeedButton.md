@@ -42,7 +42,7 @@ Each mode has separately tracked high scores
 
 **Project Length:** 2 Days
 
-This project was developed over the course of 24 hours for the TAMU Hack 2014 hackathon, essentially as a joke. I worked with 4 other students to develop both the initial concept and the 4 modes.
+This project was developed over the course of 24 hours for the TAMU Hack 2014 hackathon as a joke that got so far out hand it became a game. I worked with 4 other students to develop both the initial concept and the 4 modes.
 
 Even though it didn't go anywhere, I'm still proud that we were able to execute on an idea so quickly (especially because none of us had never even made an android app before) and it holds a special place in my heart as my first game.
 
