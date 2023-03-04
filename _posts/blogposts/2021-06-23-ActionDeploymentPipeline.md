@@ -27,7 +27,7 @@ Name the secret `BUTLER_CREDENTIALS`, paste in the API key underneath, and click
 
 For the free version of Unity you’ll need a license file to tie the builds to a Unity Account.
 
-Create a new file named `activation.yml` in your repository in under _.github/workflows_ and paste in the following code (make sure to replace `2020.3.4f1` with the version of Unity you’re using).
+Create a new file named `activation.yml` in your repository in under _.github/workflows_ and paste in the following code:
 
 ```yml
 name: Acquire activation file
@@ -42,8 +42,6 @@ jobs:
       - name: Request manual activation file
         id: getManualLicenseFile
         uses: game-ci/unity-request-activation-file@v2
-        with:
-          unityVersion: 2020.3.4f1
       # Upload artifact (Unity_v20XX.X.XXXX.alf)
       - name: Expose as artifact
         uses: actions/upload-artifact@v2
