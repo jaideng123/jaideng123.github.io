@@ -15,7 +15,7 @@ To get the lay of the land, you should start with Alex Forsythes incredible vide
 
 Unreal vs. Unity: Actors & Components, Inheritance & Composition:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/iQ3c-lrHO7o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-This will give a good overview of the game object model unreal uses. It's similar to Unity's but different in subtle ways like the fact that actors have no heirarchy with other actors or the fact that 
+This will give a good overview of the game object model unreal uses. It's similar to Unity's but different in subtle ways like the fact that actors have no hierarchy with other actors and instead each actor has it's own hierarchy of components.
 
 ## Using the Editor:
 Check out Unreal's documentation:
@@ -24,7 +24,7 @@ Check out Unreal's documentation:
 
 
 # How do I write code?
-Watch this first
+Watch this first:
 
 
 Blueprints vs. C++: How They Fit Together and Why You Should Use Both:
@@ -41,7 +41,7 @@ Unreal's documentation here is solid so check it out:
 
 
 ## C++
-C++ can be intimidating at first, but Unreal provides garbage collection and lots of macros/libraries/etc that will make you feel right at home as a Unity developer.
+C++ can be intimidating at first, but Unreal provides free garbage collection and lots of macros/libraries/etc that will make you feel right at home as a Unity/C# developer.
 I recommend using [Rider](https://www.jetbrains.com/rider/) as it will help you avoid the many, many footguns that exist in C++ (Yes the license costs money, but it's worth the $15 a month).
 
 
@@ -52,6 +52,12 @@ Laura's Unreal blog is great place to start:
 They also provide a quick primer on Unreal Style C++:
 
 [https://landelare.github.io/2023/01/07/cpp-speedrun.html](https://landelare.github.io/2023/01/07/cpp-speedrun.html)
+
+# Misc things:
+Unreal and Unity use opposite FOV Scaling (Unity keeps it consistent as you stretch horizontally), you can change this to be more consistent with Unity by going to `Config/DefaultEngine.ini` and adding the following snippet:
+    [/script/engine.localplayer]
+    AspectRatioAxisConstraint=AspectRatio_MaintainYFOV
+
 
 # Extra Credit:
 The Unreal Engine Game Framework: From int main() to BeginPlay:
