@@ -54,9 +54,11 @@ They also provide a quick primer on Unreal Style C++:
 [https://landelare.github.io/2023/01/07/cpp-speedrun.html](https://landelare.github.io/2023/01/07/cpp-speedrun.html)
 
 # Misc things:
-Unreal and Unity use opposite FOV Scaling (Unity keeps it consistent as you stretch horizontally), you can change this to be more consistent with Unity by going to `Config/DefaultEngine.ini` and adding the following snippet:
+Unreal and Unity use opposite FOV Scaling (Unity keeps it consistent as you stretch horizontally), you can change this to be more consistent with Unity by going to `Config/DefaultEngine.ini` and adding the following snippet to the end of it:
+{% highlight ini %}
     [/script/engine.localplayer]
     AspectRatioAxisConstraint=AspectRatio_MaintainYFOV
+{% endhighlight %}
 
 
 # Extra Credit:
