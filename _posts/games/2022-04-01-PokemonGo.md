@@ -19,7 +19,7 @@ priority: 10
 
 **What I've done so far:** 
 
-As a Gameplay Engineer on the Pokémon Go team, I've collaborated with designers to create tools to quickly tune the overall speed of our animations and transitions in the game, implemented advanced haptics to improve feedback and game feel, and am currently leading the (game client-side) technical design and engineering for one of our largest new gameplay features: Pokéstop Showcases.
+As a Gameplay Engineer on the Pokémon Go team, I've lead the technical design and engineering for one of our largest new gameplay features: Pokéstop Showcases, collaborated with designers to create tools to quickly tune the overall speed of our animations and transitions in the game, and designed and implemented an advanced haptics system to improve feedback and game feel.
 
 **Platforms:** Android, iOS
 
