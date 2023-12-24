@@ -82,13 +82,15 @@ Once I had something working, I started showing it to some members of the team t
 
 Eventually I got our engineering director excited enough about it that I was allowed to merge in what I had under a feature flag that we turned on for employees-only to test-drive it while we waited for a producer to be free enough to get it over the finish line. Unfortunately, we were tight on producer time for a few months so eventually (with the blessing of our lead producer, eng director, and UX lead) I organized an official activation for all of our players.
 
-Once we released the new effects, we got [a lot of positive feedback](https://twitter.com/JaidenG123/status/1729639989493850226) from players. We wanted players to discover all the new places that we peppered the feedback so we didn't make a big post explaining which led to some fun moments like players [discovering we added a special effect that only triggered for shiny pokemon](https://twitter.com/8BitCR/status/1729650039293722689). Overall, it was a fun moment for the game and I'm happy to have been able to drive it from start to finish.
+Once we released the new effects, we got [a lot of positive feedback](https://twitter.com/JaidenG123/status/1729639989493850226) from players. We wanted players to discover all the new places that we peppered the feedback so we didn't make a big post explaining which led to some fun moments like players [discovering we added a special effect that only triggered for shiny pokemon](https://twitter.com/8BitCR/status/1729650039293722689). 
+
+Overall, it was a fun addition to the game and I'm happy to have been able to drive it from start to finish.
 
 # Animation Tuning System
 
 In collaboration with our design and tech art team I architected and built internal tools to tune all our animations and transitions in the game.
 
-The tools had to be built on a very short timeline as we had to get the changes fine-tuned and approved by the Creative Director from the Pokémon Company who would only be in our office for 2 days. During the visit I also provided direct support by adding new tuning parameters and answering questions from the Creative Director as they dialed in on a more snappy flow.
+The tools had to be built on a very short timeline as we had to get the changes fine-tuned and approved by a Creative Director from the Pokémon Company who would only be in our office for 2 days. During the visit I also provided direct support by adding new tuning parameters and answering questions from the Creative Director as they dialed in on a more snappy flow.
 
 In the end, the Creative Director was very pleased with the tooling we were able to stand-up, and our players loved the new flow that made the game much snappier to play.
 

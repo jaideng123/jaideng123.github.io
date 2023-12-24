@@ -17,7 +17,7 @@ priority: 8
 ---
 **What I did:** 
 
-Once again worked with with the Where's My Keys team to create a deck-building survival-stealth roguelike about the beauty and terror of nature for the 2023 7 Day Roguelike Jam.
+Once again worked with the Where's My Keys team to create a deck-building survival-stealth roguelike about the beauty and terror of nature for the 2023 7 Day Roguelike Jam.
 
 I designed the overall gameplay concept and programmed the entirety of the game including (but not limited to) level design tools, wildlife AI, pathfinding, procedural generation, card system, etc.
 
