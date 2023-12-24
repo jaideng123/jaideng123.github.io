@@ -60,4 +60,4 @@ Procedurally Generated over a week for the [7 Day Roguelike Challenge 2023](http
 
 **TLDR Twitter Progress Thread:** [https://twitter.com/JaidenG123/status/1632600842753949696](https://twitter.com/JaidenG123/status/1632600842753949696)
 
-# Jam Follow-up post coming soon
+# Jam follow-up post coming soon

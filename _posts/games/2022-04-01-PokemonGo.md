@@ -72,6 +72,18 @@ Working with the other engineers on my team, I created and presented a technical
 
 After the critical bugs were resolved I was tapped to lead a new tentpole feature. Splitting my time between the 2 projects, I helped one of the engineers I had led transition into being the new lead for the planned follow-up work, guiding them and slowly giving them more responsibility as my new feature ramped up.
 
+# Haptics System
+
+For the 7 years that Pokemon GO has been out, it has relied on a single primitive haptic effect provided by unity that does a long, harsh buzz. With some spare time between larger projects, I decided to look into upgrading this system to provide more opportunities to improve game-feel and feedback. 
+
+Technically, this was a fairly simple project to get going, I wrote a small bit of Objective C and Java for iOS and Android, as well as a C# interface to act as a bridge to trigger the effects. Once I had that working, I extended the tooling to make it easy to integrate with button responses and animation events, and then started plugging it into our catch flow to provide a small shake in sync with the pokeball (My main intention was to allow players look up from their phones while waiting for a catch).
+
+Once I had something working, I started showing it to some members of the team to get feedback and ideas. People were really excited about it and had a lot of great ideas for places to try out more effects which I then started implementing. After getting a good set of examples I started talking to our Lead UX Designer who helped me tweak and pare down the effects I'd implemented until it felt cohesive and matched our overall design philosophy.
+
+Eventually I got our engineering director excited enough about it that I was allowed to merge in what I had under a feature flag that we turned on for employees-only to test-drive it while we waited for a producer to be free enough to get it over the finish line. Unfortunately, we were tight on producer time for a few months so eventually (with the blessing of our lead producer, eng director, and UX lead) I organized an official activation for all of our players.
+
+Once we released the new effects, we got [a lot of positive feedback](https://twitter.com/JaidenG123/status/1729639989493850226) from players. We wanted players to discover all the new places that we peppered the feedback so we didn't make a big post explaining which led to some fun moments like players [discovering we added a special effect that only triggered for shiny pokemon](https://twitter.com/8BitCR/status/1729650039293722689). Overall, it was a fun moment for the game and I'm happy to have been able to drive it from start to finish.
+
 # Animation Tuning System
 
 In collaboration with our design and tech art team I architected and built internal tools to tune all our animations and transitions in the game.
