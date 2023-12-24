@@ -20,7 +20,7 @@ priority: 8
 Worked with the Where's My Keys team to create our first game in Godot.
 
 I designed and tuned the overall gameplay and programmed the entirety of the game.
-
+ 
 **Project Length:** 2 weeks
 
 **Team Size:** 4
