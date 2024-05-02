@@ -19,4 +19,5 @@ group :jekyll_plugins do
 end
 
 
-gem 'jekyll-browsersync', group: [:jekyll_plugins]
+# gem 'jekyll-browsersync', group: [:jekyll_plugins]
+gem "webrick", "~> 1.8"
