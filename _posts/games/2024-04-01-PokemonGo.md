@@ -8,9 +8,9 @@ previewImage: "/assets/images/PokemonGo/pokemongo.jpg "
 imageNeedsText: true
 category: job
 screenshots: [
+    "/assets/images/PokemonGo/dynamax.jpg",
     "/assets/images/PokemonGo/showcases-5.png",
     "/assets/images/PokemonGo/catch.png",
-    "/assets/images/PokemonGo/gofest.jpg",
     "/assets/images/PokemonGo/ticket-gifting.jpg",
 ]
 ongoingProject: true
@@ -19,7 +19,9 @@ priority: 10
 
 **What I've done so far:** 
 
-As a Gameplay Engineer on the Pokémon Go team, I've lead the technical design and engineering for one of our largest new gameplay features: Pokéstop Showcases, collaborated with designers to create tools to quickly tune the overall speed of our animations and transitions in the game, and designed and implemented an advanced haptics system to improve feedback and game feel.
+As a Gameplay Engineer on the Pokémon Go team, I've led the technical design and engineering for 2 of our largest new gameplay features: Pokéstop Showcases & Dynamax Battles, both of which I created initial prototypes for and led a small team of other engineers through the entire production process from pre-production to launch. 
+
+I've also done some smaller projects to enhance the player experience like implementing a new haptics system and tooling to help designers tune UI transitions across the entire game.
 
 **Platforms:** Android, iOS
 
@@ -32,12 +34,51 @@ As a Gameplay Engineer on the Pokémon Go team, I've lead the technical design a
     </a>
 </div>
 
+# Dynamax & Gigantamax
+
+<section class="video-container-header">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/XcVdDZBt-9Y" frameborder="0"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</section>
+[Official Blog Post Describing Feature](https://pokemongolive.com/max-pokemon-battle?hl=en)
+
+I served as the Lead Gameplay Engineer for Dynamax & Gigantamax from concepting, through pre-production, production, launch, and post-launch support phases of it's 1 year development cycle.
+
+This involved a lot of iteration and prototyping in pre-production and resulted in:
+- The first all-new PVE game mode in 5 years for Pokemon Go
+- The first new POI since the game launched
+- The first new catch gameplay experience
+
+Overall the feature was very successful with 13 million battles played on the first day of launch and a long runway of content ahead for players to enjoy.
+
+## Pre-Production
+
+As the first engineer on the project, I was involved from the very first ideation sessions for the project and took on an additional role as technical designer.
+
+I created the prototypes for all of the major pieces of the feature and drove the iteration process by organizing weekly play-tests within the team, taking notes from these sessions, discussing them with our lead game designer, and then deciding on what changes to experiment with next. I also supported external play-testing with players off-site in Los Angeles & Tokyo, helping facilitate play-tests and making adjustments to the prototypes to make things easier to run.
+
+The battle was the most challenging piece to get right and took lots of rounds of play-testing to create something that felt like a brand new experience for players while also feeling familiar to players used to our core battle gameplay. The system I ended up designing was highly configurable, with 50+ knobs for game design to adjust for moves, boss characteristics, timings, etc. The prototype also had working multiplayer and ai bots to make it easier for designers to iterate on and play-test configurations.
+
+Once we had something that we were happy with as a team (and with production looming), I wrapped up the prototype and created a document detailing all the details of how the new systems worked so that they could be reimplemented in production using our new (still under development at the time) battle system.
+
+
+## Production
+As we started production, the project had gotten too large for just me and was split up into 3 parts (Battle, Catch, Powerspots) and I became the lead gameplay engineer for the Battle portion with 2 other client engineers and 3 server engineers to help me bring the battles to life. With only about 3 months to initial launch, our timeline was going to be pretty tight so we had to work as efficiently as possible.
+
+(Still In Progress)
+
+
 # Pokéstop Showcases
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/7vs7T5wYdL4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<section class="video-container-header">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/7vs7T5wYdL4" frameborder="0"
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</section>
 
 [Official Blog Post Describing Feature](https://pokemongolive.com/post/pokestop-showcase-new-feature?hl=en)
 
 I served as the Lead Client Gameplay Engineer for the Pokéstop Showcases feature through pre-production, production, and post-launch support phases of it's 8 month development cycle.
+
+Despite it's (apparent) simplicity and with much less resources than other features at the time, Showcases ended up being our most played feature of 2023, becoming a core feature that is still regularly used in our live events and leads to a suprising amount of [theory-crafting](https://new.reddit.com/r/TheSilphRoad/comments/1cbq9gn/how_the_allground_showcases_work/)
 
 ## Pre-Production
 

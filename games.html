@@ -17,42 +17,30 @@ gameOrder:
         <section class="headshot__container">
             <img class="headshot__img" src="/assets/images/headshot.jpg" alt="">
         </section>
-        <section class="about-me__social-links">
-            <a href="https://github.com/jaideng123">
-                <i class="fab fa-github-square"></i>
-            </a>
-            <a href="/contact/">
-                <i class="fas fa-envelope-square"></i>
-            </a>
-            <a href="https://twitter.com/JaidenG123">
-                <i class="fab fa-twitter-square"></i>
-            </a>
-            <a href="https://mastodon.gamedev.place/@JaidenG123" rel="me">
-                <i class="fab fa-mastodon"></i>
-            </a>
-        </section>
     </section>
     <header class="games-header">
         <h1 class="games-header__title">
             I make games like these
         </h1>
-        <section class="video-container-header">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZHDI7aDh8XE?autoplay=1" frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <section class="video-container-header" style="margin-top: 1.5em;padding: 0;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZHDI7aDh8XE" frameborder="0"
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
     </header>
     <section class="projects">
         {% for gameName in page.gameOrder %}
         {% assign game = site.categories.games | where: "title",gameName | first %}
         <div class="project__container project__container--{{game.title | downcase}}" title="{{game.title}}">
-            <h2 class="project__title">
-                {% if game.displayTitle %}
-                {{game.displayTitle}}
-                {% else %}
-                {{game.title}}
-                {% endif %}
-                ({{game.date | date: "%Y"}})
-            </h2>
+            <a href="{{game.url}}" style="text-decoration: none;">
+                <h2 class="project__title">
+                    {% if game.displayTitle %}
+                    {{game.displayTitle}}
+                    {% else %}
+                    {{game.title}}
+                    {% endif %}
+                    ({{game.date | date: "%Y"}})
+                </h2>
+            </a>
             <div>
                 <a href="{{game.url}}">
                     <img class="project__preview-image" src="{{game.previewImage}}" alt="{{game.title}} Title Image" />
@@ -67,14 +55,16 @@ gameOrder:
         {% for game in site.categories.games %}
         {% unless page.gameOrder contains game.title %}
         <div class="project__container project__container--{{game.title | downcase}}" title="{{game.title}}">
-            <h2 class="project__title">
-                {% if game.displayTitle %}
-                {{game.displayTitle}}
-                {% else %}
-                {{game.title}}
-                {% endif %}
-                ({{game.date | date: "%Y"}})
-            </h2>
+            <a href="{{game.url}}" style="text-decoration: none;">
+                <h2 class="project__title">
+                    {% if game.displayTitle %}
+                    {{game.displayTitle}}
+                    {% else %}
+                    {{game.title}}
+                    {% endif %}
+                    ({{game.date | date: "%Y"}})
+                </h2>
+            </a>
             <div>
                 <a href="{{game.url}}">
                     <img class="project__preview-image" src="{{game.previewImage}}" alt="{{game.title}} Title Image" />
