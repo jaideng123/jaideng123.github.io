@@ -23,7 +23,7 @@ Built a game over 72 hours for a Weekly Game Jam as a solo project. I designed &
 
 **Team Size:** Solo Project
 
-**Platforms:** WebGL, Windows
+**Platforms:** WebGL, Windows (itch.io)
 
 **Engine & Tools:** Unity
 <!--more-->

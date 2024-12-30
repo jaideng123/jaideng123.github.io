@@ -25,7 +25,7 @@ I designed the overall gameplay concept and programmed the entirety of the game 
 
 **Team Size:** 5
 
-**Platforms:** WebGL, Windows
+**Platforms:** WebGL, Windows (itch.io)
 
 **Engine & Tools:** Unity
 <!--more-->

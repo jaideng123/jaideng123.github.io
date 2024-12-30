@@ -17,6 +17,8 @@ Working on a bowling game in Unreal Engine that is trying to emulate the look an
 Still currently in development.
 
 **Engine & Tools:** Unreal Engine, C++
+
+**Platforms:** PC, Mobile(itch.io)
 <!--more-->
 
 

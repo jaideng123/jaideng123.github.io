@@ -21,7 +21,7 @@ Built a stealth game with a multidisciplinary team over 48 hours for the GMTK Ga
 
 **Team Size:** 4
 
-**Platforms:** WebGL
+**Platforms:** Web (itch.io)
 
 **Engine & Tools:** Unity
 <!--more-->

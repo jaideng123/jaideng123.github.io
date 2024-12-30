@@ -25,7 +25,7 @@ I designed the overall gameplay concept and implemented the character controller
 
 **Team Size:** 6
 
-**Platforms:** WebGL, Windows
+**Platforms:** WebGL, Windows (itch.io)
 
 **Engine & Tools:** Unity
 <!--more-->

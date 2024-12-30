@@ -25,7 +25,7 @@ I designed the overall gameplay concept, implemented a flexible card system & tu
 
 **Team Size:** 6
 
-**Platforms:** WebGL, Windows, Android
+**Platforms:** WebGL, Windows, Android (itch.io)
 
 **Engine & Tools:** Unity
 <!--more-->

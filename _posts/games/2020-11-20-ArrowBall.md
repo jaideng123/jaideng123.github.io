@@ -22,7 +22,7 @@ I also handled the marketing for the game by creating assets for the steam page,
 
 **Team Size:** 1 (Solo Project)
 
-**Platforms:** Windows (Steam)
+**Platforms:** PC (Steam)
 
 **Engine & Tools:** Unity
 <!--more-->

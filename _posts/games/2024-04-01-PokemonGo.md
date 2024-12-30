@@ -1,7 +1,7 @@
 ---
 layout: game
 title: "Pokémon Go"
-role: "Gameplay Programmer"
+role: "Sr. Gameplay Programmer"
 categories: [games]
 permalink: /games/PokemonGo/
 previewImage: "/assets/images/PokemonGo/pokemongo.jpg "
@@ -19,7 +19,7 @@ priority: 10
 
 **What I've done so far:** 
 
-As a Gameplay Engineer on the Pokémon Go team, I've led the technical design and engineering for 2 of our largest new gameplay features: Pokéstop Showcases & Dynamax Battles, both of which I created initial prototypes for and led a small team of other engineers through the entire production process from pre-production to launch. 
+As a Sr. Gameplay Engineer on the Pokémon Go team, I've led the technical design and engineering for 2 of our largest new gameplay features: Pokéstop Showcases & Dynamax Battles, both of which I created initial prototypes for and led a small team of other engineers through the entire production process from pre-production to launch. 
 
 I've also done some smaller projects to enhance the player experience like implementing a new haptics system and tooling to help designers tune UI transitions across the entire game.
 
@@ -44,10 +44,11 @@ I've also done some smaller projects to enhance the player experience like imple
 
 I served as the Lead Gameplay Engineer for Dynamax & Gigantamax from concepting, through pre-production, production, launch, and post-launch support phases of it's 1 year development cycle.
 
-This involved a lot of iteration and prototyping in pre-production and resulted in:
+This involved a lot of iteration and prototyping in pre-production as well as strong discipline in production and resulted in:
 - The first all-new PVE game mode in 5 years for Pokemon Go
 - The first new POI since the game launched
 - The first new catch gameplay experience
+- The largest instance of players in a single battle in Pokemon Go (620 Players)
 
 Overall the feature was very successful with 13 million battles played on the first day of launch and a long runway of content ahead for players to enjoy.
 
@@ -59,13 +60,25 @@ I created the prototypes for all of the major pieces of the feature and drove th
 
 The battle was the most challenging piece to get right and took lots of rounds of play-testing to create something that felt like a brand new experience for players while also feeling familiar to players used to our core battle gameplay. The system I ended up designing was highly configurable, with 50+ knobs for game design to adjust for moves, boss characteristics, timings, etc. The prototype also had working multiplayer and ai bots to make it easier for designers to iterate on and play-test configurations.
 
-Once we had something that we were happy with as a team (and with production looming), I wrapped up the prototype and created a document detailing all the details of how the new systems worked so that they could be reimplemented in production using our new (still under development at the time) battle system.
+Once we had something that we were happy with as a team (and with production looming), I wrapped up the prototype and created a design document detailing all the details of how the new systems worked so that they could be reimplemented in production using our new (still under early development at the time) battle framework.
 
 
 ## Production
-As we started production, the project had gotten too large for just me and was split up into 3 parts (Battle, Catch, Powerspots) and I became the lead gameplay engineer for the Battle portion with 2 other client engineers and 3 server engineers to help me bring the battles to life. With only about 3 months to initial launch, our timeline was going to be pretty tight so we had to work as efficiently as possible.
+As we started production, the project had gotten too large for just me and was split up into 3 parts (Battle, Catch, Powerspots). I became the lead gameplay engineer for the Battle portion with 2 other client engineers and 3 server engineers to help me bring the battles to life. With only about 3 months to initial launch, our timeline was going to be pretty tight so we had to work as efficiently as possible. To make things even more challenging, we had to work on top of a new battle framework that was often unstable.
 
-(Still In Progress)
+I started by writing a quick technical design doc which mapped out the core functionality we needed organized by priority along with some high-level technical direction and broke it up for the other engineers to take on. I took on the implementation the Max Transformation and UI management pieces, partnering with our more senior server engineer to design the dance of events, state, and input we would need for it to work. At the same time, our technical artists needed to get started on the transformation cutscene and vfx as it would need early approval, so I focused my early efforts on getting the Battle Cinematics system stood up with some debug tooling so they could start blocking it out. This upfront work delayed the battle working end-to-end just a bit, but it was critical to making sure the entire team could work efficiently and stay unblocked.
+
+The most technically challenging piece of the battle cinematics system was making sure that players could stay in sync across challenging network conditions while still maintaining the vision of our tech artists. To do this, I had to build a system where we would get cinematic start and end times from the server, and then would make sure that sequences ended precisely at those end times even if it meant truncating them just a bit. This required some coordination with tech art, as they had to make sure there was enough dead-time at the end of sequnces for median latency (~100ms), but luckily they had no problem working with this in mind. The other major challenge this presented is that we had to make sure we could properly snap everything in the stage to it's end-state without breaking or soft-locking ( andeach cinematic left things in a different state). This required a lot of meticulous work to make sure everything recorded it's end state properly, but the end result was a system that was extremely solid, so much so that we could skip cinematics entirely without breaking gameplay flow, even with a null-ref.
+
+Outside of battle, I picked up work to improve the way we were displaying Dynamax & Gigantamax Pokemon by unifying the myriad ways we were applying the vfx and scaling into simple, re-usable interfaces. I also took it upon myseld to improve the tools our VFX artists were using to preview the max move vfx by aligning it more closely with the in-battle camera and adding some functionality that made their lives a lot easier. While doing all of this, I was regularly meeting with stakeholders and the other engineers to make sure no one was blocked and that we were focused on the most critical pieces we needed to ship.
+
+## Launch & Gigantamax
+Even with the tall order we were given to us, by working strategically myself and the team were able to meet the deadline for our launch, even picking up some non-critical gameplay features battle team wanted to get in. Despite the tough deadlines, and with a lot of help from our incredible QA team, we were able to launch worldwide with no p0 bugs and no outages with 13 million battles played on the first day of launch. We also got a lot of positive feedback from players on the new systems we added, with many remarking how fresh the game felt to them for the first time in years.
+
+After the launch of Dynamax, I stayed on as gameplay lead through the launch of the Gigantamax phase of our project. Thanks to all the hard work myself and the team had put in for Dynamax, it were able to extend our gameplay framework to acommodate the tougher bosses and larger player counts necessary for the scale of Gigantamax Pokemon, with most of the work involving supporting the server engineers as they improved scalability. With a similarly tight deadline to follow up on Dynamax and even greater risk with more players, we were able to once again launch worldwide successfully with support for 40 player instances across 15 million battles in our first 24 hours. We were even able to run a test at one of our live events in Japan with 630 players fighting a single Gigantamax boss!!!!
+
+Overall, this was one of the most ambitious projects I've done in my entire career and I couldn't be more proud of the work I and the rest of the team put in to make something special for our players to experience.
+<!-- TODO ADD PICTURES -->
 
 
 # Pokéstop Showcases
@@ -150,7 +163,7 @@ In the end, we were able to deliver the functionality on-time and with no major 
 
 ![Screenshot from the web page showing the sale](/assets/images/PokemonGo/gift-sale.png)
 
-## Block Paid Gifts
+## Anti-Harassment Tools
 
 In response to our ticket gifting feature, we had [a lot of community requests](https://www.reddit.com/r/TheSilphRoad/comments/wq6v8s/we_need_a_do_not_gift_tickets_option/) for the ability to block unwanted gifts from others (especially among our community leaders).
 
