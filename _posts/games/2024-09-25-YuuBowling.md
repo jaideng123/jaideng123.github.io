@@ -1,7 +1,7 @@
 ---
 layout: game
 title: "yuu-bowling"
-displayTitle: "Yuu Bowling"
+displayTitle: "Yuu Recreations: Bowling"
 role: "Sole Developer"
 categories: [games]
 permalink: /games/YuuBowling/
@@ -12,19 +12,17 @@ screenshots: []
 priority: 8 
 ---
 **What I did:** 
-Working on a bowling game in Unreal Engine that is trying to emulate the look and feel of Wii Sports Bowling with some extra flair.
-
-Still currently in development.
+Created a Wii-Sports-inspired bowling game using Unreal Engine with both mobile and PC versions as well as motion control support.
 
 **Engine & Tools:** Unreal Engine, C++
 
-**Platforms:** PC, Mobile(itch.io)
+**Platforms:** PC, Mobile (itch.io)
 <!--more-->
 
 
 # Description
 
-Yuu Bowling is a bowling game that is trying to recapture the magic of bowling for PC and Android that is currently under development.
+Yuu Rections Bowling is a game about recapturing the thrill of bowling using phycics-based controls.
 
 ![Gif of Gameplay](/assets/images/YuuBowling/yuu-bowling.gif)
 

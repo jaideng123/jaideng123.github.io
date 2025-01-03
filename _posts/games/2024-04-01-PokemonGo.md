@@ -44,7 +44,7 @@ I've also done some smaller projects to enhance the player experience like imple
 
 I served as the Lead Gameplay Engineer for Dynamax & Gigantamax from concepting, through pre-production, production, launch, and post-launch support phases of it's 1 year development cycle.
 
-This involved a lot of iteration and prototyping in pre-production as well as strong discipline in production and resulted in:
+This involved a lot of iteration and prototyping in pre-production as well as strong discipline during production and resulted in:
 - The first all-new PVE game mode in 5 years for Pokemon Go
 - The first new POI since the game launched
 - The first new catch gameplay experience
@@ -62,6 +62,10 @@ The battle was the most challenging piece to get right and took lots of rounds o
 
 Once we had something that we were happy with as a team (and with production looming), I wrapped up the prototype and created a design document detailing all the details of how the new systems worked so that they could be reimplemented in production using our new (still under early development at the time) battle framework.
 
+*Me talking with one of the playtest participants in Tokyo:*
+
+![Me talking with one of our playtest participants in Tokyo](/assets/images/PokemonGo/playtest.jpg)
+
 
 ## Production
 As we started production, the project had gotten too large for just me and was split up into 3 parts (Battle, Catch, Powerspots). I became the lead gameplay engineer for the Battle portion with 2 other client engineers and 3 server engineers to help me bring the battles to life. With only about 3 months to initial launch, our timeline was going to be pretty tight so we had to work as efficiently as possible. To make things even more challenging, we had to work on top of a new battle framework that was often unstable.
@@ -78,7 +82,9 @@ Even with the tall order we were given to us, by working strategically myself an
 After the launch of Dynamax, I stayed on as gameplay lead through the launch of the Gigantamax phase of our project. Thanks to all the hard work myself and the team had put in for Dynamax, it were able to extend our gameplay framework to acommodate the tougher bosses and larger player counts necessary for the scale of Gigantamax Pokemon, with most of the work involving supporting the server engineers as they improved scalability. With a similarly tight deadline to follow up on Dynamax and even greater risk with more players, we were able to once again launch worldwide successfully with support for 40 player instances across 15 million battles in our first 24 hours. We were even able to run a test at one of our live events in Japan with 630 players fighting a single Gigantamax boss!!!!
 
 Overall, this was one of the most ambitious projects I've done in my entire career and I couldn't be more proud of the work I and the rest of the team put in to make something special for our players to experience.
-<!-- TODO ADD PICTURES -->
+
+*A gathering of players in Taiwan during the launch of Gigantamax:*
+![A gathering of players during the launch of Gigantamax](/assets/images/PokemonGo/player-gathering.png)
 
 
 # Pokéstop Showcases

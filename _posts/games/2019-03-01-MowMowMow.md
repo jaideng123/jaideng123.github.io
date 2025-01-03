@@ -21,7 +21,7 @@ Designed & implemented gameplay for a local 4 player multiplayer prototype. Crea
 
 **Team Size:** 1 (Solo Project)
 
-**Platforms:** Windows
+**Platforms:** PC (itch.io)
 
 **Engine & Tools:** Unity, Asset Forge
 <!--more-->
