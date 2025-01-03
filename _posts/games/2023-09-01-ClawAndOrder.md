@@ -25,9 +25,10 @@ I designed and tuned the overall gameplay and programmed the entirety of the gam
 
 **Team Size:** 4
 
+**Engine & Tools:** Godot
+
 **Platforms:** WebGL, Windows (itch.io)
 
-**Engine & Tools:** Godot
 <!--more-->
 
 
