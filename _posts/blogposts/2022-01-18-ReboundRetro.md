@@ -2,10 +2,9 @@
 layout: blog
 title: "Rebound Post-Mortem"
 subtitle: "Seattle Indies Slow Jam 2021 Recap"
+image: /assets/images/Rebound/Rebound-title-smaller.gif
 category: blog
 ---
-<!-- TODO: More Images -->
-![Header Image Showing The Rebound Title](/assets/images/Rebound/Rebound-title-smaller.gif)
 
 I worked on this project during the 2021 Seattle Indies Slow Jam with most of the same team from Where's My Keys and Deep Dig Pizza. Since the programmer I partnered with on the previous projects was unavailable, I acted as the sole engineer and gameplay designer.
 

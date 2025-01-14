@@ -2,10 +2,9 @@
 layout: blog
 title: "Deep Dig Pizza Post-Mortem"
 subtitle: "Ludum Dare 48 Recap"
+image: /assets/images/DeepDigPizza/DeepDigPizza-comp.gif
 category: blog
 ---
-<!-- TODO: More Images -->
-![Gif of the gameplay of deep dig pizza](/assets/images/DeepDigPizza/DeepDigPizza-comp.gif)
 
 After finishing Where's My Keys, the team I was on had such a blast working together that we decided to reunite for Ludum Dare 48!
 

@@ -12,6 +12,7 @@ layout: default
         </p>
     </header>
     <section class="blog-page__content">
+        <img class="blog-header__image" src="{{ page.image | prepend: site.baseurl }}" alt="{{ post.title }}" title="{{ post.title }}">
         {{content}}
     </section>
     {% if page.tags.size > 0 %}

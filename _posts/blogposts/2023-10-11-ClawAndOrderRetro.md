@@ -2,10 +2,9 @@
 layout: blog
 title: "Claw & Order Post Mortem"
 subtitle: "Seattle Indies Slow Jam 2023 Recap"
+image: /assets/images/ClawAndOrder/Cover.gif
 category: blog
 ---
-<!-- TODO: More Images -->
-![Gif of Gameplay](/assets/images/ClawAndOrder/Cover.gif){: .header-img}
 
 With the yearly slow jam upon us, the folks of Team Bouldy reunited once again, though this time we wanted to challenge ourselves by learning a brand new engine by using Godot.
 

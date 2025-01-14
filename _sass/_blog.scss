@@ -52,6 +52,11 @@
             width: 2rem;
         }
     }
+
+    &__image{
+        width: 100%;
+        object-fit: cover;
+    }
 }
 
 .blog-page__content {

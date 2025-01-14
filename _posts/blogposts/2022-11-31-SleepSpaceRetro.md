@@ -2,10 +2,9 @@
 layout: blog
 title: "SleepSpace Post-Mortem"
 subtitle: "PIG Squad Summer Slow Jam 2022 Recap"
+image: "/assets/images/SleepSpace/SleepSpace-title.gif"
 category: blog
 ---
-<!-- TODO: More Images -->
-![Image of SleepSpace title logo with a bed floating underneath](/assets/images/SleepSpace/SleepSpace-title.gif){: .header-img}
 
 In August of 2022 we as Team Bouldy decided to get the band back together for a new project, so we registered for a slow jam with PigSquad.
 The jam itself provides both a technical and a creative theme, the technical for this jam being a Boss Fight, and the creative being Nightmares & Dreams. After some initial ideation we settled on the core theme of a plucky hero fighting an evil nightmare in a dream world to get to sleep and for the gameplay we decided we wanted to do something card-based on a hexagonal grid, with lots of inspiration from games we loved like Slay the Spire (Deck-Building) and Megaman Battle Network (Territory Control). We knew this would be a lot but we wanted to push ourselves after having done a lot of projects together to see what we could do (which we definitely did).

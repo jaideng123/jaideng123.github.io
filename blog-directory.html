@@ -25,16 +25,8 @@ title: "Blog"
                     Posted on {{ post.date | date: date_format }}
                 </p>
 
-
-                {% if post.thumbnail-img %}
-                <div class="post-image post-image-small">
-                    <a href="{{ post.url | absolute_url }}">
-                        <img src="{{ post.thumbnail-img | absolute_url }}" alt="Post thumbnail">
-                    </a>
-                </div>
-                {% endif %}
-
                 <div class="post-entry">
+                    <img class="blog-header__image" src="{{ post.image | prepend: site.baseurl }}" alt="{{ post.title }}" title="{{ post.title }}">
                     {% assign excerpt_length = site.excerpt_length | default: 50 %}
                     {{ post.excerpt | truncatewords: excerpt_length }}
                     {% assign excerpt_word_count = post.excerpt | number_of_words %}

@@ -1,10 +1,10 @@
 ---
 layout: blog
 title: "Learning Unreal as a Unity Developer"
+description: "A small guide and collection of resources I found helpful when transitioning from Unity to Unreal"
+image: /assets/images/unity-unreal.jpg
 category: blog
 ---
-![Unity & Unreal Logos](/assets/images/unity-unreal.jpg)
-
 Over the last year, I've been learning Unreal in my free time and having an absolute blast. Since then, multiple friends have asked me for resources I've found helpful during the process, so I'm collecting them here along with some tips I wish I would have had starting out.
 
 Just a quick note that this information will mostly be from a technical perspective as that's my background, if you are just learning how to program and/or not familiar with Unity, these might not be the right resources for you.

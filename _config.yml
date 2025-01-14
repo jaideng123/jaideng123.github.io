@@ -4,10 +4,31 @@ sass:
 
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 excerpt_separator: "<!--more-->"
+
+title: "Jaiden's Portfolio & Blog" 
+author: "Jaiden Gerig"
+
+twitter:
+  username: jaideng123
+  card: summary
+
+logo: assets/images/headshot.jpg
+
+social:
+  name: Jaiden Gerig
+  links:
+    - https://bsky.app/profile/jaideng123.bsky.social
+    - https://github.com/jaideng123
+    - https://www.linkedin.com/in/jaiden-gerig-01708180/
+    - https://twitter.com/JaidenG123
+    - https://mastodon.gamedev.place/@JaidenG123
+
+
 
 feed:
   categories:

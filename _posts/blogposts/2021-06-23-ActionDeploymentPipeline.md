@@ -1,10 +1,9 @@
 ---
 layout: blog
 title: "Creating a free build pipeline for Unity games using GitHub Actions"
+image: /assets/images/itch.webp
 category: blog
 ---
-![Itch.io logo](/assets/images/itch.webp)
-
 Over the past year of quarantine, I’ve been participating in game jams, and I’m usually the person responsible for creating and uploading builds to itch.io for the team to test. Aside from being a tedious task, this process blocks less technical members of my team from seeing their work run in-browser until I have time to upload a new build. So, in between jams, I whipped up a quick way to automate this process using GitHub Actions and Unity build actions from [game.ci/](https://game.ci/) so that changes can flow smoothly from commit to build to itch.io without any need for me to intervene.
 
 Before you begin this tutorial, you should have Unity Project that is in a GitHub repository that you have admin rights to, as well as a Unity account and an itch.io account(if you don’t have any of those, set them up and come back to this guide afterwards)
