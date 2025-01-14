@@ -167,6 +167,8 @@ Unreal and Unity use opposite FOV Scaling (Unity keeps it consistent as you stre
   * Update: Good News! The original creator of Cinemachine has made [a new Camera plugin for Unreal](https://blackeyetechnologies.com/) with all the goodness you loved in Cinemachine!
 * DOTween - In Blueprints, look into [Timelines](https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/Blueprints/UserGuide/Timelines/), in C++ there's not really anything equivalent to this. I'm currently working on my own alternative plugin called [DUETween](/games/DUETween/)
 * Zenject (or other DI system) - [Type Containers](https://docs.unrealengine.com/4.27/en-US/API/Runtime/Core/Misc/TTypeContainer/) are basically a DI container system, but be forewarned, they are not well-supported and within Epic are only used in the Unreal launcher.
+* Probuilder - Unreal has similar tools that are better than what Probuilder offers already baked into the engine. Check out [Cube Grid](https://dev.epicgames.com/documentation/en-us/unreal-engine/cubegrid-tool-in-unreal-engine) and [Modeling Mode](https://dev.epicgames.com/documentation/en-us/unreal-engine/modeling-tools-in-unreal-engine). They are so good that I was able to model most of the stuff in Yuu Bowling without even needing to open Blender!
+  * I also recommend [this video of handy Modeling Mode tips](https://www.youtube.com/watch?v=xIMudHNX9JM).
 
 ## My compile times are slow, what do I do?
 Usually the advice for improving compile times goes:
