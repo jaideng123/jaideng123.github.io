@@ -5,7 +5,7 @@ displayTitle: "SleepSpace"
 role: "Programmer, Gameplay Designer"
 categories: [games]
 permalink: /games/SleepSpace/
-previewImage: /assets/images/SleepSpace/SleepSpace-title.gif
+image: /assets/images/SleepSpace/SleepSpace-title.gif
 category: game-jam
 screenshots: [
     "/assets/images/SleepSpace/SleepSpace-2.png",

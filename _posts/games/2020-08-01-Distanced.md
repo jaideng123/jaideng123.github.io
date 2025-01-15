@@ -4,7 +4,7 @@ title: "Distanced"
 role: "Solo Developer"
 categories: [games]
 permalink: /games/Distanced/
-previewImage: /assets/images/Distanced/itch-header-image.png
+image: /assets/images/Distanced/itch-header-image.png
 imageNeedsText: true
 category: game-jam
 screenshots: [

@@ -5,7 +5,7 @@ displayTitle: "Claw & Order"
 role: "Programmer, Gameplay Designer"
 categories: [games]
 permalink: /games/ClawAndOrder/
-previewImage: /assets/images/ClawAndOrder/Cover.gif
+image: /assets/images/ClawAndOrder/Cover.gif
 category: game-jam
 screenshots: [
     "/assets/images/ClawAndOrder/ClawAndOrder-1.png",
@@ -53,6 +53,8 @@ Stacked together over 2 weeks for the [2023 Seattle Indies Slow Jam](https://itc
 **Made with:** Godot
 
 **Role:** Sole Programmer & Gameplay Designer
+
+**Team Size:** 4
 
 **Project Length:** 2 weeks
 

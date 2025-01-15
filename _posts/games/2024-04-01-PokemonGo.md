@@ -4,7 +4,7 @@ title: "Pokémon Go"
 role: "Sr. Gameplay Programmer"
 categories: [games]
 permalink: /games/PokemonGo/
-previewImage: "/assets/images/PokemonGo/pokemongo.jpg "
+image: "/assets/images/PokemonGo/pokemongo.jpg "
 imageNeedsText: true
 category: job
 screenshots: [

@@ -5,7 +5,7 @@ displayTitle: "Rogue Hike"
 role: "Programmer, Gameplay Designer"
 categories: [games]
 permalink: /games/RogueHike/
-previewImage: /assets/images/RogueHike/title.gif
+image: /assets/images/RogueHike/title.gif
 category: game-jam
 screenshots: [
     "/assets/images/RogueHike/title.png",
@@ -59,5 +59,3 @@ Procedurally Generated over a week for the [7 Day Roguelike Challenge 2023](http
 **Project Length:** 2 weeks
 
 **TLDR Twitter Progress Thread:** [https://twitter.com/JaidenG123/status/1632600842753949696](https://twitter.com/JaidenG123/status/1632600842753949696)
-
-# Jam follow-up post coming soon

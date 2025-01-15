@@ -5,7 +5,7 @@ displayTitle: "Deep Dig Pizza"
 role: "Programmer"
 categories: [games]
 permalink: /games/DeepDigPizza/
-previewImage: /assets/images/DeepDigPizza/DeepDigPizza-title-smaller.gif
+image: /assets/images/DeepDigPizza/DeepDigPizza-title-smaller.gif
 category: game-jam
 screenshots: [
     "/assets/images/DeepDigPizza/DeepDigPizza-1.png",

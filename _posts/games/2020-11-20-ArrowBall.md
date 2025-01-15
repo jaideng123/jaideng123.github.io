@@ -4,7 +4,7 @@ title: "ArrowBall"
 role: "Solo Developer"
 categories: [games]
 permalink: /games/ArrowBall/
-previewImage: "/assets/images/ArrowBall/ArrowBall-Preview.png"
+image: "/assets/images/ArrowBall/ArrowBall-Preview.png"
 videoID: YQWc6Xp-m8g
 category: full-release
 screenshots: [

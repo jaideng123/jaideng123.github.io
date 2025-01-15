@@ -5,7 +5,7 @@ displayTitle: "Where's My Keys?!"
 role: "Programmer"
 categories: [games]
 permalink: /games/WheresMyKeys/
-previewImage: /assets/images/WheresMyKeys/wmk-screenshot-1.png
+image: /assets/images/WheresMyKeys/wmk-screenshot-1.png
 imageNeedsText: true
 category: game-jam
 screenshots: [

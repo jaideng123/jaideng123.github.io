@@ -5,7 +5,7 @@ displayTitle: "Yuu Recreations: Bowling"
 role: "Sole Developer"
 categories: [games]
 permalink: /games/YuuBowling/
-previewImage: /assets/images/YuuBowling/yuu-bowling.gif
+image: /assets/images/YuuBowling/yuu-bowling.gif
 imageNeedsText: true
 category: game-jam
 screenshots: [/assets/images/YuuBowling/yuu-bowling.gif]

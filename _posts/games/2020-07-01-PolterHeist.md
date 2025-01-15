@@ -4,7 +4,7 @@ title: "PolterHeist"
 role: "Programmer"
 categories: [games]
 permalink: /games/PolterHeist/
-previewImage: "/assets/images/PolterHeist/cover.gif"
+image: "/assets/images/PolterHeist/cover.gif"
 imageNeedsText: false
 category: game-jam
 screenshots: [
