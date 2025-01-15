@@ -10,7 +10,7 @@ With the yearly slow jam upon us, the folks of Team Bouldy reunited once again, 
 
 The theme of the jam was **THE MORE THE MERRIER!!!** so after some brainstorming, we got pretty hungry and thought about more food being merrier and ultimately landed upon the idea of building *The Ultimate Burger*. The concept was: in an old arcade you would come upon this outrageous, inappropriately themed arcade/food machine where you would try to build the highest burger tower possible. This was a pretty simple premise, but since we were learning new technology (and had a slightly smaller crew than usual) it was perfectly scoped for the jam.
 
-**Gameplay Design:**
+# Gameplay Design & Iteration Process
 
 I started by whipping up a very simple stacking prototype with a single rectangular ingredient. After playing around with it for a bit I learned a few things:
 1. Stacking is kind of just inherently amusing on it's own
@@ -43,14 +43,21 @@ Finally I landed on a system that used the Axis-Aligned-Bounding-Box (AABB) of t
 </video> 
 
 
-**Engineering:**
+# Building a game in Godot
 
 This was my second time using Godot on a project (though the first attempt kinda fell apart) and I was itching to try it out after seeing yet another Unity debacle in the news. My overall impression is that if you are comfortable working in Unity, you will find a lot in Godot that will feel immediately familiar to you (in a good way). However, there are still a lot of growing pains with the engine especially if you want to do a web build. 
 
-Overall, Godot's object modeling system is simple to grasp and build things with. Essentially, it combines the concepts of scenes and monobehaviors from Unity into a single type that is much more flexible than either. You can nest nodes indefinitely depending on the structure that works for your game, and it's easy to test things in isolation before bringing them into a larger scene.
+Overall, Godot's Node system is simple to grasp and build things with. Essentially, it combines the concepts of scenes and monobehaviors from Unity into a single type that is much more flexible than either. You can nest nodes indefinitely depending on the structure that works for your game, and it's easy to test things in isolation before bringing them into a larger scene.
 
 I also fell in love using [Groups](https://docs.godotengine.org/en/stable/tutorials/scripting/groups.html) and [Signals](https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html) for pulling things together. Groups keep a handy list of objects during runtime that you can use for batched updates, observers, services, singletons, or anything else where you need to quickly get references to objects. It felt very natural and I used it for a lot of the glue across different systems in Claw & Order. Signals are also really handy, essentially allowing you to create generic callbacks and interfaces similar to Delegates in Unreal. I used them mainly to wire event callbacks from the game manager to individual elements like the UI or player controller.
 
-One of the main issues I had with Godot was that because I wanted to do web, I couldn't use C# or C++ (both of which I'm fairly comfortable with), I had to rely solely on GDScript. GDScript is easy to write but suffers from a lot of the same problems as javascript in that typos can easily become runtime bugs 🙃. It is also lacking IDE support outside of the in-engine editor, which is serviceable but lacked a some of the features I enjoy in Rider (Also WHY ARE THEY MAKING AN IDE IN THE ENGINE?????). These issues overall wasn't a deal-breaker for the scope of this game, but I would think twice about this for a larger project and would lean more heavily on using either the C# or C++ scripting back-ends.
+One of the main issues I had with Godot was that because I wanted to do web, I couldn't use C# or C++ (both of which I'm fairly comfortable with), I had to rely solely on GDScript. GDScript is easy to write but suffers from a lot of the same problems as javascript in that typos can easily become runtime bugs 🙃. It is also lacking IDE support outside of the in-engine editor, which is serviceable but lacked a some of the features I enjoy in Rider. These issues overall wasn't a deal-breaker for the scope of this game for the jam, but I would think twice about this for a larger project and would lean more heavily on using either the C# or C++ scripting back-ends. 
 
-I'm kind of getting into the weeds here so maybe I'll save the rest of my opinions and advice regarding Godot for a future blog post, but I think overall I came away with a moderately positive view of Godot as a tool for building games. While it's currently lacking some of the maturity I would want, I think it's close enough and I plan to use it again for future game jams and side-projects.
+I also found the features of the web renderer lacking, we couldn't use shadows or any post-process effects which limited the look of our game, much to the chagrin of our environment artist. It also meant we have to get a little old-school, for example the shadow beneath the UFO is not a decal or a real shadow (because neither were possible), but a sprite that is locked to the ground via a raycast from the UFO.
+
+I'm kind of getting into the weeds here so maybe I'll save the rest of my opinions and advice regarding Godot for a future blog post, but I think overall I came away with a moderately positive view of it as a tool for building games. While it's currently lacking some of the maturity I would want for a larger project, I think it's close enough and I plan to use it again for future game jams and side-projects.
+
+# Overall Takeaways
+* Limiting scope when learning a new technology was absolutely the right decision. We were able to build a fairly polished project without a lot of stress within the time we had. Having a smaller crew also turned out to be a boon because it meant we didn't have to accommodate a ton of assets and effects.
+* Godot is a pretty good tool for a game jam level project, it has a lot of convenient features, but also a lot of limitations, especially around web builds.
+* Relying on physics for gameplay is (as always) a double edged sword. We had to do a lot of tweaking and run at a very high physics tickrate for the stacking to feel right.

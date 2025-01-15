@@ -10,7 +10,7 @@ I worked on this project during the 2021 Seattle Indies Slow Jam with most of th
 
 After the rough year that was 2021, we as a team decided we wanted to make something that was a little more relaxed and cozy than our previous projects. After discussing a few different ideas, we settled on the idea of book repair since it felt like it could be a soothing, meditative activity and that the environment of an old book store would provide a nice cozy setting.
 
-**Gameplay Design:**
+# Gameplay Design:
 
 I started by studying youtube videos of book repairing to identify some of the core activities that I could implement in the short time period of the jam. It took me a bit to figure out what the end-to-end gameplay would look like, but I knew I wanted something that required little stress and happened at the player's pace so I began with the simple act of wiping dirt off the cover of a book and walked the player through it step-by-step, making sure that the core interaction felt good to play with.
 
@@ -20,7 +20,7 @@ To add some variety, I broke up the 3 main activities into separate parts and sh
 
 Since we had time, I was able to do a pretty comprehensive tutorial that walked the player through all the core interactions with the books as well as how to repair them. I also decided to add some little things to enhance the physicality of the world (like the analogue radio) and show off the amazing work of our artists (like the coffee break that shows a series of camera angles around the store).
 
-**Engineering:**
+# Engineering
 
 To figure out how to implement the cleaning mechanic, I started by using the work of [Tough Nut To Crack's painting video](https://www.youtube.com/watch?v=YUWfHX_ZNCw) as a starting point. The approach that came from this was two-fold. First, I used 2 textures for the whole of the object, a dirty texture, and a clean texture and lerped between the 2 based on a render texture. Second, I made a shader that determines the UV position of the mouse on an object, then blits to the render texture based on that position. There are some drawbacks to this approach, mainly that you can't re-use any UVs when UV mapping the mesh, but after discussing with the artists on the team, they said that they would be fine working around it.
 
@@ -34,8 +34,7 @@ I was able to re-use the "cleaning" system for most of the actions in the game s
 
 In addition to the cleaning system I was able to build the rest of the gameplay using my usual toolbelt of DoTween for quick procedural animations, scriptable objects for managing game state + events, Cinemachine for camera. I also created a nice system for cross-fading between post-processing profiles that I'll definitely be carrying forward to future projects.
 
-**Lesson's Learned**
-
+# Overall Takeaways
 * Paper prototyping is a very useful tool, even for seemingly simple interactions
 * Gameplay doesn't have to be complex or stressful to be engaging (sometimes, people just want to chill)
 * Be on the lookout for places to hide/mask performance issues in your games

@@ -9,7 +9,7 @@ category: blog
 In August of 2022 we as Team Bouldy decided to get the band back together for a new project, so we registered for a slow jam with PigSquad.
 The jam itself provides both a technical and a creative theme, the technical for this jam being a Boss Fight, and the creative being Nightmares & Dreams. After some initial ideation we settled on the core theme of a plucky hero fighting an evil nightmare in a dream world to get to sleep and for the gameplay we decided we wanted to do something card-based on a hexagonal grid, with lots of inspiration from games we loved like Slay the Spire (Deck-Building) and Megaman Battle Network (Territory Control). We knew this would be a lot but we wanted to push ourselves after having done a lot of projects together to see what we could do (which we definitely did).
 
-**Gameplay Design:**
+# Gameplay Design
 
 With the themes and inspiration laid out, I began working on a rough concept for the gameplay. Because time was short, I decided that I didn't want to implement traditional RPG mechanics like damage, stats, etc. and instead focus mainly on territory control as the primary mechanic for the game. 
 
@@ -33,7 +33,7 @@ Enemies came together at the last minute but ended up being one of the things pe
 
 The Sleep Aids were the last big piece of the puzzle to come together for the gameplay. When creating the sleep aids, I looked at the primary knobs I could turn to make the player more effective, those being energy, number of cards drawn per turn, movement, and number of card choices from card pickups. Since I wanted play-testers to explore the whole space of the game and see what strategies emerged, I chose to make all 4 available between phases. I meant to change this and do something a bit more interesting, but I ran out of time while finishing up other parts of the game. If I went back to this system, I would want to make it a bit more random so that players are encouraged to explore other strategies and add some sleep aids that are more interesting than a simple power increase.
 
-**Engineering:**
+# Engineering
 
 On the engineering side of things, I implemented the card, turn order, and player systems (in addition to the core of the mechanics described above). We wanted to be ambitious with the scope of this project, which led to some less than optimal solutions, but still, I'm really proud of how much we were able to get done in the short amount of time that we had for the jam.
 
@@ -46,3 +46,9 @@ Due to lack of upfront planning with the other engineer, the overall structure f
 For this project I decided to try out [Unity Atoms](https://unity-atoms.github.io/unity-atoms/) instead of using my homegrown scriptable object library since it seemed a lot more fully featured. It was nice at first but had some issues that would make me think twice about using it for future projects. By default, atoms will replay old events when loading a new scene, this makes reloading a scene an absolute nightmare since old events will replay from the previous instance of your scene and destroy any notion of a clean state. What's worse is that the library provides no way to disable this or clear the replay buffer manually, so I had to use reflection to reach in and clear it myself so that we could get the game to restart properly. The other, lesser issue is that the library will bloat your project with a LOT of files if you want to make atoms specific to your project and use their code generation, which really clogs up your commits.
 
 During this project I also found a great tool-tip library called [ProTips](https://assetstore.unity.com/packages/tools/gui/protips-tooltip-system-44361), it was really easy to integrate and I can't recommend it enough!
+
+# Overall Takeaways
+* Scope-creep is not just something that happens within a single project. Groups of people working together will naturally get more ambitious as they work together longer. This is both good and bad because it leads to larger projects that may not fit within the same time scale (as we felt here).
+* When setting up a turn-based structure in a game you should model out a state diagram ahead of time that is clean and changeable rather than just creating a web of events that will become spaghetti as the project goes on. This is especially important if you're working with another programmer.
+* The smaller enemies actually ended up stealing the show from the boss because the have cool synergies, are mechanically distinct, and are really fun to defeat.
+* Unity Atoms may work for a lot of people, but I found it too bloated to work with in this project and probably wouldn't use it again.
