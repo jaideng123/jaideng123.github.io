@@ -144,22 +144,23 @@ If you still decide you really need to, you should do it at runtime with [Attach
 here's an example from my bowling game of how I attach a ball to a hand socket:
 
 {% highlight cpp %}
-    const FAttachmentTransformRules ballAttachmentRules(
-        EAttachmentRule::KeepRelative, //  Match Parent Location
-        EAttachmentRule::KeepRelative, // Match Parent Rotation,
-        EAttachmentRule::KeepWorld,  // Maintain Current Scale
-        false); // Don't Weld Bodies (not usually relevant)
-    bool attachSuccessful = CurrentBall->AttachToComponent(BallAnchorComp, ballAttachmentRules)
-    // Check is important here because this can fail for a variety of reasons
-    check(attachSuccessful);
+const FAttachmentTransformRules BallAttachmentRules(
+    EAttachmentRule::KeepRelative, //  Match Parent Location
+    EAttachmentRule::KeepRelative, // Match Parent Rotation,
+    EAttachmentRule::KeepWorld,  // Maintain Current Scale
+    false); // Don't Weld Bodies (not usually relevant)
+bool attachSuccessful = CurrentBall->AttachToComponent(BallAnchorComp,
+                                                      BallAttachmentRules);
+// Check is important here because this can fail for a variety of reasons
+check(attachSuccessful);
 {% endhighlight %}
 
 
 ## FOV Scaling:
 Unreal and Unity use opposite FOV Scaling (Unity keeps it consistent as you stretch horizontally), you can change this to be more consistent with Unity by going to `Config/DefaultEngine.ini` and adding the following snippet to the end of it:
 {% highlight ini %}
-    [/script/engine.localplayer]
-    AspectRatioAxisConstraint=AspectRatio_MaintainYFOV
+[/script/engine.localplayer]
+AspectRatioAxisConstraint=AspectRatio_MaintainYFOV
 {% endhighlight %}
 
 ## Alternatives to common Unity Assets/Libraries:
