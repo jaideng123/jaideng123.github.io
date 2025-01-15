@@ -60,4 +60,4 @@ Stacked together over 2 weeks for the [2023 Seattle Indies Slow Jam](https://itc
 
 **TLDR Twitter Progress Thread:** [https://twitter.com/JaidenG123/status/1726311743763464466](https://twitter.com/JaidenG123/status/1726311743763464466)
 
-# Jam follow-up post coming soon
+# [Read The Full Post-Mortem Here](http://localhost:4000/blog/2023/10/11/ClawAndOrderRetro/)
