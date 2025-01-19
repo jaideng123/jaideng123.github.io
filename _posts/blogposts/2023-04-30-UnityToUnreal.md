@@ -139,22 +139,26 @@ Multiplayer is one of Unreal's best features, so if you're interested, try learn
 ## But I really need to nest actors under other actors like in Unity:
 First think about if you really need to, is this functionality better as a reusable component?
 
-If you still decide you really need to, you should do it at runtime with [AttachActorToComponent](https://docs.unrealengine.com/5.0/en-US/BlueprintAPI/Transformation/AttachActorToComponent/)
+If you still decide you really need to, you should do it at runtime by spawning the actor and using [AttachActorToComponent](https://docs.unrealengine.com/5.0/en-US/BlueprintAPI/Transformation/AttachActorToComponent/). This allows you 
 
-here's an example from my bowling game of how I attach a ball to a hand socket:
+Here's an example of how you would do that:
 
 {% highlight cpp %}
+// In Blueprint, you would use Spawn Actor From Class instead
+const ABall* CurrentBall = GetWorld()->SpawnActor<ABall>(ABall::StaticClass, SpawnTransform);
+
 const FAttachmentTransformRules BallAttachmentRules(
     EAttachmentRule::KeepRelative, //  Match Parent Location
     EAttachmentRule::KeepRelative, // Match Parent Rotation,
-    EAttachmentRule::KeepWorld,  // Maintain Current Scale
-    false); // Don't Weld Bodies (not usually relevant)
+    EAttachmentRule::KeepWorld,    // Maintain Current Scale
+    false);                        // Don't Weld Bodies (not usually relevant)
 bool attachSuccessful = CurrentBall->AttachToComponent(BallAnchorComp,
                                                       BallAttachmentRules);
-// Check is important here because this can fail for a variety of reasons
+// It's important to make sure this succeeded as it will sometimes silently fail
 check(attachSuccessful);
 {% endhighlight %}
 
+Alternatively, if this is for cosment
 
 ## FOV Scaling:
 Unreal and Unity use opposite FOV Scaling (Unity keeps it consistent as you stretch horizontally), you can change this to be more consistent with Unity by going to `Config/DefaultEngine.ini` and adding the following snippet to the end of it:
@@ -183,7 +187,7 @@ Usually the advice for improving compile times goes:
 
 Look at your [Asset Dependency Chain](https://www.youtube.com/watch?v=4-oRyDLfo7M), then convert things to [Soft References](https://docs.unrealengine.com/4.26/en-US/ProgrammingAndScripting/ProgrammingWithCPP/Assets/ReferencingAssets/) that aren't needed all the time.
 
-# Other Helpful guides for transitioning Unity Developers:
+# Other helpful Unreal resources:
 * [Ugh, I Guess I Want To Move From Unity To Unreal (Dot Com)](https://ughiguessiwanttomovefromunitytounreal.com/)
 * [JIP's Unreal Notes](https://jip.dev/notes/unreal-engine/) - Very comprehensive overview of most of Unreal's core features.
 * [Ben🌱ui](https://benui.ca/) - Great articles on making UI widgets, as well as [Very Useful Documentation for Unreal's version of Attributes](https://benui.ca/unreal/uproperty/)

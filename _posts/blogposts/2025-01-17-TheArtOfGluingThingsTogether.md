@@ -13,23 +13,61 @@ I want to preface all of this by first saying that the structure of a game that 
 With all that out of the way, let's start moving through various patterns from least to most complex!
 
 # Game Manager
-A Game Manager is simply a top-level object that controls the overall flow of your game and serves as a central hub that manages the state of your game as well.
+A Game Manager is simply a top-level object that controls the overall flow of your game. It may also spawn initial actors for a level, emit events for other actors, or manage a global state machine if your gameplay is structured into distinct phases. Game Managers can go by many names like Game Controller, Root State, or even just Game (As is the case in [this famously silly example from the source code for VVVVVV](https://github.com/TerryCavanagh/VVVVVV/blob/f7c0321b715ceed8e87eba2ca507ad2dc28a428d/desktop_version/src/Game.cpp#L612)). Oftentimes programmers stumble onto this pattern making their first game, something needs to be in charge of how the game works after all.
 
-Here's an example of how this might look:
+Here's an example of how my Game Manager for [Rogue Hike](/games/RogueHike/) looked:
 
-```<CODE EXAMPLE HERE>```
+{% highlight cpp %}
+class GameManager {
+ public:
+  int gameProgress = 0;
+  int biomeProgress = 0;
+  StateMachine levelStateMachine;
+  PlayerCharacter* playerCharacter;
+  void OnGameStart() {
+    gameProgress = 0;
+    biomeProgress = 0;
+    levelStateMachine.ResetStateMachine();
+    activePlayerCharacter = Instantiate<PlayerCharacter>();
+    levelStateMachine.ChangeState("NewDay");
+  }
+  void OnNewDay() {
+    biomeProgress = 0;
+    gameProgress += 1;
+    if (gameProgress == 1) {
+      LoadForestBiome()
+    } else if (gameProgress == 2) {
+      LoadRockyBiome();
+    } else if (gameProgress == 3) {
+      LoadNewBiomeScene(snowyBiomeScene);
+    }
+    levelStateMachine.ChangeState("SelectLevel");
+  }
+  void OnPlayerEntrance() { ... }
+  void OnAnimalsTurn() { ... }
+  void OnTimePasses() { ... }
+  void OnEndTurn() { ... }
+  void LoadForestBiome() { ... }
+  void LoadRockyBiome() { ... }
+  void LoadSnowBiome() { ... }
+};
+{% endhighlight %}
 
-Game Managers can go by many names like Game Controller, Root State, or even just Game (As is the case in [this famously silly example from the source code for VVVVVV](https://github.com/TerryCavanagh/VVVVVV/blob/f7c0321b715ceed8e87eba2ca507ad2dc28a428d/desktop_version/src/Game.cpp#L612)).
+If your game is small/simple enough, this structure alone can often take from prototyping to ship without much issue. I want to emphasize that last part again, **this is a perfectly fine way to make a game** and if it's working for your project, keep on rockin it!
 
-In general, unless you're very very diligent, this kind of pattern will arise organically in your project. Something needs to be in charge of how the game works after all and if your game is small/simple enough, this structure alone can often work for you from prototyping to ship. I want to emphasize that last part again, **this is a perfectly fine way to make a game** and if it's working for your project, keep on rockin it!
+It's not however without pitfalls, those usually being:
+* The file for this class becoming so large that it becomes harder and hard to reason about as your project grows in scale.
+* It will naturally create a lot of coupling which will make it hard to re-use or adapt systems to different parts of your game.
+* It can often become a dumping ground for things that don't fit exactly in other places in the codebase. Whenever you can put something in any place other than the game manager, you should put it in that other place (or make a place for it to go).
 
-It's not however without pitfalls. Navigating this large file can become a daunting task as your project grows in scale. It will also naturally create a lot of coupling which will make it hard to re-use or adapt systems to different parts of your game.
+## Creating a Game Manager
+**In Unity:** You create this with a C# script on a game object with references to all the things it needs to touch that is created on load and never destroyed.
 
-**In Unity:** You create this with a C# script on a game object with references to all the things it needs to touch that is created on load and never destroyed. You would probably 
-
-**In Unreal:** The closest analogue to this is probably the GameMode class since it's supposed the manage the rules of your game, though you could also roll your own thing in a level .
+**In Unreal:** The closest analogue to this is probably the GameMode class since it's supposed the manage the rules of your game so you should use that. You could also roll your own thing in a custom actor or subsystem (or if you're feeling masochistic, a level blueprint).
 
 **In Godot:** This would just a script on your top-level Node that is accessed via a Group (of 1) and emits events via Signals.
 
-## Singletons
-Your game manager will probably be as a Singleton.
+# Singletons
+Singletons are a class/object that has one instance and can be accessed anywhere in the codebase and are often lazily initialized. They are another tool that is often reached for by newer programmers and for that reason they often get a bad rap, but like everything they are just a tool in a programmers toolbox.
+
+
