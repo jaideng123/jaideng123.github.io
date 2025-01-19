@@ -61,7 +61,7 @@ It's not however without pitfalls, those usually being:
 * It can often become a dumping ground for things that don't fit exactly in other places in the codebase. Whenever you can put something in any place other than the game manager, you should put it in that other place (or make a place for it to go).
 
 ## Creating a Game Manager
-**In Unity:** You create this with a C# script on a game object with references to all the things it needs to touch that is created on load and never destroyed.
+**In Unity:** Attach a C# script on a game object with references to all the things it needs to touch that is created on load and never destroyed.
 
 **In Unreal:** The closest analogue to this is probably the GameMode class since it's supposed the manage the rules of your game so you should use that. You could also roll your own thing in a custom actor or subsystem (or if you're feeling masochistic, a level blueprint).
 
