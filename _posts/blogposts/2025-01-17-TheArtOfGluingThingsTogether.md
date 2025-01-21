@@ -81,3 +81,5 @@ It's not however without pitfalls, those usually being:
 
 # State Stack
 
+# Dependency Injection & Service Locators
+
