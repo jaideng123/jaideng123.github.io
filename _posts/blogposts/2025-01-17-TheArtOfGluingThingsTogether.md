@@ -12,8 +12,12 @@ I want to preface all of this by first saying that the structure of a game that 
 
 With all that out of the way, let's start moving through various patterns from least to most complex!
 
-# Game Manager
-A Game Manager is simply a top-level object that controls the overall flow of your game. It may also spawn initial actors for a level, emit events for other actors, or manage a global state machine if your gameplay is structured into distinct phases. Game Managers can go by many names like Game Controller, Root State, or even just Game (As is the case in [this famously silly example from the source code for VVVVVV](https://github.com/TerryCavanagh/VVVVVV/blob/f7c0321b715ceed8e87eba2ca507ad2dc28a428d/desktop_version/src/Game.cpp#L612)). Oftentimes programmers stumble onto this pattern making their first game, something needs to be in charge of how the game works after all.
+# Singleton Game Manager
+A Game Manager is simply a top-level object that controls the overall flow of your game.
+This Game Manager will almost always be a [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) meaning that it will have one instance that is globally accessible. 
+It may spawn initial actors for a level, emit events for other actors, or manage a global state machine if your gameplay is structured into distinct phases. 
+Game Managers can go by many names like Game Controller, Root State, or even just Game (As is the case in [this famously silly example from the source code for VVVVVV](https://github.com/TerryCavanagh/VVVVVV/blob/f7c0321b715ceed8e87eba2ca507ad2dc28a428d/desktop_version/src/Game.h#L17)). 
+Oftentimes programmers stumble onto this pattern making their first game, something needs to be in charge of how the game works after all.
 
 Here's an example of how my Game Manager for [Rogue Hike](/games/RogueHike/) looked:
 
@@ -24,7 +28,9 @@ class GameManager {
   int biomeProgress = 0;
   StateMachine levelStateMachine;
   PlayerCharacter* playerCharacter;
+  static GameManager* Instance;
   void OnGameStart() {
+    Instance = this;
     gameProgress = 0;
     biomeProgress = 0;
     levelStateMachine.ResetStateMachine();
@@ -63,11 +69,15 @@ It's not however without pitfalls, those usually being:
 ## Creating a Game Manager
 **In Unity:** Attach a C# script on a game object with references to all the things it needs to touch that is created on load and never destroyed.
 
-**In Unreal:** The closest analogue to this is probably the GameMode class since it's supposed the manage the rules of your game so you should use that. You could also roll your own thing in a custom actor or subsystem (or if you're feeling masochistic, a level blueprint).
+**In Unreal:** You should use the built-in [GameMode & GameState classes](https://dev.epicgames.com/documentation/en-us/unreal-engine/game-mode-and-game-state-in-unreal-engine) in-place of you own implementation since it works better with the rest of the Unreal ecosystem. If you really want/need to roll your own thing, you can do it in a custom [Subsystem](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-subsystems-in-unreal-engine).
 
-**In Godot:** This would just a script on your top-level Node that is accessed via a Group (of 1) and emits events via Signals.
+**In Godot:** This would just a script on your top-level Node that is accessed via a [Group](https://docs.godotengine.org/en/stable/tutorials/scripting/groups.html) (of 1) and emits events via Signals.
 
-# Singletons
-Singletons are a class/object that has one instance and can be accessed anywhere in the codebase and are often lazily initialized. They are another tool that is often reached for by newer programmers and for that reason they often get a bad rap, but like everything they are just a tool in a programmers toolbox.
+# Events / Pub-Sub
 
+# Observers
+
+# State Machines
+
+# State Stack
 
