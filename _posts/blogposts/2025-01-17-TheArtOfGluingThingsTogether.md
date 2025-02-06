@@ -5,6 +5,13 @@ title: "The Art of Gluing Things Together"
 category: blog
 ---
 # (WORK IN PROGRESS)
+<!-- 
+ Thoughts:
+ - How I Like to Use it
+ - Common Pitfalls
+ - Tabbed for Each Engine
+ - Folded Code
+ -->
 
 There are a lot of tutorials out there about how to make flashy features for a game like a crafting system or a grappling hook, but very few about how to take all these disparate pieces make a whole game work. In this post I wanted to talk about what I affectionately refer to as "Glue Code" these are things that manage your gameplay flow, let systems talk to one another, and just generally allow you to make a real game instead of just a youtube-friendly tech demo.
 
@@ -73,14 +80,51 @@ It's not however without pitfalls, those usually being:
 
 **In Godot:** This would just a script on your top-level Node that is accessed via a [Group](https://docs.godotengine.org/en/stable/tutorials/scripting/groups.html) (of 1) and emits events via Signals.
 
-# Events / Pub-Sub
+# Global Events / Pub-Sub
+Event systems are another common tool to reach for as the size of your game grows. Events are pretty simple at their core, an object in your game generates an event of a certain type (optionally with some data), and other objects listen for those those events and respond accordingly.
+
+A good example of where an event might be useful in a game is defeating a boss. After the player fells the boss, you probably want to:
+1. Trigger an auto save
+2. Play a victory sound
+3. Start a cut-scene
+4. Record EXP
+5. Unlock an achievement
+Since these are all disparate systems, dispatching a global event is much simpler and more flexible than trying to call all these methods directly.
+
+I like to reserve events for cases where I have 2 or more mostly unconnected systems/objects that need to talk to one another for a few specific cases. That said, if you already have a reference to something, method calls are preferable since they are cheaper and easier to trace. It also goes without saying that you should avoid situations where you are generating events every tick, as this can add large overheads to the performance of your game.
+
+Events are tricky to reason about as they (by-design) decouple the parts of your gameplay code, which is why you shouldn't over-use them.
+
+## Pub-Sub
+Publish & Subscribe systems take the concept of events and make it a bit more granular. Instead of all events going out into the ether, you can make dedicated streams for events to fall into. This can make your event system much easier to reason about, but also less flexible.
+
+## Creating an event system
+**In Unity:** I actually recommend using something similar to the Scriptable-Objects-Based method Schell Games developed for their games. You have to do more wiring in the editor, but the overall result is very flexible and designer-friendly.
+
+**In Unreal:** Unreal already has a very solid system for Delegates/Events built-in, though it's not global by default.
+
+**In Godot:** Signals provide a natural starting point for building out events. You can get a pretty decent one together by creating signals on a top-level EventManager Node.
 
 # Observers
+The Observer pattern is kind of ironically named because in most implementations an observer is not actively watching what is being observed, but is being pinged when it updates. When your level starts, observers will subscribe to the observable values that are relevant to them, then when the owner of that value changes it, it will go through each active subscriber and notify them that the value has changed. Values can be simple values like ints, bools, or floats or they can be larger objects like the entire game state.
+
+Observers are good to use when you have a value that rarely updates and affects multiple things. UI elements like a health-bar work really well because it only changes when the player is hurt or heals and as a bonus, you can easily wire in visual effects that accentuate the change.
+
+In general, you should try to be as granular as possible in terms of what data is being observed to avoid notifying too many things at once. That being said, you can reach a point where you have so many little bits of data that it becomes hard to reason about. I usually recommend grouping things together that make sense logically, and then breaking them out later as you start to have performance issues.
+
+## Implementing an Observer system
+**In Unity:** Once again, I recommend the Scriptable-Objects-Based method Schell Games developed for their games. They are easy to use and allow you to re-use and test different components in isolation.
+
+**In Unreal:** A Delegate with a single argument can act as an observable, you just have to remember to update it when you update the value tied to it.
+
+**In Godot:** Signals work great for this and you can easily make one for any value, you will just have to remember to invoke it when you update the underlying value (or make your own wrapper)
 
 # State Machines
 
 # State Stack
 
+# Services
+
 # Dependency Injection & Service Locators
 
-# Custom Update/Tick
+# Batched Update/Tick
