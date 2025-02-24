@@ -119,12 +119,54 @@ In general, you should try to be as granular as possible in terms of what data i
 
 **In Godot:** Signals work great for this and you can easily make one for any value, you will just have to remember to invoke it when you update the underlying value (or make your own wrapper)
 
-# State Machines
+# States
+States are your go-to tool when you need to logically separate different parts of gameplay or behavior. To understand states it's useful to think about 2 different examples of state at different scales.
 
-# State Stack
+Starting with the small scale, imagine you are creating an enemy in a platformer that runs at the player when they are close, but otherwise patrols. You would define 2 states: `Patrol` and `Chase`. `Patrol` would follow a pre-defined path and if the player is in range transition to `Chase`. `Chase` would move towards the player and if the player moves out of range transition to `Patrol`. This is a pretty simple example, but it leads to behavior that is much easier to reason about and extend than a giant if-else statement.
+
+## Implementing a State system
+**In Unity:** 
+
+**In Unreal:**
+
+**In Godot:** 
+
+## State Machines
+When you're working at a small scale, it's very easy to cleanly encapsulate the behavior in a few scripts, but what if we had not only states for characters, but for our overall gameplay? This is where a state machine comes in to play.
+
+State machines are a pattern where you have an active state, a set of possible states, and transitions between them. They're very useful for high level gameplay flow where you have a lot of systems that need to be coordinated.
+
+For example, in my game ArrowBall I set up a state machine to control a round of play with the following States:
+- GameStart
+- CountDown
+- ActiveRound
+- Score
+- Celebration
+- GameEnd
+
+I don't opt for strict transitions for the sake of flexibility, but it ends up looking something like this:
+
+![Diagram showing arrowball states and when the transitions between them happen](/assets/images/arrowball-states.png)
+
+The real magic starts when you realize can hook a state machine up to your events system to broadcast events when you enter and exit certain states. Doing this allows you to trigger animations, particle effects, sounds, UI, or whatever else you need in a way that's flexible and extensible.
+
+For instance in ArrowBall when the Score state is entered it triggers:
+1. A horn sound
+2. The ball to explode into confetti
+3. The score UI to slide in
+4. The game manager incrementing the score on the game state then changing the state machine to `Celebration`
+
+Lots of different systems, all working in harmony, doesn't get any better than that!
+
+### Implementing a State Machine
+**In Unity:** 
+
+**In Unreal:**
+
+**In Godot:** 
+
+## State Stack
 
 # Services
 
 # Dependency Injection & Service Locators
-
-# Batched Update/Tick

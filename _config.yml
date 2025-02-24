@@ -20,9 +20,10 @@ twitter:
 logo: assets/images/headshot.jpg
 image: assets/images/headshot.jpg
 
+markdown: kramdown
 kramdown:
-  syntax_highlighter_opts:
-    disable: true
+   syntax_highlighter_opts:
+      disable : true
 
 social:
   name: Jaiden Gerig

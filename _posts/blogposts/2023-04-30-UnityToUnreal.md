@@ -117,7 +117,6 @@ That's it, you can extend those classes even further for different variants, but
 # Extra Credit:
 This gives good overview of the lifecycles that exist within Unreal and how everything fits together.
 
-**The Unreal Engine Game Framework: From int main() to BeginPlay:**
 <div class="video-wrap">
   <div class="video-container">
     <iframe src="https://www.youtube.com/embed/IaU2Hue-ApI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -126,14 +125,11 @@ This gives good overview of the lifecycles that exist within Unreal and how ever
 
 Multiplayer is one of Unreal's best features, so if you're interested, try learning more about it. Property replication is your go-to tool when making multiplayer things.
 
-**Unreal vs. Unity: Actors & Components, Inheritance & Composition:**
 <div class="video-wrap">
   <div class="video-container">
     <iframe src="https://www.youtube.com/embed/JOJP0CvpB8w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   </div>
 </div>
-
-
 
 # Misc things:
 ## But I really need to nest actors under other actors like in Unity:
