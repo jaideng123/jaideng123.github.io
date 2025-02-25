@@ -20,11 +20,12 @@ I want to preface all of this by first saying that the structure of a game that 
 With all that out of the way, let's start moving through various patterns from least to most complex!
 
 # Singleton Game Manager
-A Game Manager is simply a top-level object that controls the overall flow of your game.
-This Game Manager will almost always be a [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) meaning that it will have one instance that is globally accessible. 
-It may spawn initial actors for a level, emit events for other actors, or manage a global state machine if your gameplay is structured into distinct phases. 
+A Game Manager is simply a top-level object that controls the overall flow of your game. They will almost always be a [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) meaning that they will have one instance that is globally accessible. 
+
+They may spawn initial actors for a level, emit events for other actors, or manage a global state machine if your gameplay is structured into distinct phases. 
+
 Game Managers can go by many names like Game Controller, Root State, or even just Game (As is the case in [this famously silly example from the source code for VVVVVV](https://github.com/TerryCavanagh/VVVVVV/blob/f7c0321b715ceed8e87eba2ca507ad2dc28a428d/desktop_version/src/Game.h#L17)). 
-Oftentimes programmers stumble onto this pattern making their first game, something needs to be in charge of how the game works after all.
+Oftentimes programmers will naturally stumble onto this pattern making their first game, something needs to be in charge of how the game works after all.
 
 Here's an example of how my Game Manager for [Rogue Hike](/games/RogueHike/) looked:
 
@@ -91,9 +92,7 @@ A good example of where an event might be useful in a game is defeating a boss. 
 5. Unlock an achievement
 Since these are all disparate systems, dispatching a global event is much simpler and more flexible than trying to call all these methods directly.
 
-I like to reserve events for cases where I have 2 or more mostly unconnected systems/objects that need to talk to one another for a few specific cases. That said, if you already have a reference to something, method calls are preferable since they are cheaper and easier to trace. It also goes without saying that you should avoid situations where you are generating events every tick, as this can add large overheads to the performance of your game.
-
-Events are tricky to reason about as they (by-design) decouple the parts of your gameplay code, which is why you shouldn't over-use them.
+I like to reserve events for cases where I have 2 or more mostly unconnected systems/objects that need to talk to one another for a few specific cases. That said, if you already have a reference to something, method calls are preferable since they are cheaper and easier to trace. It also goes without saying that you should avoid situations where you are generating events every tick, as this can add large overheads to the performance of your game. Events are also tricky to reason about as they (by-design) decouple the parts of your gameplay code, which is another good reason not to over-use them.
 
 ## Pub-Sub
 Publish & Subscribe systems take the concept of events and make it a bit more granular. Instead of all events going out into the ether, you can make dedicated streams for events to fall into. This can make your event system much easier to reason about, but also less flexible.
