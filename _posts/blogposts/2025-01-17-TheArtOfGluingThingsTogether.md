@@ -11,6 +11,7 @@ category: blog
  - Common Pitfalls
  - Tabbed for Each Engine
  - Folded Code
+ - Links!
  -->
 
 There are a lot of tutorials out there about how to make flashy features for a game like a crafting system or a grappling hook, but very few about how to take all these disparate pieces make a whole game work. In this post I wanted to talk about what I affectionately refer to as "Glue Code" these are things that manage your gameplay flow, let systems talk to one another, and just generally allow you to make a real game instead of just a youtube-friendly tech demo.
