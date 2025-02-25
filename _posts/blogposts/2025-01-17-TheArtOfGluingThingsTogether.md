@@ -165,8 +165,49 @@ Lots of different systems, all working in harmony, doesn't get any better than t
 
 **In Godot:** 
 
-## State Stack
+## State Stacks
+Flat State machines and States work really well when states are used in a predictable way, but it becomes difficult to manage when you have a state that you want to re-use in multiple contexts like one that manages a menu or a confirm dialog. State Stacks to the rescue!
+
+A State Stack is simply an organization of different states onto a stack with only the top-most state being active. This means you can pop into a new state and once that state is done, you can just pop it and return to the previous state.
+
+The clearest example of where this is useful is in UI Menus. Games often have dozens if not hundreds of menus and they're often used in different contexts. For instance you might have an options menu that is accessed from both the title screen, as well as in-game from the pause menu. With a State Stack you just push the Options Menu State onto the stack when a button is pressed, and then when "back" is pressed you pop it off and return to either the title screen or pause menu. If you have controller bindings or a back button like Android this makes your life even easier since you can just map that button to pop the top-most State in the stack without having to explicitly code out the behavior for each State.
+
+### Implementing a State Stack
+**In Unity:** 
+
+**In Unreal:** The CommonUI plugin maintained by Epic implements Widget Stacks which are functionally State Stacks but for UI.
+
+**In Godot:** 
 
 # Services
+Services are (usually singleton) classes that are available to any part of the codebase to perform a service of some kind. That may sound like an overly broad definition but it's because services are meant to cover a wide range of capabilities, doing everything from playing sound effects to coordinating AI behavior.
+
+A lot of mature codebases rely on this pattern because it's an easy way to segment different systems and allow them to be created, worked on, and tested in isolation from one another when you have a large and specialized team. For instance you can have Audio Engineers owning services that control music and sound effects, Tech Artists owning Services that spawn particle effects, and Gameplay Programmers owning Services relevant to specific features they're working on.
+
+My rules of thumb for creating services:
+1. Think about if this service really needs to exist
+   1. Is there only 1 place it's being used?
+   2. Could this be better served as a static function utility?
+   3. Is there an existing service you could modify to fit your use-case?
+   4. Does this need to be accessible everywhere?
+2. Think carefully about how the service is going to be used and what kind of interface would be most convenient/performant for those use-cases
+   1. Generally a service should do a few things, but do them well
+3. Follow existing conventions in your codebase (unless you find a very good reason not to)
+4. Try to avoid referencing services from other services
+   1. Avoid this at all costs during initialization
+   2. If you do this, make sure to avoid cyclic references (Service A uses Service B and Service B uses Service A)
+5. Document your interface for the service as well as expected usage with good comments.
+
+Services are a powerful tool and with great power comes great responsibility (to avoid spaghetti-fying yor codebase).
+
+<!-- TODO: Other names for Services? -->
+
+## Implementing a Service
+<!-- TODO: Joe Hocking's Managers -->
+**In Unity:** Services can be a simple static Singleton or they can be set up with more advanced methods like a service locator or dependency injection.
+
+**In Unreal:** Custom [Subsystems](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-subsystems-in-unreal-engine) are meant for this kind of thing. They are tied to specific lifetimes (World, Level, Game Instance) based on their parent class and Unreal will automatically instantiate them for you, making them available.
+
+**In Godot:** 
 
 # Dependency Injection & Service Locators
