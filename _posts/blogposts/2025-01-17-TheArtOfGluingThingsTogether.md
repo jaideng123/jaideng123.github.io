@@ -202,12 +202,48 @@ Services are a powerful tool and with great power comes great responsibility (to
 
 <!-- TODO: Other names for Services? -->
 
-## Implementing a Service
-<!-- TODO: Joe Hocking's Managers -->
+## Implementing a basic  Service
+Regardless of your chosen tool, services are usually built with static singletons, dependency injection, or a service locator. This section will assume you are starting with a singleton (we'll explore the other solutions for wiring in the next section)
+
 **In Unity:** Services can be a simple static Singleton or they can be set up with more advanced methods like a service locator or dependency injection.
 
-**In Unreal:** Custom [Subsystems](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-subsystems-in-unreal-engine) are meant for this kind of thing. They are tied to specific lifetimes (World, Level, Game Instance) based on their parent class and Unreal will automatically instantiate them for you, making them available.
+**In Unreal:** Custom [Subsystems](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-subsystems-in-unreal-engine) are a great fit for singleton services. They are tied to specific lifetimes (World, Level, Game Instance) based on their parent class and Unreal will automatically instantiate and destroy them for you. I would **NOT** recommend rolling a custom C++ singleton for many reasons.
 
-**In Godot:** 
+**In Godot:** Similar to the game manager, you can make a collection of script on top-level Nodes that are accessed via a [Group](https://docs.godotengine.org/en/stable/tutorials/scripting/groups.html) (of 1).
 
 # Dependency Injection & Service Locators
+As your project gets larger and the number of services grows, it can become difficult to connect dependencies to one another in a sane way. There are two common solutions to this problem that I'll explore here.
+<!-- TODO: more reasons to use -->
+
+## Dependency Injection
+Dependency Injection frameworks work by building out a graph of all your dependencies and automatically injecting references to them into each object.
+
+Dependency Injection is very common in the world of web development, but not so much in most game projects, likely because game developers usually prefer control over abstraction and DI is a very heavy abstraction.
+
+It's important to note that while DI can help with a lot of your dependency wiring,it's not a silver bullet, and you can still end up in situations where you have to spend a lot of time untangling dependencies that have circular references.
+
+DI also can't really solve a mess of dependencies all it really does is hide the mess so you don't have to see it as often. The rabbit hole can go very deep with DI frameworks and their is a risk that engineers can turn them into code-golf challenges that make things even harder to understand. Which is why I recommend trying to use them sparingly.
+<!-- TODO: Why use DI? -->
+<!-- Separate interface from class -->
+<!-- Add More Meat Here -->
+
+### Integrating Dependency Injection
+I would not recommend rolling your own solution for Dependency Injection if possible as they can be a huge time-sink for engineers, so instead I will link to projects that already exist that you can utilize.
+
+**In Unity:** Zenject is the solution I've worked with the most as it's the foundation of Pokemon Go's codebase, though it's not as well-supported as it used to be and is a bit on the heavy-side in terms of complexity. VContainer is another option that seems to be popular.
+
+**In Unreal:** Unreal has Type Containers which provide a simple DI solution. it's important to note that they are C++ only so your designers wont easily be able to access them in blueprint land. They also aren't used by a lot of games and the only place Epic uses them is in the Unreal Launcher so YMMV.
+
+**In Godot:** For dependency injection in gdscript the godot-di project is the best option I've found, though doesn't see much use currently. If you're using C# you can leverage any available DI framework or use the one built into dotnet.
+
+## Service Locators
+Dependency Injection is a little heavy for most games, but there is a middle ground that exists between static singletons and a big DI framework and that is the trusty Service Locator. A Service Locator is a global singleton that wires up services and then allows other parts of your codebase to access those services via their interface. This is often what people want when they reach for dependency injection and it's what I recommend instead.
+
+### Implementing Service Locators
+Unlike Dependency Injection, a basic service locator is usually dead-simple to implement and then expand as your needs change.
+
+**In Unity:** You can leverage a static singleton that wires up concrete service implementations with interfaces accessed by other parts of your code-base. If you want this to happen at runtime you'll need to make a game object for it to live in
+
+**In Unreal:** Type Containers also work here, but for an even simpler (and more commonly seen) solution, you can create a Service Locator Subsystem that wires everything up when your game starts and as a bonus you can make different locators for different scopes (World, Level, Etc.) and they can potentially tick.
+
+**In Godot:** 
