@@ -103,15 +103,11 @@ public class GameManager : MonoBehaviour
 You will then need to make sure this game object exists in either your boot scene or (ideally) all the primary scenes in your game.
 
 ### In Unreal:
-First, try to leverage the built-in [GameMode & GameState classes](https://dev.epicgames.com/documentation/en-us/unreal-engine/game-mode-and-game-state-in-unreal-engine) in-place of you own implementation since it works better with the rest of the Unreal ecosystem.
+First, try to leverage the built-in [GameMode & GameState classes](https://dev.epicgames.com/documentation/en-us/unreal-engine/game-mode-and-game-state-in-unreal-engine) instead of you own implementation since it works better with the rest of the Unreal ecosystem.
 
 I like to think of the Game Mode as my rules engine that responds to events and updates the GameState which is read by the relevant entities in the game world. As a big plus, you can wire game mode logic in blueprint so it's more accessible to your team members that don't know C++ to understand what's going on with the game!
 
 If you really want/need to roll your own thing, you can make a custom Game Manager [Subsystem](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-subsystems-in-unreal-engine). In general Subsystems are extremely useful for singleton-like things in Unreal (See: [Implementing a Service](#implementing-a-service) for more detail on why). Keep in mind, if you go down this route you will have more trouble implementing multiplayer as GameMode and GameState do a lot for you in terms of server authority and replication.
-
-### In Godot:
-Unlike Unity, Godot has much better support for the Singleton Pattern via Global [Autoload Singletons](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html). 
-<!-- TODO: more here, Code? -->
 
 
 # Services
@@ -152,9 +148,6 @@ I would caution before you start rolling a service for something, peruse the [Of
 
 I would **NOT** recommend rolling a custom C++ singleton for many reasons, chief among them being that they will be a huge hassle to keep in sync with the engine's lifecycle. For more detail see this [excellent write-up from benui](https://benui.ca/unreal/cpp-style-singletons/)
 
-### In Godot:
-Similar to the game manager, you can make a collection of script on top-level Nodes that are accessed via a [Group](https://docs.godotengine.org/en/stable/tutorials/scripting/groups.html) (of 1).
-
 ## Dependency Injection & Service Locators
 As your project gets larger and the number of services grows, it can become difficult to connect dependencies to one another in a sane way. There are two common solutions to this problem that I'll explore here.
 <!-- TODO: more reasons to use -->
@@ -166,16 +159,69 @@ Service Locators exist as a middle ground between static singletons and a big DI
 Unlike Dependency Injection, a basic service locator is usually dead-simple to implement and then expand as your needs change.
 
 ##### In Unity:
-You can leverage a static singleton that wires up concrete service implementations with interfaces accessed by other parts of your code-base. If you want this to happen at runtime you'll need to make a game object for it to live in.
-<!-- TODO: real code example -->
+You can leverage a static class that wires up concrete service implementations with interfaces accessed by other parts of your code-base like so:
+{% highlight csharp %}
+public static class ServiceLocator
+{
+    private static readonly Dictionary<Type, object> services = new Dictionary<Type, object>();
+
+    public static void RegisterService<T>(T service)
+    {
+        var type = typeof(T);
+        if (!services.ContainsKey(type))
+        {
+            services[type] = service;
+        }
+    }
+
+    public static T GetService<T>()
+    {
+        var type = typeof(T);
+        if (services.ContainsKey(type))
+        {
+            return (T)services[type];
+        }
+        else
+        {
+            throw new Exception($"Service of type {type} not found.");
+        }
+    }
+}
+{% endhighlight %}
+
+
+Then use your game manager or other singleton to wire things up in it's `Awake()` method:
+{% highlight csharp %}
+public class GameManager : MonoBehaviour
+{
+    // This makes sure this is run before any other game object behaviors
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen )]
+    void RegisterServices()
+    {
+        // Register the audio service
+        ServiceLocator.RegisterService<IAudioService>(new AudioService());
+    }
+}
+{% endhighlight %}
+
+Then access it from wherever you need:
+{% highlight csharp %}
+public class Player : MonoBehaviour
+{
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            var audioService = ServiceLocator.GetService<IAudioService>();
+            audioService.PlaySound("Jump");
+        }
+    }
+}
+{% endhighlight %}
+
 
 #### In Unreal:
 I would recommend creating a Service Locator Subsystem that wires everything up when your game starts and as a bonus you can make different locators for different scopes (World, Level, Etc.) and they can potentially tick.
-<!-- TODO: real code example -->
-
-
-#### In Godot:
-You can create a Global [Autoload Singleton](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html) that acts as your service locator.
 <!-- TODO: real code example -->
 
 
@@ -231,9 +277,6 @@ I actually recommend using something similar to the Scriptable-Objects-Based met
 ### In Unreal:
 Unreal already has a very solid system for Delegates/Events built-in, though it's not global by default.
 
-### In Godot:
-Signals provide a natural starting point for building out events. You can get a pretty decent one together by creating signals on a top-level EventManager Node.
-
 # Observers
 The Observer pattern is kind of ironically named because in most implementations an observer is not actively watching what is being observed, but is being pinged when it updates. When your level starts, observers will subscribe to the observable values that are relevant to them, then when the owner of that value changes it, it will go through each active subscriber and notify them that the value has changed. Values can be simple values like ints, bools, or floats or they can be larger objects like the entire game state.
 
@@ -248,9 +291,6 @@ Once again, I recommend the Scriptable-Objects-Based method Schell Games develop
 ### In Unreal:
 A Delegate with a single argument can act as an observable, you just have to remember to update it when you update the value tied to it.
 
-### In Godot:
-Signals work great for this and you can easily make one for any value, you will just have to remember to invoke it when you update the underlying value (or make your own wrapper)
-
 # States
 States are your go-to tool when you need to logically separate different parts of gameplay or behavior. To understand states it's useful to think about 2 different examples of state at different scales.
 
@@ -261,9 +301,6 @@ Starting with the small scale, imagine you are creating an enemy in a platformer
 <!-- TODO -->
 
 ### In Unreal:
-<!-- TODO -->
-
-### In Godot:
 <!-- TODO -->
 
 ## State Machines
@@ -300,9 +337,6 @@ Lots of different systems, all working in harmony, doesn't get any better than t
 #### In Unreal:
 <!-- TODO -->
 
-#### In Godot:
- <!-- TODO -->
-
 ## State Stacks
 Flat State machines and States work really well when states are used in a predictable way, but it becomes difficult to manage when you have a state that you want to re-use in multiple contexts like one that manages a menu or a confirm dialog. State Stacks to the rescue!
 
@@ -318,18 +352,17 @@ The clearest example of where this is useful is in UI Menus. Games often have do
 The CommonUI plugin maintained by Epic implements Widget Stacks which are functionally State Stacks but for UI.
 <!-- TODO more detail -->
 
-#### In Godot:
-<!-- TODO -->
-
 # Conclusion:
-Ultimately, which of the tools laid out here that you find most useful and how you use them will depend on:
-1. Your game
-2. Your team
-3. Your personal aesthetics
+Ultimately, which of the tools laid out here that you find most useful and how you use them will depend on (in order of importance):
+1. **Your game** - All games are different and have different needs, patterns that work well in a turn-based game that are a poor fit for an online shooter.
+2. **Your team** - Technology serves teams, it doesn't matter how beautiful your code is if your team-members can't make use of it.
+3. **Your personal aesthetics** - Every programmer has different approaches they like and contrary to popular belief there is no standard for what is "clean code", there is only code that works, is flexible, and is performant.
 
-If you find something isn't working for you or you have an idea for how to do it differently, don't be afraid to go off the beaten path!
+Not everything will work for everyone, if you find one of these patterns isn't working for your game or you have an idea for how to do it differently, don't be afraid to go off the beaten path!
 
-You may even find new patterns that you can share with others along the way.
+You may even find new patterns that you can share with others along the way 😀
 
 ## Further Reading
 * [Game Programming Patterns](https://gameprogrammingpatterns.com/) is an excellent book that has even more detail and patterns then I laid out here.
+* [Game Engine Architexture](https://www.gameenginebook.com/) is more about engine systems, but having a survey of what an engine should offer will help you work in harmony with it rather than against it.
+* [Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns) is the grand-daddy of this topic and highly regarded in the field of computer science (just note that it is rather old and some patterns may not work well with modern game frameworks).
