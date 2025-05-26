@@ -514,14 +514,8 @@ States are your go-to tool when you need to logically separate different parts o
 
 Starting with the small scale, imagine you are creating an enemy in a platformer that runs at the player when they are close, but otherwise patrols. You would define 2 states: `Patrol` and `Chase`. `Patrol` would follow a pre-defined path and if the player is in range transition to `Chase`. `Chase` would move towards the player and if the player moves out of range transition to `Patrol`. This is a pretty simple example, but it leads to behavior that is much easier to reason about and extend than a giant if-else statement.
 
-## Implementing a State system
-### In Unity:
-<!-- TODO -->
-
-### In Unreal:
-<!-- TODO -->
-
 ## State Machines
+<!-- TODO: Rework -->
 When you're working at a small scale, it's very easy to cleanly encapsulate the behavior in a few scripts, but what if we had not only states for characters, but for our overall gameplay? This is where a state machine comes in to play.
 
 State machines are a pattern where you have an active state, a set of possible states, and transitions between them. They're very useful for high level gameplay flow where you have a lot of systems that need to be coordinated.
