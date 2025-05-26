@@ -28,46 +28,6 @@ They may spawn initial actors for a level, emit events for other actors, or mana
 Game Managers can go by many names like Game Controller, Root State, or even just Game (As is the case in [this famously silly example from the source code for VVVVVV](https://github.com/TerryCavanagh/VVVVVV/blob/f7c0321b715ceed8e87eba2ca507ad2dc28a428d/desktop_version/src/Game.h#L17)). 
 Oftentimes programmers will naturally stumble onto this pattern making their first game, something needs to be in charge of how the game works after all.
 
-<!-- Here's an example of how my Game Manager for [Rogue Hike](/games/RogueHike/) looked:
-
-{% highlight cpp %}
-class GameManager {
- public:
-  int gameProgress = 0;
-  int biomeProgress = 0;
-  StateMachine levelStateMachine;
-  PlayerCharacter* playerCharacter;
-  static GameManager* Instance;
-  void OnGameStart() {
-    Instance = this;
-    gameProgress = 0;
-    biomeProgress = 0;
-    levelStateMachine.ResetStateMachine();
-    activePlayerCharacter = Instantiate<PlayerCharacter>();
-    levelStateMachine.ChangeState("NewDay");
-  }
-  void OnNewDay() {
-    biomeProgress = 0;
-    gameProgress += 1;
-    if (gameProgress == 1) {
-      LoadForestBiome()
-    } else if (gameProgress == 2) {
-      LoadRockyBiome();
-    } else if (gameProgress == 3) {
-      LoadNewBiomeScene(snowyBiomeScene);
-    }
-    levelStateMachine.ChangeState("SelectLevel");
-  }
-  void OnPlayerEntrance() { ... }
-  void OnAnimalsTurn() { ... }
-  void OnTimePasses() { ... }
-  void OnEndTurn() { ... }
-  void LoadForestBiome() { ... }
-  void LoadRockyBiome() { ... }
-  void LoadSnowBiome() { ... }
-};
-{% endhighlight %} -->
-
 If your game is small/simple enough, this structure alone can often take from prototyping to ship without much issue. I want to emphasize that last part again, **this is a perfectly fine way to make a game** and if it's working for your project, keep on rockin it!
 
 It's not however without pitfalls, those usually being:
@@ -97,7 +57,11 @@ public class GameManager : MonoBehaviour
         Destroy(this.gameObject)
       }
     }
+    public void TriggerThing(){};
 }
+// ...
+// To Access it:
+GameManager.Instance.TriggerThing();
 {% endhighlight %}
 
 You will then need to make sure this game object exists in either your boot scene or (ideally) all the primary scenes in your game.
@@ -140,13 +104,35 @@ Regardless of your chosen tool, services are usually built with static singleton
 You can use a similar setup to your game manager singleton as outlined in [the previous section](#creating-a-game-manager).
 
 ### In Unreal:
-Custom [Subsystems](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-subsystems-in-unreal-engine) are a great fit for singleton services. They are tied to specific lifetimes (World, Level, Game Instance) based on their parent class and Unreal will automatically instantiate and destroy them for you. 
+Custom [Subsystems](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-subsystems-in-unreal-engine) are a great fit for singleton services. They are tied to specific lifetimes (World, Level, Player, Game Instance) based on their parent class and Unreal will automatically instantiate and destroy them for you. 
 
-<!-- TODO example here -->
+{% highlight cpp %}
+UCLASS()
+class YOURGAME_API UMyService : public UGameInstanceSubsystem
+{
+    GENERATED_BODY()
 
-I would caution before you start rolling a service for something, peruse the [Official Unreal Documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-5-documentation) to make sure it doesn't already exist. Unreal is the most mature widely-used game engine for a reason and it's better to lean on existing systems/plugins.
+public:
+    // Do your setup and initialization here
+    virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+    // Handle any cleanup here
+    virtual void Deinitialize() override;
 
-I would **NOT** recommend rolling a custom C++ singleton for many reasons, chief among them being that they will be a huge hassle to keep in sync with the engine's lifecycle. For more detail see this [excellent write-up from benui](https://benui.ca/unreal/cpp-style-singletons/)
+    UFUNCTION(BlueprintCallable)
+    void DoThing();
+};
+// ...
+UMyService* serviceRef = GetGameInstance()->GetSubsystem<UMyService>();
+if(serviceRef){
+  serviceRef->DoThing();
+}
+{% endhighlight %}
+
+Service Subsystems are also automatically exposed to Blueprints so you can also make them available for designers & artists!
+
+I would caution before you start rolling a service for something, peruse the [Official Unreal Documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-5-documentation) to make sure it doesn't already exist. Unreal is the most mature widely-used game engine for a reason and it's better to lean on existing systems/plugins that.
+
+I would **STRONGLY RECOMMEND AGAINST** rolling a custom C++ singleton for many reasons, chief among them being that they will be a huge hassle to keep in sync with the engine's lifecycle. For more detail see this [excellent write-up from benui](https://benui.ca/unreal/cpp-style-singletons/)
 
 ## Dependency Injection & Service Locators
 As your project gets larger and the number of services grows, it can become difficult to connect dependencies to one another in a sane way. There are two common solutions to this problem that I'll explore here.
@@ -221,8 +207,64 @@ public class Player : MonoBehaviour
 
 
 #### In Unreal:
-I would recommend creating a Service Locator Subsystem that wires everything up when your game starts and as a bonus you can make different locators for different scopes (World, Level, Etc.) and they can potentially tick.
-<!-- TODO: real code example -->
+Once again subsystems are a natural fit for a singleton service locator and implementing one is fairly straightforward:
+{% highlight cpp %}
+UCLASS()
+class YOURGAME_API UServiceLocator : public UGameInstanceSubsystem
+{
+	GENERATED_BODY()
+	
+public:
+    // Register a service
+    UFUNCTION(BlueprintCallable)
+    void RegisterService(TSubclassOf<UObject> ServiceClass, UObject* Service)
+    {
+        Services.Add(ServiceClass, Service);
+    }
+
+    // Retrieve a service
+    UFUNCTION(BlueprintCallable)
+    UObject* GetService(TSubclassOf<UObject> ServiceClass)
+    {
+        UObject** Found = Services.Find(ServiceClass);
+        return Found ? *Found : nullptr;
+    }
+
+private:
+    UPROPERTY()
+    TMap<TSubclassOf<UObject>, UObject*> Services;
+};
+{% endhighlight %}
+
+Then you can register a service anywhere (But it's usually most convenient to do it in GameInstance because it's initialized very early the Unreal lifecycle)
+{% highlight cpp %}
+void UMyGameInstance::Init()
+{
+    Super::Init();
+  
+    UServiceLocator* Locator = GetSubsystem<UServiceLocator>();
+    if (Locator)
+    {
+        UMyService* MyService = NewObject<UMyService>(this);
+        Locator->RegisterService(UMyService::StaticClass(), MyService);
+    }
+}
+{% endhighlight %}
+
+Finally, you can access the service anywhere via the locator:
+
+{% highlight cpp %}
+UServiceLocator* Locator = GetGameInstance()->GetSubsystem<UServiceLocator>();
+if (Locator)
+{
+    UMyService* MyService = Cast<UMyService>(Locator->GetService(UMyService::StaticClass()));
+    if (MyService)
+    {
+        MyService->DoThing();
+    }
+}
+{% endhighlight %}
+
 
 
 ### Dependency Injection
@@ -251,9 +293,6 @@ Unreal has Type Containers which provide a simple DI solution. it's important to
 
 Eric Friedman has [a stellar write-up on all the different ways Type Containers can be used](https://www.jooballin.com/p/unreal-engine-the-type-container).
 
-##### In Godot:
-For dependency injection in gdscript the [di-godot project](https://github.com/adsau59/di-godot) is the best option I've found, though doesn't see much use currently. If you're using C# you can leverage any available DI framework or use the one built into dotnet.
-
 # Global Events / Pub-Sub
 Event systems are another common tool to reach for as the size of your game grows. Events are pretty simple at their core, an object in your game generates an event of a certain type (optionally with some data), and other objects listen for those those events and respond accordingly.
 
@@ -268,28 +307,207 @@ Since these are all disparate systems, dispatching a global event is much simple
 I like to reserve events for cases where I have 2 or more mostly unconnected systems/objects that need to talk to one another for a few specific cases. That said, if you already have a reference to something, method calls are preferable since they are cheaper and easier to trace. It also goes without saying that you should avoid situations where you are generating events every tick, as this can add large overheads to the performance of your game. Events are also tricky to reason about as they (by-design) decouple the parts of your gameplay code, which is another good reason not to over-use them.
 
 ## Pub-Sub
-Publish & Subscribe systems take the concept of events and make it a bit more granular. Instead of all events going out into the ether, you can make dedicated streams for events to fall into. This can make your event system much easier to reason about, but also less flexible.
+Publish & Subscribe systems take the concept of events and make it a bit more granular. Instead of all events going out globally, you can make dedicated streams for events to fall into. This can make your event system much easier to reason about, but also less flexible overall.
 
 ## Creating an event system
 ### In Unity:
-I actually recommend using something similar to the Scriptable-Objects-Based method Schell Games developed for their games. You have to do more wiring in the editor, but the overall result is very flexible and designer-friendly.
+Actions in C# give us everything we need for a flexible event system:
+
+{% highlight csharp %}
+public static class EventManager
+{
+    // Dictionary to hold event type and corresponding delegates
+    private static Dictionary<Type, Delegate> eventTable = new Dictionary<Type, Delegate>();
+
+    // Subscribe to an event
+    public static void Subscribe<T>(Action<T> listener)
+    {
+        Type eventType = typeof(T);
+        if (eventTable.TryGetValue(eventType, out var existingDelegate))
+        {
+            eventTable[eventType] = Delegate.Combine(existingDelegate, listener);
+        }
+        else
+        {
+            eventTable[eventType] = listener;
+        }
+    }
+
+    // Unsubscribe from an event
+    public static void Unsubscribe<T>(Action<T> listener)
+    {
+        Type eventType = typeof(T);
+        if (eventTable.TryGetValue(eventType, out var existingDelegate))
+        {
+            var newDelegate = Delegate.Remove(existingDelegate, listener);
+            if (newDelegate == null)
+            {
+                eventTable.Remove(eventType);
+            }
+            else
+            {
+                eventTable[eventType] = newDelegate;
+            }
+        }
+    }
+
+    // Publish an event
+    public static void Publish<T>(T eventData)
+    {
+        Type eventType = typeof(T);
+        if (eventTable.TryGetValue(eventType, out var existingDelegate))
+        {
+            var callback = existingDelegate as Action<T>;
+            callback?.Invoke(eventData);
+        }
+    }
+}
+// ...
+
+// How to subscribe:
+EventManager.Subscribe<GameStartEvent>(OnGameStart);
+
+// How to publish an event:
+EventManager.Publish(new GameStartEvent());
+{% endhighlight %}
+
+If you want to make a more designer-friendly version of an event system, I would recommend looking at [the approach Schell Games outlines in this talk](https://youtu.be/raQ3iHhE_Kk?si=x-70ATKpWnoyvjNi&t=1670).
 
 ### In Unreal:
-Unreal already has a very solid system for Delegates/Events built-in, though it's not global by default.
+Unreal provides a very natural way to build events via delegates, we just have to make it available globally via a subsystem:
+
+{% highlight cpp %}
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FEventDelegate, FName, EventName, UObject*, EventData);
+
+UCLASS()
+class YOURGAME_API UEventManagerSubsystem : public UGameInstanceSubsystem
+{
+    GENERATED_BODY()
+
+public:
+    // Dispatch an event with associated data
+    UFUNCTION(BlueprintCallable)
+    void DispatchEvent(FName EventName, UObject* EventData)
+    {
+        if (FEventDelegate* Delegate = EventDelegates.Find(EventName))
+        {
+            Delegate->Broadcast(EventName, EventData);
+        }
+    }
+
+    // Subscribe to an event
+    UFUNCTION(BlueprintCallable)
+    void SubscribeEvent(FName EventName, const FEventDelegate& EventDelegate)
+    {
+        FEventDelegate& Delegate = EventDelegates.FindOrAdd(EventName);
+        Delegate.Add(EventDelegate);
+    }
+
+
+    // Unsubscribe from an event
+    UFUNCTION(BlueprintCallable)
+    void UnsubscribeEvent(FName EventName, const FEventDelegate& EventDelegate)
+    {
+        if (FEventDelegate* Delegate = EventDelegates.Find(EventName))
+        {
+            Delegate->Remove(EventDelegate);
+        }
+    }
+
+private:
+    // Map of event names to their corresponding delegates
+    UPROPERTY()
+    TMap<FName, FEventDelegate> EventDelegates;
+};
+// ...
+
+// How to subscribe:
+FEventDelegate Delegate;
+Delegate.AddDynamic(this, &UYourClass::OnGameStart);
+EventManager->SubscribeEvent("GameStart", Delegate);
+
+// How to publish an event:
+EventManager->DispatchEvent("GameStarted", NewObject<UGameStartedEvent>());
+{% endhighlight %}
 
 # Observers
 The Observer pattern is kind of ironically named because in most implementations an observer is not actively watching what is being observed, but is being pinged when it updates. When your level starts, observers will subscribe to the observable values that are relevant to them, then when the owner of that value changes it, it will go through each active subscriber and notify them that the value has changed. Values can be simple values like ints, bools, or floats or they can be larger objects like the entire game state.
 
-Observers are good to use when you have a value that rarely updates and affects multiple things. UI elements like a health-bar work really well because it only changes when the player is hurt or heals and as a bonus, you can easily wire in visual effects that accentuate the change.
+Observers are good to use when you have a value that rarely updates and affects multiple things. UI elements like a health-bar work really well because it only changes when the player is hurt or heals and as a bonus, you can easily wire in visual effects that accentuate the change. This is also a much better alternative performance-wise to checking for updates every frame.
 
 In general, you should try to be as granular as possible in terms of what data is being observed to avoid notifying too many things at once. That being said, you can reach a point where you have so many little bits of data that it becomes hard to reason about. I usually recommend grouping things together that make sense logically, and then breaking them out later as you start to have performance issues.
 
 ## Implementing an Observer system
 ### In Unity:
-Once again, I recommend the Scriptable-Objects-Based method Schell Games developed for their games. They are easy to use and allow you to re-use and test different components in isolation.
+Actions are once again the tool to each for in Unity, allowing us to easily notify subscribers for any property:
+{% highlight csharp %}
+public class ObservableProperty<T>
+{
+    private T _value;
+
+    public event Action<T> OnValueChanged;
+
+    public ObservableProperty(T initialValue = default)
+    {
+        _value = initialValue;
+    }
+
+    public T Value
+    {
+        get => _value;
+        set
+        {
+            if (!Equals(_value, value))
+            {
+                _value = value;
+                OnValueChanged?.Invoke(_value);
+            }
+        }
+    }
+}
+// ...
+// Setting up the observable:
+public ObservableProperty<int> Health = new ObservableProperty<int>(100);
+// Subscribing to updates:
+Health.OnValueChanged += OnHealthChanged
+{% endhighlight %}
+
+Once again, I would also recommend considering [the Scriptable-Objects-Based method Schell Games developed for their games.](https://youtu.be/raQ3iHhE_Kk?si=do5EaeB1h8oKV9bN&t=927) They are easy to use and allow you to re-use and test different components in isolation.
 
 ### In Unreal:
-A Delegate with a single argument can act as an observable, you just have to remember to update it when you update the value tied to it.
+A Delegate with a single argument can act as an observable, you just have to remember to update it when you update the value tied to it:
+
+{% highlight cpp %}
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnValueChanged, int32, NewValue);
+
+class YOURGAME_API UMyObservableComponent : public UActorComponent
+{
+    GENERATED_BODY()
+
+public:
+    // The delegate that observers can bind to
+    UPROPERTY(BlueprintAssignable, Category="Events")
+    FOnValueChanged OnValueChanged;
+
+    // Function to change the value and notify observers
+    UFUNCTION(BlueprintCallable, Category="Observable")
+    void SetValue(int32 NewValue)
+    {
+      if (CurrentValue != NewValue)
+      {
+          CurrentValue = NewValue;
+          OnValueChanged.Broadcast(CurrentValue);
+      }
+    }
+
+private:
+    int32 CurrentValue;
+};
+// ...
+// Subscribing to updates:
+ObservableComponent->OnValueChanged.AddDynamic(this, &AMyObserverActor::HandleValueChanged);
+{% endhighlight %}
+
 
 # States
 States are your go-to tool when you need to logically separate different parts of gameplay or behavior. To understand states it's useful to think about 2 different examples of state at different scales.
@@ -328,7 +546,7 @@ For instance in ArrowBall when the Score state is entered it triggers:
 3. The score UI to slide in
 4. The game manager incrementing the score on the game state then changing the state machine to `Celebration`
 
-Lots of different systems, all working in harmony, doesn't get any better than that!
+Lots of different systems, all working in harmony, it doesn't get any better than that!
 
 ### Implementing a State Machine
 #### In Unity:
@@ -358,7 +576,7 @@ Ultimately, which of the tools laid out here that you find most useful and how y
 2. **Your team** - Technology serves teams, it doesn't matter how beautiful your code is if your team-members can't make use of it.
 3. **Your personal aesthetics** - Every programmer has different approaches they like and contrary to popular belief there is no standard for what is "clean code", there is only code that works, is flexible, and is performant.
 
-Not everything will work for everyone, if you find one of these patterns isn't working for your game or you have an idea for how to do it differently, don't be afraid to go off the beaten path!
+Not everything will work for everyone, if you find one of these patterns isn't working for your game or you have an idea for how to do it differently, don't be afraid to experiment and go off the beaten path!
 
 You may even find new patterns that you can share with others along the way 😀
 
