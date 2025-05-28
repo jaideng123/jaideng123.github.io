@@ -9,14 +9,13 @@ category: blog
  Thoughts:
  - How I Like to Use it
  - Common Pitfalls
- - Tabbed for Each Engine
  - Folded Code
  - Links!
  -->
 
 There are a lot of tutorials out there about how to make flashy features for a game like a crafting system or a grappling hook, but very few about how to take all these disparate pieces make a whole game work. In this post I wanted to talk about what I affectionately refer to as "Glue Code" these are things that manage your gameplay flow, let systems talk to one another, and just generally allow you to make a real game instead of just a youtube-friendly tech demo.
 
-I want to preface all of this by first saying that the structure of a game that feels right is inextricably tied to your own personal aesthetic. One programmers spaghetti code can be another's simple and effective depending on their background and what kind of problems they've encountered in the past. For this reason I'm not going to be too prescriptive here. I'm just going to lay out various patterns and talk a bit about how and when they're useful. I'm also going to try to keep this as engine-agnostic as I can, but I will talk about some applications in Unreal, Godot, and Unity.
+I want to preface all of this by first saying that the structure of a game that feels right is inextricably tied to your own personal aesthetic. One programmers spaghetti code can be another's simple and effective depending on their background and what kind of problems they've encountered in the past. For this reason I'm not going to be too prescriptive here. I'm just going to lay out various patterns and talk a bit about how and when they're useful. I'm also going to try to keep this as engine-agnostic as I can, but I will provide some examples in Unreal and Unity.
 
 With all that out of the way, let's start moving through various patterns from least to most complex!
 
@@ -789,11 +788,13 @@ Lots of different systems, all working in harmony, it doesn't get any better tha
 #### Implementing a large-scale State Machine
 <details markdown="1">
 <summary><b>In Unity:</b></summary>
+IN PROGRESS
 </details>
 <!-- TODO -->
 
 <details markdown="1">
 <summary><b>In Unreal:</b></summary>
+IN PROGRESS
 </details>
 <!-- TODO -->
 
@@ -807,12 +808,197 @@ The clearest example of where this is useful is in UI Menus. Games often have do
 ### Implementing a State Stack
 <details markdown="1">
 <summary><b>In Unity:</b></summary>
+First things first, we have to define our state interface and some states:
+{% highlight csharp %}
+public interface IState
+{
+    void OnEnter();
+    void OnExit();
+    void OnUpdate();
+}
+
+public class MainMenuState : IState
+{
+    public void OnEnter() { Debug.Log("Entered Main Menu"); }
+    public void OnExit() { Debug.Log("Exited Main Menu"); }
+    public void OnUpdate() { /* Handle Main Menu logic */ }
+}
+
+public class GameplayState : IState
+{
+    public void OnEnter() { Debug.Log("Game Started"); }
+    public void OnExit() { Debug.Log("Game Over"); }
+    public void OnUpdate() { /* Handle Gameplay logic */ }
+}
+{% endhighlight %}
+
+
+Then a manager to hold our state stack:
+
+{% highlight csharp %}
+public class StateStackManager
+{
+    private Stack<IState> stateStack = new Stack<IState>();
+
+    public void PushState(IState newState)
+    {
+        if (stateStack.Count > 0)
+            stateStack.Peek().OnExit();
+
+        stateStack.Push(newState);
+        newState.OnEnter();
+    }
+
+    public void PopState()
+    {
+        if (stateStack.Count == 0) return;
+
+        stateStack.Peek().OnExit();
+        stateStack.Pop();
+
+        if (stateStack.Count > 0)
+            stateStack.Peek().OnEnter();
+    }
+
+    public void Update()
+    {
+        if (stateStack.Count > 0)
+            stateStack.Peek().OnUpdate();
+    }
+}
+{% endhighlight %}
+
+and finally we can push and pop states like so:
+{% highlight csharp %}
+// On boot
+StateManager.Instance.PushState(new MainMenuState())
+// After pressing the start game button
+StateManager.Instance.PushState(new GameplayState())
+// After the game ends
+StateManager.Instance.PopState()
+{% endhighlight %}
+
 </details>
-<!-- TODO -->
+
 
 <details markdown="1">
 <summary><b>In Unreal:</b></summary>
-The CommonUI plugin maintained by Epic implements Widget Stacks which are functionally State Stacks but for UI.
+First off we need to define our individual state objects:
+{% highlight cpp %}
+UINTERFACE(MinimalAPI, Blueprintable)
+class UStateInterface : public UInterface
+{
+    GENERATED_BODY()
+};
+
+class IStateInterface
+{
+    GENERATED_BODY()
+public:
+    virtual void Enter();
+    virtual void Exit();
+    virtual void Update(float DeltaTime);
+};
+
+UCLASS(Blueprintable)
+class UMainMenuState : public UObject, public IStateInterface
+{
+    GENERATED_BODY()
+public:
+    virtual void Enter() { /*Do stuff*/ }
+    virtual void Exit() { /*Do stuff*/ }
+    virtual void Update(float DeltaTime) { /*Do stuff*/ }
+};
+
+UCLASS(Blueprintable)
+class UGameplayState : public UObject, public IStateInterface
+{
+    GENERATED_BODY()
+public:
+    virtual void Enter() { /*Do stuff*/ }
+    virtual void Exit() { /*Do stuff*/ }
+    virtual void Update(float DeltaTime) { /*Do stuff*/ }
+};
+{% endhighlight %}
+Then we create a UObject to manage our stack:
+{% highlight cpp %}
+UCLASS()
+class YOURPROJECT_API UStateStack : public UObject
+{
+    GENERATED_BODY()
+
+private:
+    TArray<IState*> StateStack;
+
+public:
+    void PushState(IState* NewState)
+    {
+        if (StateStack.Num() > 0)
+            StateStack.Last()->OnExit();
+
+        StateStack.Add(NewState);
+        NewState->OnEnter();
+    }
+
+    void PopState()
+    {
+        if (StateStack.Num() == 0) return;
+
+        StateStack.Last()->OnExit();
+        StateStack.RemoveAt(StateStack.Num() - 1);
+
+        if (StateStack.Num() > 0)
+        {
+            StateStack.Last()->OnEnter();
+        }
+    }
+
+    void Update(float DeltaTime)
+    {
+        if (StateStack.Num() > 0){
+            StateStack.Last()->OnUpdate(DeltaTime);
+        }
+    }
+};
+{% endhighlight %}
+
+Finally you can leverage the StateStack anywhere, but for UI you most likely want it on a PlayerController:
+{% highlight cpp %}
+UCLASS()
+class YOURPROJECT_API AMyPlayerController : public APlayerController
+{
+    GENERATED_BODY()
+
+private:
+    UStateStackManager* StateStackManager;
+
+public:
+    AMyPlayerController()
+    {
+        StateStackManager = NewObject<UStateStackManager>();
+    }
+
+    virtual void BeginPlay() override
+    {
+        Super::BeginPlay();
+        StateStackManager->PushState(NewObject<UMainMenuState>());
+    }
+
+    virtual void Tick(float DeltaTime) override
+    {
+        Super::Tick(DeltaTime);
+        StateStackManager->Update(DeltaTime);
+
+        // Example: Transition to gameplay
+        if (/* condition to start game */)
+        {
+            StateStackManager->PushState(NewObject<UGameplayState>());
+        }
+    }
+};
+{% endhighlight %}
+
+I would also recommend checking out [Widget Stacks](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Plugins/CommonUI/Widgets/UCommonActivatableWidgetStack) in Epic's CommonUI Plugin. They can be used very similarly to State Stacks and work very well for UI state with widgets.
 </details>
 <!-- TODO more detail -->
 
