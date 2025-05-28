@@ -1,10 +1,9 @@
 ---
 layout: blog
 title: "The Art of Gluing Things Together"
-# image: /assets/images/ClawAndOrder/Cover.gif
+image: /assets/images/lego.jpg
 category: blog
 ---
-# (WORK IN PROGRESS)
 <!-- 
  Thoughts:
  - How I Like to Use it
