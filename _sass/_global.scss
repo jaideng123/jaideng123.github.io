@@ -376,3 +376,16 @@ $Recycled-paper-texture-background-banner-5-hex: #D9D6D2;
     width: 100%;
     max-width: 600px;
 }
+
+summary {
+  font-size: 1.5em;
+  cursor: pointer;
+  user-select: none;
+}
+
+details {
+    padding: 10px;
+    background-color: #d8dde1;
+    border-radius: 5px;
+    margin: 0.5em 0em;
+}
