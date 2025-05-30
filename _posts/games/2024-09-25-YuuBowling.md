@@ -56,7 +56,7 @@ The game itself is built with a mixture of Blueprints and C++ gameplay code (I w
 
 I started with trying to mimic real bowling masses, center of gravity, etc. but it turns out that isn't very fun, so I ended up making the pins topple very easily by using a combination of low mass and low center-of-gravity so they were stable jusssstttt until the ball hit them and they would fly hard. 
 
-Along the way I made a little tweening framework that grew into the [DUETween plugin!](/games/DUETween/) that I love and will be using on all of my Unreal projects going forward.
+Along the way I made a little tweening framework that grew into the [DUETween plugin](/games/DUETween/) that I love and will be using on all of my Unreal projects going forward.
 
 *Project Progress Video:*
 <video width="500" height="300" controls autoplay loop muted style="max-width: 100%;">
