@@ -40,6 +40,7 @@ Master the timeless art of bowling in this throwback to Wii Sports!
 
 ![Another Gif of Gameplay](/assets/images/YuuBowling/yuu-bowling-yuu.gif)
 
+Built with the [DUETween plugin!](/games/DUETween/)
 
 ---
 # About the Project
