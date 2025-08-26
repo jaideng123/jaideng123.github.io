@@ -12,9 +12,9 @@ category: blog
  - Links!
  -->
 
-There are a lot of tutorials out there about how to make flashy features for a game like a crafting system or a grappling hook, but very few about how to take all these disparate pieces make a whole game work. In this post I wanted to talk about what I affectionately refer to as "Glue Code" these are things that manage your gameplay flow, let systems talk to one another, and just generally allow you to make a real game instead of just a youtube-friendly tech demo.
+There are a lot of tutorials out there about how to make flashy features for a game, like a crafting system or a grappling hook, but very few about how to take all these disparate pieces and make a whole game work. In this post I wanted to talk about what I affectionately refer to as "glue code." These are things that manage your gameplay flow, let systems talk to one another, and just generally allow you to make a real, working game instead of just a YouTube-friendly tech demo.
 
-I want to preface all of this by first saying that the structure of a game that feels right is inextricably tied to your own personal aesthetic. One programmers spaghetti code can be another's simple and effective depending on their background and what kind of problems they've encountered in the past. For this reason I'm not going to be too prescriptive here. I'm just going to lay out various patterns and talk a bit about how and when they're useful. I'm also going to try to keep this as engine-agnostic as I can, but I will provide some examples in Unreal and Unity.
+I want to preface all of this by first saying that the structure of a game that feels right is inextricably tied to your own personal aesthetic. One programmer's spaghetti can be another's simple and effective, depending on their background and what kind of problems they've encountered in the past. For this reason I'm not going to be too prescriptive here. I'm just going to lay out various patterns and talk a bit about how and when they're useful. I'm also going to try to keep this as engine-agnostic as I can, but I will provide some examples in Unreal and Unity.
 
 With all that out of the way, let's start moving through various patterns from least to most complex!
 
@@ -23,16 +23,16 @@ A Game Manager is simply a top-level object that controls the overall flow of yo
 
 They may spawn initial actors for a level, emit events for other actors, or manage a global state machine if your gameplay is structured into distinct phases. 
 
-Game Managers can go by many names like Game Controller, Root State, or even just Game (As is the case in [this famously silly example from the source code for VVVVVV](https://github.com/TerryCavanagh/VVVVVV/blob/f7c0321b715ceed8e87eba2ca507ad2dc28a428d/desktop_version/src/Game.h#L17)). 
-Oftentimes programmers will naturally stumble onto this pattern making their first game, something needs to be in charge of how the game works after all.
+Game Managers can go by many names like "Game Controller", "Root State", or even just "Game" (as is the case in [this famously silly example from the source code for Terry Cavanagh's VVVVVV](https://github.com/TerryCavanagh/VVVVVV/blob/f7c0321b715ceed8e87eba2ca507ad2dc28a428d/desktop_version/src/Game.h#L17)). 
+Oftentimes programmers will naturally stumble onto this pattern making their first game; something needs to be in charge of how the game works after all.
 
-If your game is small/simple enough, this structure alone can often take from prototyping to ship without much issue. I want to emphasize that last part again, **this is a perfectly fine way to make a game** and if it's working for your project, keep on rockin it!
+If your game is small/simple enough, this structure alone can often take it from prototyping to ship without much issue. I want to emphasize that last part again; **this is a perfectly fine way to make a game**, and if it's working for your project, keep on rocking it!
 
-It's not however without pitfalls, those usually being:
-* The file for this class becoming so large that it becomes harder and hard to reason about as your project grows in scale.
-* It will naturally create a lot of coupling which will make it hard to re-use or adapt systems to different parts of your game.
+It's not, however without pitfalls, those usually being:
+* The file for this class becomes so large that it becomes harder and harder to reason about as your project grows in scale.
+* It will naturally create a lot of coupling, which will make it hard to re-use or adapt systems to different parts of your game.
 * It can often become a dumping ground for things that don't fit exactly in other places in the codebase. Whenever you can put something in any place other than the game manager, you should put it in that other place (or make a place for it to go).
-* It's a singleton and thus carries all of the issues a singleton has (Always)
+* It's a singleton and thus carries all of the issues a singleton has (always in memory, highly coupled, hard to reason about initialization)
 
 ## Creating a Game Manager
 <details markdown="1" id="game-manager-unity">
@@ -69,34 +69,34 @@ You will then need to make sure this game object exists in either your boot scen
 <details markdown="1" id="game-manager-unreal">
 <summary><b>In Unreal:</b></summary>
 
-First, try to leverage the built-in [GameMode & GameState classes](https://dev.epicgames.com/documentation/en-us/unreal-engine/game-mode-and-game-state-in-unreal-engine) instead of you own implementation since it works better with the rest of the Unreal ecosystem.
+First, try to leverage the built-in [GameMode & GameState classes](https://dev.epicgames.com/documentation/en-us/unreal-engine/game-mode-and-game-state-in-unreal-engine) instead of your own implementation since they work better with the rest of the Unreal ecosystem(and multiplayer!).
 
-I like to think of the Game Mode as my rules engine that responds to events and updates the GameState which is read by the relevant entities in the game world. As a big plus, you can wire game mode logic in blueprint so it's more accessible to your team members that don't know C++ to understand what's going on with the game!
+I like to think of the Game Mode as a rules engine that responds to events and updates the GameState, which is then read by all the relevant entities in the game world. As a big plus, you can wire game mode logic in blueprint so it's more accessible to your team members that don't know C++!
 
-If you really want/need to roll your own thing, you can make a custom Game Manager [Subsystem](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-subsystems-in-unreal-engine). In general Subsystems are extremely useful for singleton-like things in Unreal (See: [Implementing a Service](#implementing-a-service) for more detail on why). Keep in mind, if you go down this route you will have more trouble implementing multiplayer as GameMode and GameState do a lot for you in terms of server authority and replication.
+If you really want/need to roll your own thing, you can make a custom Game Manager [Subsystem](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-subsystems-in-unreal-engine). In general Subsystems are extremely useful for singleton-like things in Unreal (see: [Implementing a Service](#implementing-a-service) for more detail on why). Keep in mind, if you go down this route, you will have more trouble implementing multiplayer, as GameMode and GameState do a lot for you in terms of server authority and replication.
 </details>
 
 
 # Services
-As your game manager grows in scope, you will eventually feel a need to start splitting off functionality into more standalone pieces. This is where Services come in. Services are (usually singleton) classes that are available to any part of the codebase to perform a service of some kind. That may sound like an overly broad definition but it's because services are meant to cover a wide range of capabilities, doing everything from playing sound effects to coordinating AI behavior.
+As your game manager grows in scope, you will eventually feel a need to start splitting off functionality into more standalone pieces. This is where Services come in. Services are (usually singleton) classes that are available to any part of the codebase to perform a service of some kind. That may sound like an overly broad definition, but it's because services are meant to cover a wide range of capabilities, doing everything from playing sound effects to coordinating AI behavior.
 
-A lot of mature codebases rely on this pattern because it's an easy way to segment different systems and allow them to be created, worked on, and tested in isolation from one another when you have a large and specialized team. For instance you can have Audio Engineers owning services that control music and sound effects, Tech Artists owning Services that spawn particle effects, and Gameplay Programmers owning Services relevant to specific features they're working on.
+A lot of mature codebases rely on this pattern because it's an easy way to segment different systems and allow them to be created, worked on, and tested in isolation from one another when you have a large and specialized team. For instance, you can have Audio Engineers owning services that control music and sound effects, Tech Artists owning Services that spawn particle effects, and Gameplay Programmers owning Services relevant to specific features they're working on.
 
 My rules of thumb for creating services are:
-1. Think about if this service really needs to exist
+1. Think about if this service really needs to exist.
    1. Is there only 1 place it's being used?
    2. Could this be better served as a static function utility?
-   3. Is there an existing service you could modify to fit your use-case?
+   3. Is there an existing service you could modify to fit your use case?
    4. Does this need to be accessible everywhere?
-2. Think carefully about how the service is going to be used and what kind of interface would be most convenient/performant for those use-cases
-   1. Generally a service should do a few things, but do them well
-3. Follow existing conventions in your codebase (unless you find a very good reason not to)
-4. Try to avoid referencing services from other services
-   1. Avoid this at all costs during initialization
-   2. If you do this, make sure to avoid cyclic references (Service A uses Service B and Service B uses Service A)
+2. Think carefully about how the service is going to be used and what kind of interface would be most convenient/performant for those use cases
+   1. Generally a service should do a few things, but do them well.
+3. Follow existing conventions in your codebase (unless you find a very good reason not to.)
+4. Try to avoid referencing services from other services.
+   1. Avoid this at all costs during initialization.
+   2. If you do this, make sure to avoid cyclic references (Service A uses Service B and Service B uses Service A.)
 5. Document your interface for the service as well as expected usage with good comments.
 
-Services are a powerful tool and with great power comes great responsibility (to avoid spaghetti-fying your codebase).
+Services are a powerful tool, and with great power comes great responsibility (to avoid spaghetti-fying your codebase).
 
 ## Implementing a Service
 Regardless of your chosen tool, services are usually built with static singletons, dependency injection, or a service locator. This section will assume you are starting with a singleton (we'll explore the other solutions for wiring in the next section)
@@ -108,7 +108,7 @@ You can use a similar setup to your game manager singleton as outlined in [the p
 
 <details markdown="1" id="services-unreal">
 <summary><b>In Unreal:</b></summary>
-Custom [Subsystems](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-subsystems-in-unreal-engine) are a great fit for singleton services. They are tied to specific lifetimes (World, Level, Player, Game Instance) based on their parent class and Unreal will automatically instantiate and destroy them for you. 
+Custom [Subsystems](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-subsystems-in-unreal-engine) are a great fit for singleton services. They are tied to specific lifetimes (World, Level, Player, Game Instance) based on their parent class, and Unreal will automatically instantiate and destroy them for you. 
 
 {% highlight cpp %}
 UCLASS()
@@ -134,9 +134,9 @@ if(serviceRef){
 
 Service Subsystems are also automatically exposed to Blueprints so you can also make them available for designers & artists!
 
-I would caution before you start rolling a service for something, peruse the [Official Unreal Documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-5-documentation) to make sure it doesn't already exist. Unreal is the most mature widely-used game engine for a reason and it's better to lean on existing systems/plugins that.
+I would caution you before you start rolling a service for something: peruse the [Official Unreal Documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-5-documentation) to make sure it doesn't already exist. Unreal is the most mature, widely-used game engine for a reason, and it's better to lean on existing systems/plugins whenever you can.
 
-I would **STRONGLY RECOMMEND AGAINST** rolling a custom C++ singleton for many reasons, chief among them being that they will be a huge hassle to keep in sync with the engine's lifecycle. For more detail see this [excellent write-up from benui](https://benui.ca/unreal/cpp-style-singletons/)
+I would **STRONGLY RECOMMEND AGAINST** rolling a custom C++ singleton for many reasons, chief among them being that they will be a huge hassle to keep in sync with the engine's lifecycle. For more detail, see this [excellent write-up from benui](https://benui.ca/unreal/cpp-style-singletons/)
 </details>
 
 ## Dependency Injection & Service Locators
@@ -145,10 +145,10 @@ As your project gets larger and the number of services grows, it can become diff
 There are two common solutions to this problem that I'll explore here.
 
 ### Service Locators
-Service Locators exist as a nice middle ground between static singletons and a big DI framework. A Service Locator is a global singleton that wires up services and then allows other parts of your codebase to access those services via their interface. This is often what people want when they reach for dependency injection and it's what I usually recommend for most projects.
+Service Locators exist as a nice middle ground between static singletons and a big DI framework. A Service Locator is a global singleton that wires up services and then allows other parts of your codebase to access those services via their interface. This is often what people want when they reach for dependency injection, and it's what I usually recommend for most projects.
 
 #### Implementing a Service Locator
-Unlike Dependency Injection, a basic service locator is usually dead-simple to implement and then expand as your needs change.
+Unlike Dependency Injection, a basic Service Locator is usually dead-simple to implement and then expand as your needs change.
 
 <details markdown="1" id="service-locator-unity">
 <summary><b>In Unity:</b></summary>
@@ -215,7 +215,7 @@ public class Player : MonoBehaviour
 
 <details markdown="1" id="service-locator-unreal">
 <summary><b>In Unreal:</b></summary>
-Once again subsystems are a natural fit for a singleton service locator and implementing one is fairly straightforward:
+Once again, subsystems are a natural fit for a singleton Service Locator, and implementing one is fairly straightforward:
 {% highlight cpp %}
 UCLASS()
 class YOURGAME_API UServiceLocator : public UGameInstanceSubsystem
@@ -244,7 +244,7 @@ private:
 };
 {% endhighlight %}
 
-Then you can register a service anywhere (But it's usually most convenient to do it in GameInstance because it's initialized very early the Unreal lifecycle)
+Then you can register a service (Usually it's most convenient to do this in GameInstance, as it's initialized very early the Unreal lifecycle.)
 {% highlight cpp %}
 void UMyGameInstance::Init()
 {
@@ -276,46 +276,46 @@ if (Locator)
 
 
 ### Dependency Injection
-Dependency Injection frameworks work by building out a graph of all your dependencies and automatically injecting references to them into each object. Usually you will have one or more Containers that manage the scope of different dependencies (like for instance global vs. scene) and provide a way to have multiple instances of dependencies. You can even use fancy techniques to inject different things in different situations.
+Dependency Injection frameworks work by building out a graph of all your dependencies and automatically injecting references to them into each object. Usually you will have one or more Containers that manage the scope of different dependencies (for instance, global vs. level) and provide a way to have multiple instances of dependencies. You can even use fancy techniques to inject different things in different situations.
 
-Dependency Injection is very common in the world of web and app development, but not so much in most game projects, likely because most game developers usually prefer control over abstraction and DI is a very very heavy abstraction.
+Dependency Injection is very common in the world of web and app development, but not so much in most game projects, likely because most game developers usually prefer control over abstraction, and DI is a very, very heavy abstraction.
 
 It's important to note that while DI can help with **a lot** of your dependency wiring, it's not a silver bullet, and you can still end up in situations where you have to spend a lot of time untangling dependencies that have circular references.
 
-DI also can't really solve a mess of dependencies all it really does is hide the mess so you don't have to see it as often. The rabbit hole can go very deep with DI frameworks and their is a risk that engineers can turn them into code-golf challenges that make things even harder to understand. Which is why I recommend trying to use them sparingly.
+DI also can't really solve a mess of dependencies; all it really does is hide the mess so you don't have to see it as often. The rabbit hole can go very deep with DI frameworks, and there is a risk that engineers can turn them into code-golf challenges that make things even harder to understand. Which is why I recommend trying to use them sparingly.
 
-Overall, I find a full dependency injection system tough to recommend for all but the most complex projects as it's usually solving a lot more problems than most people have in their games as well as adding more complexity. Still, every tool has it's use and there are many projects (Like Pokemon Go) that use it effectively.
+Overall, I find a full dependency injection system tough to recommend for all but the most complex projects, as it's usually solving a lot more problems than most people have in their games as well as adding more complexity. Still, every tool has its use and there are many projects (like Pokemon Go) that use it effectively.
 
 #### Integrating Dependency Injection
-I would not recommend rolling your own solution for Dependency Injection if possible as they can be a huge time-sink for engineers, so instead I will link to projects that already exist that you can utilize.
+I would not recommend rolling your own solution for Dependency Injection if possible, as they can be a huge time-sink for engineers, so instead I will link to projects that already exist that you can utilize.
 
 <details markdown="1" id="di-unity">
 <summary><b>In Unity:</b></summary>
-[Zenject](https://github.com/modesttree/Zenject) is the solution I've worked with the most as it's the foundation of Pokemon Go's codebase, though it's not as well-supported as it used to be and is a bit on the heavy-side in terms of complexity. [VContainer](https://vcontainer.hadashikick.jp/) is another option that seems to be popular.
+[Zenject](https://github.com/modesttree/Zenject) is the solution I've worked with the most as it's the foundation of Pokemon Go's codebase, though it's not as well-supported as it used to be and is a bit on the heavy side in terms of complexity. [VContainer](https://vcontainer.hadashikick.jp/) is another option that seems to be popular.
 </details>
 
 <details markdown="1" id="di-unreal">
 <summary><b>In Unreal:</b></summary>
-Unreal has Type Containers which provide a simple DI solution. it's important to note that they are C++ only so your designers wont easily be able to access them in blueprint land. They also aren't used by a lot of games and the only place Epic uses them is in the Unreal Launcher so YMMV.
+Unreal has Type Containers which provide a simple DI solution. It's important to note that they are C++ only, so your designers won't easily be able to access them in blueprint land. They also aren't used by a lot of games, and the only place I know of where Epic uses them is in the Unreal Launcher so YMMV.
 
 Eric Friedman has [a stellar write-up on all the different ways Type Containers can be used](https://www.jooballin.com/p/unreal-engine-the-type-container).
 </details>
 
 # Global Events / Pub-Sub
-Event systems are another common tool to reach for as the size of your game grows. Events are pretty simple at their core, an object in your game generates an event of a certain type (optionally with some data), and other objects listen for those those events and respond accordingly.
+Event systems are another common tool to reach for as the size of your game grows. Events are pretty simple at their core: objects in your game generates events of a certain type (optionally with some data), and other objects listen for those those events and respond accordingly.
 
 A good example of where an event might be useful in a game is defeating a boss. After the player fells the boss, you probably want to:
-1. Trigger an auto save
-2. Play a victory sound
-3. Start a cut-scene
-4. Record EXP
-5. Unlock an achievement
+1. Trigger an auto save.
+2. Play a victory sound.
+3. Start a cut-scene.
+4. Increment experience points.
+5. Unlock an achievement.
 Since these are all disparate systems, dispatching a global event is much simpler and more flexible than trying to call all these methods directly.
 
-I like to reserve events for cases where I have 2 or more mostly unconnected systems/objects that need to talk to one another for a few specific cases. That said, if you already have a reference to something, method calls are preferable since they are cheaper and easier to trace. It also goes without saying that you should avoid situations where you are generating events every tick, as this can add large overheads to the performance of your game. Events are also tricky to reason about as they (by-design) decouple the parts of your gameplay code, which is another good reason not to over-use them.
+I like to reserve events for cases where I have 2 or more mostly unconnected systems/objects that need to talk to one another for a few specific cases. That said, if you already have a reference to something, method calls are preferable since they are cheaper and easier to trace. It also goes without saying that you should avoid situations where you are generating events every tick, as this can add large overheads to the performance of your game. Events are also tricky to reason about, as they decouple parts of your gameplay code in ways that may be hard to trace in an IDE, which is another good reason not to overuse them.
 
 ## Pub-Sub
-Publish & Subscribe systems take the concept of events and make it a bit more granular. Instead of all events going out globally, you can make dedicated streams for events to fall into. This can make your event system much easier to reason about, but also less flexible overall.
+Publish & Subscribe systems take the concept of events and make it a bit more granular. Instead of all events going out globally, there are dedicated streams for events to fall into and for objects to listen to. This can make your event system much easier to reason about but also less flexible overall.
 
 ## Creating an event system
 <details markdown="1" id="pub-sub-unity">
@@ -385,7 +385,7 @@ If you want to make a more designer-friendly version of an event system, I would
 
 <details markdown="1" id="pub-sub-unreal">
 <summary><b>In Unreal:</b></summary>
-Unreal provides a very natural way to build events via delegates, we just have to make it available globally via a subsystem:
+Unreal provides a very natural way to build events via delegates; we just have to make it available globally via a subsystem:
 
 {% highlight cpp %}
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FEventDelegate, FName, EventName, UObject*, EventData);
@@ -443,16 +443,16 @@ EventManager->DispatchEvent("GameStarted", NewObject<UGameStartedEvent>());
 </details>
 
 # Observers
-The Observer pattern is kind of ironically named because in most implementations an observer is not actively watching what is being observed, but is being pinged when it updates. When your level starts, observers will subscribe to the observable values that are relevant to them, then when the owner of that value changes it, it will go through each active subscriber and notify them that the value has changed. Values can be simple values like ints, bools, or floats or they can be larger objects like the entire game state.
+The Observer pattern is kind of ironically named because in most implementations an observer is not actively watching what is being observed but is being pinged when it updates. When your level starts, observers will subscribe to the observable values that are relevant to them, and then when the owner of that value changes it, it will go through each active subscriber and notify them that the value has changed. Values can be simple values like ints, bools, or floats or they can be larger objects like the entire game state.
 
-Observers are good to use when you have a value that rarely updates and affects multiple things. UI elements like a health-bar work really well because it only changes when the player is hurt or heals and as a bonus, you can easily wire in visual effects that accentuate the change. This is also a much better alternative performance-wise to checking for updates every frame.
+Observers are good to use when you have a value that rarely updates and affects multiple things. UI elements like a health bar work really well because it only changes when the player is hurt or healed and as a bonus, you can easily wire in visual effects that accentuate the change. They are also much better performance-wise than the usual alternative of checking for updates every frame.
 
-In general, you should try to be as granular as possible in terms of what data is being observed to avoid notifying too many things at once. That being said, you can reach a point where you have so many little bits of data that it becomes hard to reason about. I usually recommend grouping things together that make sense logically, and then breaking them out later as you start to have performance issues.
+In general, you should try to be as granular as possible in terms of what data is being observed to avoid notifying too many things at once. That being said, you can reach a point where you have so many little bits of data that it becomes hard to reason about. I usually recommend grouping things together that make sense logically and then breaking them out later as you start to have performance problems.
 
 ## Implementing an Observer system
 <details markdown="1" id="observer-unity">
 <summary><b>In Unity:</b></summary>
-Actions are once again the tool to each for in Unity, allowing us to easily notify subscribers for any property:
+Actions are once again the tool to reach for in Unity, allowing us to easily notify subscribers for any property:
 {% highlight csharp %}
 public class ObservableProperty<T>
 {
@@ -490,7 +490,7 @@ Once again, I would also recommend considering [the Scriptable-Objects-Based met
 
 <details markdown="1" id="observer-unreal">
 <summary><b>In Unreal:</b></summary>
-A Delegate with a single argument can act as an observable, you just have to remember to update it when you update the value tied to it:
+A Delegate with a single argument can act as an observable; you just have to remember to update it when you update the value tied to it:
 
 {% highlight cpp %}
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnValueChanged, int32, NewValue);
@@ -525,19 +525,19 @@ ObservableComponent->OnValueChanged.AddDynamic(this, &AMyObserverActor::HandleVa
 </details>
 
 # States
-States are your go-to tool when you need to logically separate different parts of gameplay or behavior. To understand states it's useful to think about 2 different examples of state at different scales.
+States are your go-to tool when you need to logically separate different parts of gameplay or behavior. To understand states, it's useful to think them at different scales and with different use cases.
 
 ## State Machines
 State machines are a pattern where you have an active state, a set of possible states, and transitions between them.
 
-The classical definition of a state machine requires changes happen only through codified Transitions (usually enums), but I usually prefer the flexibility for transitions to happen from any node to any other node (at least when working with gameplay logic).
+The classical definition of a state machine requires that changes happen only through codified Transitions (usually expressed as an enum), but I usually prefer the flexibility for transitions to happen from any node to any other node (at least when working with gameplay logic).
 
 ### At the small scale
-Characters can get pretty complicated over time, and once you start to have multiple sets of logic (or even logic you want to re-use with other characters) it can be tough to keep it all organized.
+Characters can get pretty complicated over time, and once you start to have multiple sets of logic (or even logic you want to re-use with other characters,) it can be tough to keep it all organized.
 
-Imagine you are creating an enemy in a platformer that runs at the player when they are close, but otherwise patrols. You would define 2 states: `Patrol` and `Chase`. 
+Imagine you are creating an enemy in a platformer that runs at the player when they are close but otherwise patrols along a path. You would define 2 states: `Patrol` and `Chase`. 
 
-`Patrol` would follow a pre-defined path and if the player is in range transition to `Chase`. `Chase` would move towards the player and if the player moves out of range transition to `Patrol`. 
+`Patrol` would follow a predefined path and if the player is in range, transition to `Chase`. `Chase` would move towards the player, and if the player moves out of range, transition to `Patrol`. 
 
 This is a pretty simple example, but it leads to behavior that is much easier to reason about and extend than a giant if-else statement.
 
@@ -563,7 +563,7 @@ public class IdleState : ICharacterState
 // PatrolState
 {% endhighlight %}
 
-Then build a component to manage the state
+Then build a component to manage the state:
 
 {% highlight csharp %}
 [Serializable]
@@ -625,7 +625,7 @@ public class StateMachine : MonoBehaviour
 }
 {% endhighlight %}
 
-And finally we can attach this component to a game object and use it like so
+And finally we can attach this component to a game object and use it like so:
 
 {% highlight csharp %}
 if(EnemyNearby)
@@ -646,7 +646,7 @@ else
 
 <details markdown="1" id="small-sm-unreal">
 <summary><b>In Unreal:</b></summary>
-First off we need to define our individual state objects:
+First off, we need to define our individual state objects:
 {% highlight cpp %}
 UINTERFACE(MinimalAPI, Blueprintable)
 class UCharacterStateInterface : public UInterface
@@ -752,11 +752,11 @@ else
 </details>
 
 ### At a larger scale
-When you're working at a small scale, it's very easy to cleanly encapsulate the behavior in a few scripts, but what if we had not only states for characters, but for our game as a whole?
+When you're working at a small scale, it's very easy to cleanly encapsulate the behavior in a few scripts, but what if we had not only states for characters but also for our overall gameplay logic?
 
-It turns out they're very useful for high level gameplay flow where you have a lot of systems that need to be coordinated.
+It turns out states and state machines are very useful for high-level gameplay flow where you have a lot of systems that need to be coordinated.
 
-For example, in my game ArrowBall I set up a state machine to control a round of play with the following States:
+For example, in my game ArrowBall, I set up a state machine to control a round of play with the following States:
 - GameStart
 - CountDown
 - ActiveRound
@@ -768,20 +768,20 @@ I don't opt for strict transitions for the sake of flexibility, but it ends up l
 
 ![Diagram showing arrowball states and when the transitions between them happen](/assets/images/arrowball-states.png)
 
-The real magic starts when you realize can hook a state machine up to your events system to broadcast events when you enter and exit certain states. Doing this allows you to trigger animations, particle effects, sounds, UI, or whatever else you need in a way that's flexible and extensible.
+The real magic starts when you realize you can hook a state machine up to your event system to broadcast events when you enter and exit certain states. Doing this allows you to trigger animations, particle effects, sounds, UI, or whatever else you need in a way that's flexible and extensible.
 
-For instance in ArrowBall when the Score state is entered it triggers:
+For instance, in ArrowBall when the Score state is entered, it triggers:
 1. A horn sound
 2. The ball to explode into confetti
 3. The score UI to slide in
-4. The game manager incrementing the score on the game state then changing the state machine to `Celebration`
+4. The game manager to increment the score on the game state then changing the state machine to `Celebration`
 
 Lots of different systems, all working in harmony, it doesn't get any better than that!
 
-#### Implementing a large-scale State Machine
+#### Implementing a Large-Scale State Machine
 <details markdown="1" id="large-sm-unity">
 <summary><b>In Unity:</b></summary>
-For global state machines in Unity, I like to use scriptable objects as they can be composed easily in the editor and are easy to hook into pretty much anywhere in your game.
+For global state machines in Unity, I like to use scriptable objects, as they can be composed easily in the editor and are easy to hook into pretty much anywhere in your game.
 
 First off, we need a state object that tracks and updates listeners during transitions:
 {% highlight csharp %}
@@ -824,7 +824,7 @@ public class State : ScriptableObject
 }
 {% endhighlight %}
 
-Next, we can make a listener component that can be used to wire events to state transitions
+Next, we can make a listener component that can be used to wire events to state transitions:
 {% highlight csharp %}
 public class StateMachineListener : MonoBehaviour
 {
@@ -898,7 +898,7 @@ public class StateMachine : ScriptableObject
 }
 {% endhighlight %}
 
-We can see how this all works together in a game manager to manage flow
+We can see how this all works together in a game manager to manage flow.
 {% highlight csharp %}
 public class GameManager : MonoBehaviour 
 {
@@ -961,7 +961,7 @@ public:
 };
 {% endhighlight %}
 
-With that, we can setup a game state class to act as our state machine manager:
+With that, we can set up a game state class to act as our state machine manager:
 {% highlight cpp %}
 UCLASS()
 class BOWLING_API ABowlingGameStateBase : public AGameStateBase
@@ -1016,15 +1016,15 @@ BowlingGameState->GetCallbacksForState(EMatchState::START)->OnStateEntered.AddUn
 BowlingGameState->GetCallbacksForState(EMatchState::START)->OnStateEntered.RemoveDynamic(this, &ThisClass::OnStart);
 {% endhighlight %}
 
-I recommend also checking out [the real BowlingGameState](https://github.com/jaideng123/UnrealBowling/blob/multiplayer-testing/Source/Bowling/BowlingGameStateBase.h) as it also has support for network replication among other things.
+I recommend also checking out [the real BowlingGameState](https://github.com/jaideng123/UnrealBowling/blob/multiplayer-testing/Source/Bowling/BowlingGameStateBase.h) as it also has support for network replication, among other things.
 </details>
 
 ## State Stacks
-Flat State machines and States work really well when states are used in a predictable way, but it becomes difficult to manage when you have a state that you want to re-use in multiple contexts like one that manages a menu or a confirm dialog. State Stacks to the rescue!
+Flat State machines and States work really well when states are used in a predictable way, but it becomes difficult to manage when you have a state that you want to re-use in multiple contexts, like one that manages a menu or a confirm dialog. State Stacks to the rescue!
 
-A State Stack is simply an organization of different states onto a stack with only the top-most state being active. This means you can pop into a new state and once that state is done, you can just pop it and return to the previous state.
+A State Stack is simply an organization of different states onto a stack with only the topmost state being active. This means you can push a new state onto the stack, and once that state is done, you can just pop it and return to the previous state.
 
-The clearest example of where this is useful is in UI Menus. Games often have dozens if not hundreds of menus and they're often used in different contexts. For instance you might have an options menu that is accessed from both the title screen, as well as in-game from the pause menu. With a State Stack you just push the Options Menu State onto the stack when a button is pressed, and then when "back" is pressed you pop it off and return to either the title screen or pause menu. If you have controller bindings or a back button like Android this makes your life even easier since you can just map that button to pop the top-most State in the stack without having to explicitly code out the behavior for each State.
+The clearest example of where this is useful is in UI menus. Games often have dozens if not hundreds of menus, and they're often used in different contexts. For instance, you might have an options menu that is accessed from both the title screen and in-game from the pause menu. With a State Stack you just push the Options Menu State onto the stack when a button is pressed, and then when "back" is pressed you pop it off and return to either the title screen or pause menu. If you have controller bindings or a back button like Android this makes your life even easier since you can just map that button to pop the top-most State in the stack without having to explicitly code out the behavior for each State.
 
 ### Implementing a State Stack
 <details markdown="1" id="state-stack-unity">
@@ -1089,7 +1089,7 @@ public class StateStackManager
 }
 {% endhighlight %}
 
-and finally we can push and pop states like so:
+and finally, we can push and pop states like so:
 {% highlight csharp %}
 // On boot
 StateManager.Instance.PushState(new MainMenuState())
@@ -1104,7 +1104,7 @@ StateManager.Instance.PopState()
 
 <details markdown="1" id="state-stack-unreal">
 <summary><b>In Unreal:</b></summary>
-First off we need to define our individual state objects:
+First off, we need to define our individual state objects:
 {% highlight cpp %}
 UINTERFACE(MinimalAPI, Blueprintable)
 class UStateInterface : public UInterface
@@ -1183,7 +1183,7 @@ public:
 };
 {% endhighlight %}
 
-Finally you can leverage the StateStack anywhere, but for UI you most likely want it on a PlayerController:
+Finally, you can leverage the StateStack anywhere, but for UI you most likely want it on a PlayerController:
 {% highlight cpp %}
 UCLASS()
 class YOURPROJECT_API AMyPlayerController : public APlayerController
@@ -1224,15 +1224,15 @@ I would also recommend checking out [Widget Stacks](https://dev.epicgames.com/do
 
 # Conclusion:
 Ultimately, which of the tools laid out here that you find most useful and how you use them will depend on (in order of importance):
-1. **Your game** - All games are different and have different needs, patterns that work well in a turn-based game that are a poor fit for an online shooter.
-2. **Your team** - Technology serves teams, it doesn't matter how beautiful your code is if your team-members can't make use of it.
-3. **Your personal aesthetics** - Every programmer has different approaches they like and contrary to popular belief there is no standard for what is "clean code", there is only code that works, is flexible, and is performant.
+1. **Your game** - All games are different and have different needs; patterns that work well in a turn-based game that are a poor fit for an online shooter.
+2. **Your team** - Technology serves teams; it doesn't matter how beautiful your code is if your team members can't make use of it.
+3. **Your personal aesthetics** - Every programmer has different approaches they like, and contrary to popular belief there is no agreed upon standard for what "clean code" is, there is only code that works, and is performant.
 
-Not everything will work for everyone, if you find one of these patterns isn't working for your game or you have an idea for how to do it differently, don't be afraid to experiment and go off the beaten path!
+Not everything will work for everyone; if you find one of these patterns isn't working for your game or you have an idea for how to do it differently, don't be afraid to experiment and go off the beaten path!
 
-You may even find new patterns that you can share with others along the way 😀
+You may even find new patterns that you can share with others along the way. 😀
 
 ## Further Reading
 * [Game Programming Patterns](https://gameprogrammingpatterns.com/) is an excellent book that has even more detail and patterns then I laid out here.
-* [Game Engine Architexture](https://www.gameenginebook.com/) is more about engine systems, but having a survey of what an engine should offer will help you work in harmony with it rather than against it.
-* [Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns) is the grand-daddy of this topic and highly regarded in the field of computer science (just note that it is rather old and some patterns may not work well with modern game frameworks).
+* [Game Engine Architecture](https://www.gameenginebook.com/) is more about engine systems, but having a survey of what an engine should offer will help you work in harmony with it rather than against it.
+* [Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns) is the granddaddy of this topic and highly regarded in the field of computer science (just note that it is rather old and some patterns may not work well with modern game frameworks).
