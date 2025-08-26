@@ -35,7 +35,7 @@ It's not however without pitfalls, those usually being:
 * It's a singleton and thus carries all of the issues a singleton has (Always)
 
 ## Creating a Game Manager
-<details markdown="1">
+<details markdown="1" id="game-manager-unity">
 <summary><b>In Unity:</b></summary>
 Attach a C# script on a game object with references to all the things it needs to touch that is created on load and never destroyed.
 
@@ -66,7 +66,7 @@ GameManager.Instance.TriggerThing();
 You will then need to make sure this game object exists in either your boot scene or (ideally) all the primary scenes in your game.
 </details>
 
-<details markdown="1">
+<details markdown="1" id="game-manager-unreal">
 <summary><b>In Unreal:</b></summary>
 
 First, try to leverage the built-in [GameMode & GameState classes](https://dev.epicgames.com/documentation/en-us/unreal-engine/game-mode-and-game-state-in-unreal-engine) instead of you own implementation since it works better with the rest of the Unreal ecosystem.
@@ -101,12 +101,12 @@ Services are a powerful tool and with great power comes great responsibility (to
 ## Implementing a Service
 Regardless of your chosen tool, services are usually built with static singletons, dependency injection, or a service locator. This section will assume you are starting with a singleton (we'll explore the other solutions for wiring in the next section)
 
-<details markdown="1">
+<details markdown="1" id="services-unity">
 <summary><b>In Unity:</b></summary>
 You can use a similar setup to your game manager singleton as outlined in [the previous section](#creating-a-game-manager).
 </details>
 
-<details markdown="1">
+<details markdown="1" id="services-unreal">
 <summary><b>In Unreal:</b></summary>
 Custom [Subsystems](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-subsystems-in-unreal-engine) are a great fit for singleton services. They are tied to specific lifetimes (World, Level, Player, Game Instance) based on their parent class and Unreal will automatically instantiate and destroy them for you. 
 
@@ -150,7 +150,7 @@ Service Locators exist as a nice middle ground between static singletons and a b
 #### Implementing a Service Locator
 Unlike Dependency Injection, a basic service locator is usually dead-simple to implement and then expand as your needs change.
 
-<details markdown="1">
+<details markdown="1" id="service-locator-unity">
 <summary><b>In Unity:</b></summary>
 You can leverage a static class that wires up concrete service implementations with interfaces accessed by other parts of your code-base like so:
 {% highlight csharp %}
@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
 {% endhighlight %}
 </details>
 
-<details markdown="1">
+<details markdown="1" id="service-locator-unreal">
 <summary><b>In Unreal:</b></summary>
 Once again subsystems are a natural fit for a singleton service locator and implementing one is fairly straightforward:
 {% highlight cpp %}
@@ -289,12 +289,12 @@ Overall, I find a full dependency injection system tough to recommend for all bu
 #### Integrating Dependency Injection
 I would not recommend rolling your own solution for Dependency Injection if possible as they can be a huge time-sink for engineers, so instead I will link to projects that already exist that you can utilize.
 
-<details markdown="1">
+<details markdown="1" id="di-unity">
 <summary><b>In Unity:</b></summary>
 [Zenject](https://github.com/modesttree/Zenject) is the solution I've worked with the most as it's the foundation of Pokemon Go's codebase, though it's not as well-supported as it used to be and is a bit on the heavy-side in terms of complexity. [VContainer](https://vcontainer.hadashikick.jp/) is another option that seems to be popular.
 </details>
 
-<details markdown="1">
+<details markdown="1" id="di-unreal">
 <summary><b>In Unreal:</b></summary>
 Unreal has Type Containers which provide a simple DI solution. it's important to note that they are C++ only so your designers wont easily be able to access them in blueprint land. They also aren't used by a lot of games and the only place Epic uses them is in the Unreal Launcher so YMMV.
 
@@ -318,7 +318,7 @@ I like to reserve events for cases where I have 2 or more mostly unconnected sys
 Publish & Subscribe systems take the concept of events and make it a bit more granular. Instead of all events going out globally, you can make dedicated streams for events to fall into. This can make your event system much easier to reason about, but also less flexible overall.
 
 ## Creating an event system
-<details markdown="1">
+<details markdown="1" id="pub-sub-unity">
 <summary><b>In Unity:</b></summary>
 Actions in C# give us everything we need for a flexible event system:
 
@@ -383,7 +383,7 @@ EventManager.Publish(new GameStartEvent());
 If you want to make a more designer-friendly version of an event system, I would recommend looking at [the approach Schell Games outlines in this talk](https://youtu.be/raQ3iHhE_Kk?si=x-70ATKpWnoyvjNi&t=1670).
 </details>
 
-<details markdown="1">
+<details markdown="1" id="pub-sub-unreal">
 <summary><b>In Unreal:</b></summary>
 Unreal provides a very natural way to build events via delegates, we just have to make it available globally via a subsystem:
 
@@ -450,7 +450,7 @@ Observers are good to use when you have a value that rarely updates and affects 
 In general, you should try to be as granular as possible in terms of what data is being observed to avoid notifying too many things at once. That being said, you can reach a point where you have so many little bits of data that it becomes hard to reason about. I usually recommend grouping things together that make sense logically, and then breaking them out later as you start to have performance issues.
 
 ## Implementing an Observer system
-<details markdown="1">
+<details markdown="1" id="observer-unity">
 <summary><b>In Unity:</b></summary>
 Actions are once again the tool to each for in Unity, allowing us to easily notify subscribers for any property:
 {% highlight csharp %}
@@ -488,7 +488,7 @@ Health.OnValueChanged += OnHealthChanged
 Once again, I would also recommend considering [the Scriptable-Objects-Based method Schell Games developed for their games.](https://youtu.be/raQ3iHhE_Kk?si=do5EaeB1h8oKV9bN&t=927) They are easy to use and allow you to re-use and test different components in isolation.
 </details>
 
-<details markdown="1">
+<details markdown="1" id="observer-unreal">
 <summary><b>In Unreal:</b></summary>
 A Delegate with a single argument can act as an observable, you just have to remember to update it when you update the value tied to it:
 
@@ -542,7 +542,7 @@ Imagine you are creating an enemy in a platformer that runs at the player when t
 This is a pretty simple example, but it leads to behavior that is much easier to reason about and extend than a giant if-else statement.
 
 #### Implementing a Small-Scale State Machine
-<details markdown="1">
+<details markdown="1" id="small-sm-unity">
 <summary><b>In Unity:</b></summary>
 First we start with our state class:
 {% highlight csharp %}
@@ -644,7 +644,7 @@ else
 </details>
 
 
-<details markdown="1">
+<details markdown="1" id="small-sm-unreal">
 <summary><b>In Unreal:</b></summary>
 First off we need to define our individual state objects:
 {% highlight cpp %}
@@ -779,7 +779,7 @@ For instance in ArrowBall when the Score state is entered it triggers:
 Lots of different systems, all working in harmony, it doesn't get any better than that!
 
 #### Implementing a large-scale State Machine
-<details markdown="1">
+<details markdown="1" id="large-sm-unity">
 <summary><b>In Unity:</b></summary>
 For global state machines in Unity, I like to use scriptable objects as they can be composed easily in the editor and are easy to hook into pretty much anywhere in your game.
 
@@ -926,7 +926,7 @@ public class GameManager : MonoBehaviour
 In my Useful Unity repo I have a working (slightly different) [State](https://github.com/jaideng123/Useful-Unity/blob/504145f514e28e187c84ee83b5d751b0020088dd/Base%20Classes/State.cs), [Listener](https://github.com/jaideng123/Useful-Unity/blob/504145f514e28e187c84ee83b5d751b0020088dd/Components/StateMachineListener.cs), and [State Machine](https://github.com/jaideng123/Useful-Unity/blob/504145f514e28e187c84ee83b5d751b0020088dd/Generic/StateMachine.cs) setup that I've used for a few projects to manage game flow (including ArrowBall!).
 </details>
 
-<details markdown="1">
+<details markdown="1" id="large-sm-unreal">
 <summary><b>In Unreal:</b></summary>
 Doing this in Unreal is quite different from Unity and I haven't found a great way to set up one in a generic way that also works with blueprints, so instead I will just walk through the setup I built for Yuu Recreations: Bowling
 
@@ -1027,7 +1027,7 @@ A State Stack is simply an organization of different states onto a stack with on
 The clearest example of where this is useful is in UI Menus. Games often have dozens if not hundreds of menus and they're often used in different contexts. For instance you might have an options menu that is accessed from both the title screen, as well as in-game from the pause menu. With a State Stack you just push the Options Menu State onto the stack when a button is pressed, and then when "back" is pressed you pop it off and return to either the title screen or pause menu. If you have controller bindings or a back button like Android this makes your life even easier since you can just map that button to pop the top-most State in the stack without having to explicitly code out the behavior for each State.
 
 ### Implementing a State Stack
-<details markdown="1">
+<details markdown="1" id="state-stack-unity">
 <summary><b>In Unity:</b></summary>
 First things first, we have to define our state interface and some states:
 {% highlight csharp %}
@@ -1102,7 +1102,7 @@ StateManager.Instance.PopState()
 </details>
 
 
-<details markdown="1">
+<details markdown="1" id="state-stack-unreal">
 <summary><b>In Unreal:</b></summary>
 First off we need to define our individual state objects:
 {% highlight cpp %}
