@@ -37,6 +37,12 @@ social:
 
 permalink: pretty
 
+collections:
+  posts:
+    output: true
+    permalink: /blog/:title
+
+
 feed:
   categories:
     - blog
