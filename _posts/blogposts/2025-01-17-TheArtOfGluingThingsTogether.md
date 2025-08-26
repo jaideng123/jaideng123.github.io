@@ -96,9 +96,7 @@ My rules of thumb for creating services are:
    2. If you do this, make sure to avoid cyclic references (Service A uses Service B and Service B uses Service A)
 5. Document your interface for the service as well as expected usage with good comments.
 
-Services are a powerful tool and with great power comes great responsibility (to avoid spaghetti-fying yor codebase).
-
-<!-- TODO: Other names for Services? -->
+Services are a powerful tool and with great power comes great responsibility (to avoid spaghetti-fying your codebase).
 
 ## Implementing a Service
 Regardless of your chosen tool, services are usually built with static singletons, dependency injection, or a service locator. This section will assume you are starting with a singleton (we'll explore the other solutions for wiring in the next section)
@@ -142,11 +140,12 @@ I would **STRONGLY RECOMMEND AGAINST** rolling a custom C++ singleton for many r
 </details>
 
 ## Dependency Injection & Service Locators
-As your project gets larger and the number of services grows, it can become difficult to connect dependencies to one another in a sane way. There are two common solutions to this problem that I'll explore here.
-<!-- TODO: more reasons to use -->
+As your project gets larger and the number of services grows, it can become difficult to connect dependencies to one another in a sane way, especially once you start needing to support different platforms.
+
+There are two common solutions to this problem that I'll explore here.
 
 ### Service Locators
-Service Locators exist as a middle ground between static singletons and a big DI framework and that is the trusty Service Locator. A Service Locator is a global singleton that wires up services and then allows other parts of your codebase to access those services via their interface. This is often what people want when they reach for dependency injection and it's what I recommend instead.
+Service Locators exist as a nice middle ground between static singletons and a big DI framework. A Service Locator is a global singleton that wires up services and then allows other parts of your codebase to access those services via their interface. This is often what people want when they reach for dependency injection and it's what I usually recommend for most projects.
 
 #### Implementing a Service Locator
 Unlike Dependency Injection, a basic service locator is usually dead-simple to implement and then expand as your needs change.
@@ -279,17 +278,13 @@ if (Locator)
 ### Dependency Injection
 Dependency Injection frameworks work by building out a graph of all your dependencies and automatically injecting references to them into each object. Usually you will have one or more Containers that manage the scope of different dependencies (like for instance global vs. scene) and provide a way to have multiple instances of dependencies. You can even use fancy techniques to inject different things in different situations.
 
-Dependency Injection is very common in the world of web development, but not so much in most game projects, likely because game developers usually prefer control over abstraction and DI is a very heavy abstraction.
+Dependency Injection is very common in the world of web and app development, but not so much in most game projects, likely because most game developers usually prefer control over abstraction and DI is a very very heavy abstraction.
 
-It's important to note that while DI can help with a lot of your dependency wiring, it's not a silver bullet, and you can still end up in situations where you have to spend a lot of time untangling dependencies that have circular references.
+It's important to note that while DI can help with **a lot** of your dependency wiring, it's not a silver bullet, and you can still end up in situations where you have to spend a lot of time untangling dependencies that have circular references.
 
 DI also can't really solve a mess of dependencies all it really does is hide the mess so you don't have to see it as often. The rabbit hole can go very deep with DI frameworks and their is a risk that engineers can turn them into code-golf challenges that make things even harder to understand. Which is why I recommend trying to use them sparingly.
 
 Overall, I find a full dependency injection system tough to recommend for all but the most complex projects as it's usually solving a lot more problems than most people have in their games as well as adding more complexity. Still, every tool has it's use and there are many projects (Like Pokemon Go) that use it effectively.
-
-<!-- TODO: Why use DI? -->
-<!-- Separate interface from class -->
-<!-- Add More Meat Here -->
 
 #### Integrating Dependency Injection
 I would not recommend rolling your own solution for Dependency Injection if possible as they can be a huge time-sink for engineers, so instead I will link to projects that already exist that you can utilize.
@@ -689,7 +684,6 @@ class UStateManagerComponent : public UActorComponent
 {
 	GENERATED_BODY()
 public:	
-	// Sets default values for this component's properties
 	UStateManagerComponent();
 
     UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
@@ -787,15 +781,243 @@ Lots of different systems, all working in harmony, it doesn't get any better tha
 #### Implementing a large-scale State Machine
 <details markdown="1">
 <summary><b>In Unity:</b></summary>
-IN PROGRESS
+For global state machines in Unity, I like to use scriptable objects as they can be composed easily in the editor and are easy to hook into pretty much anywhere in your game.
+
+First off, we need a state object that tracks and updates listeners during transitions:
+{% highlight csharp %}
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/State", order = 1)]
+public class State : ScriptableObject
+{
+    public string name;
+    private List<StateMachineListener> listeners = new List<StateMachineListener>();
+
+    private void OnEnable()
+    {
+        listeners = new List<StateMachineListener>();
+    }
+
+    public void Register(StateMachineListener listener)
+    {
+        listeners.Add(listener);
+    }
+
+    public void DeRegister(StateMachineListener listener)
+    {
+        listeners.Remove(listener);
+    }
+
+    public void OnEnter()
+    {
+        for (int i = listeners.Count - 1; i >= 0; i--)
+        {
+            listeners[i].InvokeEnterResponse();
+        }
+    }
+
+    public void OnExit()
+    {
+        for (int i = listeners.Count - 1; i >= 0; i--)
+        {
+            listeners[i].InvokeExitResponse();
+        }
+    }
+}
+{% endhighlight %}
+
+Next, we can make a listener component that can be used to wire events to state transitions
+{% highlight csharp %}
+public class StateMachineListener : MonoBehaviour
+{
+    public StateMachine stateMachine;
+    public State state;
+    public UnityEvent enterResponse;
+    public UnityEvent exitResponse;
+
+    private void OnEnable()
+    {
+        state.Register(this);
+        if (stateMachine.currentState == state)
+        {
+            InvokeEnterResponse();
+        }
+    }
+
+    private void OnDisable()
+    {
+        state.DeRegister(this);
+    }
+
+    public void InvokeEnterResponse()
+    {
+        enterResponse.Invoke();
+    }
+
+    public void InvokeExitResponse()
+    {
+        exitResponse.Invoke();
+    }
+}
+{% endhighlight %}
+
+And finally, we have a state machine to bring it all together:
+{% highlight csharp %}
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/StateMachine", order = 1)]
+public class StateMachine : ScriptableObject
+{
+    public State initialState;
+    public State currentState {get; private set};
+
+    private void OnEnable()
+    {
+        currentState = null;
+        ResetStateMachine();
+    }
+
+    public void ResetStateMachine()
+    {
+        if (currentState != null)
+        {
+            currentState.OnExit();
+        }
+        currentState = initialState;
+        currentState.OnEnter();
+    }
+
+    public void ChangeState(State nextState)
+    {
+        if (nextState == null)
+        {
+            Debug.LogError("Next State is Null");
+            Debug.Break();
+            return;
+        }
+        currentState.OnExit();
+        currentState = nextState;
+        nextState.OnEnter();
+    }
+}
+{% endhighlight %}
+
+We can see how this all works together in a game manager to manage flow
+{% highlight csharp %}
+public class GameManager : MonoBehaviour 
+{
+    public StateMachine roundStateMachine;
+    public State countdownState;
+    public State celebrationState;
+    int playerScore = 0;
+
+    // Bound to StartState.Enter via a State Machine Listener
+    public void OnGameStart()
+    {
+        roundStateMachine.ChangeState(countdownState);
+    }
+
+    // Bound to ScoreState.Enter via a State Machine Listener
+    public void OnScore()
+    {
+        playerScore++;
+        // Triggers horn sounds, confetti vfx, Score UI slide-in, etc.
+        roundStateMachine.ChangeState(celebrationState);
+    }
+}
+{% endhighlight %}
+
+In my Useful Unity repo I have a working (slightly different) [State](https://github.com/jaideng123/Useful-Unity/blob/504145f514e28e187c84ee83b5d751b0020088dd/Base%20Classes/State.cs), [Listener](https://github.com/jaideng123/Useful-Unity/blob/504145f514e28e187c84ee83b5d751b0020088dd/Components/StateMachineListener.cs), and [State Machine](https://github.com/jaideng123/Useful-Unity/blob/504145f514e28e187c84ee83b5d751b0020088dd/Generic/StateMachine.cs) setup that I've used for a few projects to manage game flow (including ArrowBall!).
 </details>
-<!-- TODO -->
 
 <details markdown="1">
 <summary><b>In Unreal:</b></summary>
-IN PROGRESS
+Doing this in Unreal is quite different from Unity and I haven't found a great way to set up one in a generic way that also works with blueprints, so instead I will just walk through the setup I built for Yuu Recreations: Bowling
+
+To start, we need an enum for each state we want in our game mode as well as an object to hold any state change callbacks:
+{% highlight cpp %}
+UENUM(BlueprintType)
+enum EMatchState
+{
+	UNSET,
+	START,
+	BOWL_SETUP,
+	THROWING,
+	OUT_OF_BOUNDS,
+	BOWL_COMPLETE,
+	CLEARING_PINS,
+	CYCLE_BOWLER,
+	GAME_END,
+};
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStateEntered);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStateExited);
+
+UCLASS(BlueprintType)
+class UStateCallbacks : public UObject
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(BlueprintAssignable)
+	FOnStateEntered OnStateEntered;
+	UPROPERTY(BlueprintAssignable)
+	FOnStateExited OnStateExited;
+};
+{% endhighlight %}
+
+With that, we can setup a game state class to act as our state machine manager:
+{% highlight cpp %}
+UCLASS()
+class BOWLING_API ABowlingGameStateBase : public AGameStateBase
+{
+	GENERATED_BODY()
+protected:
+	UPROPERTY(VisibleAnywhere)
+	TEnumAsByte<EMatchState> CurrentMatchState;
+    UPROPERTY(VisibleAnywhere)
+	TMap<TEnumAsByte<EMatchState>, UStateCallbacks*> StateCallbacks;
+public:
+	UFUNCTION(BlueprintCallable)
+	void SetMatchState(EMatchState NewMatchState)
+    {
+        const EMatchState PreviousMatchState = CurrentMatchState;
+        CurrentMatchState = NewMatchState;
+        if(PreviousState != UNSET && StateCallbacks.Contains(PreviousState))
+        {
+            StateCallbacks[PreviousState]->OnStateExited.Broadcast();
+        }
+        if(StateCallbacks.Contains(CurrentMatchState))
+        {
+            StateCallbacks[CurrentMatchState]->OnStateEntered.Broadcast();
+        }
+    }
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	EMatchState GetMatchState()
+    {
+        return CurrentMatchState;
+    }
+
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+	UStateCallbacks* GetCallbacksForState(TEnumAsByte<EMatchState> State)
+    {
+        if(!StateCallbacks.Contains(State))
+        {
+            StateCallbacks.Add(State, NewObject<UStateCallbacks>());
+        }
+        return StateCallbacks[State];
+    }
+};
+{% endhighlight %}
+
+With all that set up, we can change and bind to state changes anywhere we can access the game state!
+{% highlight cpp %}
+// Changing state
+BowlingGameState->SetMatchState(EMatchState::START);
+// Adding a callback (Usually in BeginPlay), this also works with blueprint events
+BowlingGameState->GetCallbacksForState(EMatchState::START)->OnStateEntered.AddUniqueDynamic(this, &ThisClass::OnStart);
+// Removing a callback (Usually in EndPlay), this also works with blueprint events
+BowlingGameState->GetCallbacksForState(EMatchState::START)->OnStateEntered.RemoveDynamic(this, &ThisClass::OnStart);
+{% endhighlight %}
+
+I recommend also checking out [the real BowlingGameState](https://github.com/jaideng123/UnrealBowling/blob/multiplayer-testing/Source/Bowling/BowlingGameStateBase.h) as it also has support for network replication among other things.
 </details>
-<!-- TODO -->
 
 ## State Stacks
 Flat State machines and States work really well when states are used in a predictable way, but it becomes difficult to manage when you have a state that you want to re-use in multiple contexts like one that manages a menu or a confirm dialog. State Stacks to the rescue!
@@ -999,7 +1221,6 @@ public:
 
 I would also recommend checking out [Widget Stacks](https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Plugins/CommonUI/Widgets/UCommonActivatableWidgetStack) in Epic's CommonUI Plugin. They can be used very similarly to State Stacks and work very well for UI state with widgets.
 </details>
-<!-- TODO more detail -->
 
 # Conclusion:
 Ultimately, which of the tools laid out here that you find most useful and how you use them will depend on (in order of importance):
